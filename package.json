@@ -1,0 +1,33 @@
+{
+  "name": "hurricane",
+  "version": "1.0.0",
+  "description": "NYC Hurricane Zone Finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timkeane/hurricane.git"
+  },
+  "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/timkeane/hurricane/issues"
+  },
+  "homepage": "https://github.com/timkeane/hurricane#readme",
+  "dependencies": {
+    "@timkeane/nyc-lib": "^0.8.5-SNAPSHOT",
+    "jquery": "^3.3.1",
+    "ol": "^4.6.5",
+    "proj4": "^2.4.4"
+  },
+  "keywords": [
+    "mapping",
+    "openlayers",
+    "nyc",
+    "New York",
+    "hurricane",
+    "evacuation"
+  ]
+}
