@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/timkeane/hurricane#readme",
   "dependencies": {
-    "@timkeane/nyc-lib": "^0.8.5-SNAPSHOT",
+    "@timkeane/nyc-lib": "^0.8.5",
     "jquery": "^3.3.1",
     "ol": "^4.6.5",
     "proj4": "^2.4.4"
