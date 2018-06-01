@@ -1,36 +1,20 @@
 {
-  "name": "hurricane",
+  "name": "test",
   "version": "1.0.0",
-  "description": "NYC Hurricane Zone Finder",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timkeane/hurricane.git"
+    "test": "jest",
+    "build": "webpack"
   },
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/timkeane/hurricane/issues"
-  },
-  "homepage": "https://github.com/timkeane/hurricane#readme",
+  "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "^0.8.5-SNAPSHOT",
+    "@timkeane/nyc-lib": "^0.8.12",
     "jquery": "^3.3.1",
     "ol": "^4.6.5",
     "proj4": "^2.4.4"
   },
-  "keywords": [
-    "mapping",
-    "openlayers",
-    "nyc",
-    "New York",
-    "hurricane",
-    "evacuation"
-  ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -48,15 +32,7 @@
   "jest": {
     "verbose": true,
     "automock": false,
-    "testMatch": [
-      "**/__tests__/**/*.test.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(ol)/)",
-      "node_modules/(?!(\\@timkeane/nyc-lib)/)"
-    ],
-    "setupFiles": [
-      "./__tests__/jest-setup.js"
-    ]
+    "transformIgnorePatterns": [],
+    "setupFiles": []
   }
 }

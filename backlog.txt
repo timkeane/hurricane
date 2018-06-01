@@ -1,0 +1,180 @@
+Hi Tim,
+As part of the ongoing efforts to satisfy our responsibilities related to accessible evacuation info, we’ve been asked to make one minor addition to the language on the finder. For the list of bullets that appears for all Accessible Evac Center, we’d like bullet five to be updated with the following text.
+
+Additional amenities will be available such as accessible cots, storage space for refrigerated medication, power strips for charging mobility and other accessibility devices, and mobility aids (canes, crutches, manual wheelchairs, etc.)
+
+
+Thanks,
+Josh
+NYC EM Confidentiality Notice: This message may contain information that is confidential or privileged. If you are not the intended recipient, please advise the sender immediately and delete this message. 
+
+
+Tim/Walei,
+Can we add to this list the accessible center icon on the map? Feedback we’ve gotten indicates screen readers skip over this; perhaps special text can be added behind the icon that screen readers will pick up on?
+
+Thanks,
+Josh
+
+From: Sabry, Walei <wsabry@doitt.nyc.gov> 
+Sent: Thursday, May 31, 2018 1:37 PM
+To: Pennisi, Allison <apennisi@oem.nyc.gov>; Boyd, Dennis <dboyd@OEM.NYC.GOV>; Friedman, Joshua <JFriedman@OEM.NYC.GOV>
+Cc: Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; Keane, Tim <tkeane@doitt.nyc.gov>
+Subject: Re: Staging Site - Zone Finder accessibility check-in
+
+Hello all,
+
+I just had a conversation with Tim. We think the application can be ready in two to three weeks. Him and I will work together in that time period to address the following:
+1.	Initial screen: hiding search box from screen readers and improving label for View map link
+2.	Making images accessible
+3.	Improving heading structure on initial screen and on search results
+4.	Improving navigation throughout the different tabs
+5.	Improving screen reader focus by shifting it to the appropriate areas when search is activated or when modal dialogues appear
+6.	Ensuring that all directions including MTA trip planner work properly
+
+Please let me know if you have questions.
+
+Thanks,
+
+Walei
+
+________________________________________
+From: Pennisi, Allison <apennisi@oem.nyc.gov>
+Sent: Wednesday, May 30, 2018 4:37 PM
+To: Boyd, Dennis; Sabry, Walei; Friedman, Joshua
+Cc: Puvogel, Matthew; Keane, Tim
+Subject: RE: Staging Site - Zone Finder accessibility check-in 
+ 
+All,
+ 
+Matt provided his feedback (below) in a separate email and I wanted to add it to this chain in case there’s anything else that we are missing. 
+ 
+When I visited the zone finder page that Josh provided, it looked very similar to when we reviewed it in January.  Some things that were still an issue for me, included being sent to the bottom of the page when clicking on the evacuation centers tab.  Also there is still only one header on the page which says hurricane evacuation zone finder.  Under the evacuation center locations there is a link to map and when I clicked on it, it did not seem to navigate forward to another page.  Like Walei mentioned when clicking on the accessible transit locations it did bring me to a blank page.  
+ 
+Allison
+ 
+From: Boyd, Dennis 
+Sent: Wednesday, May 30, 2018 11:02 AM
+To: Sabry, Walei <wsabry@doitt.nyc.gov>; Friedman, Joshua <JFriedman@OEM.NYC.GOV>
+Cc: Pennisi, Allison <apennisi@oem.nyc.gov>; Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; Keane, Tim <tkeane@doitt.nyc.gov>
+Subject: Re: Staging Site - Zone Finder accessibility check-in
+ 
+Thanks.
+If you have one, what's your sence of a timeline for adding all the changes to the Zone Finder, or do we need to wait and ask Tim?
+Thanks again. 
+ 
+Dennis 
+________________________________________
+From: "Sabry, Walei" <wsabry@doitt.nyc.gov>
+Sent: Tuesday, May 29, 2018 4:00 PM
+To: "Boyd, Dennis" <dboyd@OEM.NYC.GOV>,"Friedman, Joshua" <JFriedman@OEM.NYC.GOV>
+CC: "Pennisi, Allison" <apennisi@oem.nyc.gov>,"Puvogel, Matthew" <mpuvogel@OEM.NYC.GOV>,"Keane, Tim" <tkeane@doitt.nyc.gov>
+Subject: Re: Staging Site - Zone Finder accessibility check-in
+We had a similar issue with the Wheelchair friendly restaurant map. We were able to fix it. Basically, the image was completely hidden from screen readers so they would skip over them.
+ 
+Walei
+ 
+ 
+________________________________________
+From: Boyd, Dennis <dboyd@OEM.NYC.GOV>
+Sent: Tuesday, May 29, 2018 3:42 PM
+To: Sabry, Walei; Friedman, Joshua
+Cc: Pennisi, Allison; Puvogel, Matthew; Keane, Tim
+Subject: RE: Staging Site - Zone Finder accessibility check-in 
+ 
+Thanks, Walei. 
+I noticed that, in their most recent correspondence, the Plaintiffs are also claiming that the accessibility icon is not readable by JAWS software. 
+Do you know this to be the case and, if so, what happens when JAWS encounters the icon? Does it skip over it and provide the information on the far side of the icon or does the software get stalled wherever it encounters the icon?
+Thanks.
+ 
+Dennis  
+ 
+From: Sabry, Walei <wsabry@doitt.nyc.gov> 
+Sent: Tuesday, May 29, 2018 3:25 PM
+To: Friedman, Joshua <JFriedman@OEM.NYC.GOV>; Boyd, Dennis <dboyd@OEM.NYC.GOV>
+Cc: Pennisi, Allison <apennisi@oem.nyc.gov>; Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; Keane, Tim <tkeane@doitt.nyc.gov>
+Subject: Re: Staging Site - Zone Finder accessibility check-in
+ 
+I tried it now and it worked. Previously it didn't. We will make sure that feature works correctly. I'm still waiting on an update from DoITT.
+ 
+Walei
+ 
+ 
+________________________________________
+From: Friedman, Joshua <JFriedman@OEM.NYC.GOV>
+Sent: Tuesday, May 29, 2018 2:26 PM
+To: Sabry, Walei; Boyd, Dennis
+Cc: Pennisi, Allison; Puvogel, Matthew; Keane, Tim
+Subject: RE: Staging Site - Zone Finder accessibility check-in 
+ 
+Thanks, Walei.
+ 
+Regarding the Trip Planner, there is supposed to be a splash screen prompting the user to click a button for accessible MTA directions. To confirm, if you access the following url using JAWS you just get a blank page?
+http://csgis-stg-prx.csc.nycnet/go2mta/v0.0.1/?jsonpacket=%7B%22RequestDevicename%22%3A%22DESKTOP%22%2C%22OriginInput%22%3A%221+Neptune+Avenue%2C+Brooklyn%2C+NY+11235%22%2C%22DestinationInput%22%3A%22PS+-+IS+30+-+7002+4+Avenue%2C+Brooklyn%2C+NY+11209%22%2C%22Arrdep%22%3A%22D%22%2C%22Hour%22%3A1%2C%22Minute%22%3A22%2C%22Ampm%22%3A%22pm%22%2C%22InputDate%22%3A%225%2F29%2F2018%22%2C%22Minimize%22%3A%22X%22%2C%22Walkdist%22%3A%220.50%22%2C%22Mode%22%3A%22FRBC12%22%2C%22LineStart%22%3A%22%22%2C%22LineEnd%22%3A%22%22%2C%22Accessible%22%3A%22Y%22%2C%22OriginCoordinates%22%3A%2240.58337244300065%24-73.954656058367%241+Neptune+Avenue%2C+Brooklyn%2C+NY+11235%240%22%2C%22DestinationCoordinates%22%3A%2240.633451401586136%24-74.02453258815893%24PS+-+IS+30+-+7002+4+Avenue%2C+Brooklyn%2C+NY+11209%240%22%2C%22LocationType%22%3A%22%22%2C%22StartServiceType%22%3A%22train%22%2C%22StartTrainType%22%3A%22subway%22%2C%22StartBorough%22%3A%22BK%22%2C%22EndBorough%22%3A%22%22%2C%22Walkincrease%22%3A%22%22%2C%22Maxinitialwait%22%3A%22%22%2C%22Maxtriptime%22%3A%22%22%2C%22Maxtransfers%22%3A%22%22%7D&rand=5
+ 
+ 
+ 
+From: Sabry, Walei <wsabry@doitt.nyc.gov> 
+Sent: Tuesday, May 29, 2018 1:12 PM
+To: Friedman, Joshua <JFriedman@OEM.NYC.GOV>; Boyd, Dennis <dboyd@OEM.NYC.GOV>
+Cc: Pennisi, Allison <apennisi@oem.nyc.gov>; Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; Keane, Tim <tkeane@doitt.nyc.gov>
+Subject: Re: Staging Site - Zone Finder accessibility check-in
+ 
+Hello all,
+ 
+The current version is still missing a lot of fixes. Also, when I tried using the MTA trip planner, I was redirected to a blank page. Below is a link to the Wheelchair friendly restaurant map which has a lot of the changes we intend to make. Please keep in mind that this map is not live. The map has proper heading structure, everything is read in the correct order and we limited the screen reader from accessing items that are not visible on screen.
+ 
+https://csgis-stg-prx.csc.nycnet/accessible-restaurant/#map-page
+ 
+Walei
+ 
+ 
+________________________________________
+From: Friedman, Joshua <JFriedman@OEM.NYC.GOV>
+Sent: Tuesday, May 29, 2018 12:47 PM
+To: Boyd, Dennis; Sabry, Walei
+Cc: Pennisi, Allison; Puvogel, Matthew; Keane, Tim
+Subject: RE: Staging Site - Zone Finder accessibility check-in 
+ 
+10-4. I believe our fix for accessible directions has been applied though.
+ 
+Does this look ok to folks? Clicking “directions” button to an accessible EC now lands the user on mta accessible directions via a splash page.
+ 
+From: Boyd, Dennis 
+Sent: Tuesday, May 29, 2018 12:37 PM
+To: Friedman, Joshua <JFriedman@OEM.NYC.GOV>; 'wsabry@doitt.nyc.gov' <wsabry@doitt.nyc.gov>
+Cc: Pennisi, Allison <apennisi@oem.nyc.gov>; Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; 'tkeane@doitt.nyc.gov' <tkeane@doitt.nyc.gov>
+Subject: RE: Staging Site - Zone Finder accessibility check-in
+ 
+Josh,
+I spoke to Matt.
+The staging site url you forwarded to the group looks to him to be unchanged.
+It seems, as I guess Walei was saying, they have fixed the map on MOPD’s website that was built off of the same template, but haven’t yet applied those changes to the Zone Finder. Hopefully that can be done on or before June 1. 
+Thanks. 
+ 
+Dennis
+ 
+From: Friedman, Joshua 
+Sent: Tuesday, May 29, 2018 10:48 AM
+To: Boyd, Dennis <dboyd@OEM.NYC.GOV>; 'wsabry@doitt.nyc.gov' <wsabry@doitt.nyc.gov>
+Cc: Pennisi, Allison <apennisi@oem.nyc.gov>; Puvogel, Matthew <mpuvogel@OEM.NYC.GOV>; 'tkeane@doitt.nyc.gov' <tkeane@doitt.nyc.gov>
+Subject: Staging Site - Zone Finder accessibility check-in
+ 
+http://msslva-gisapp01.csc.nycnet/gis/data/apps/mobile/hurricane/
+ 
+I think this url is the latest staging site (although not 100% sure)
+ 
+-----Original Appointment-----
+From: Friedman, Joshua 
+Sent: Tuesday, May 29, 2018 9:36 AM
+To: Boyd, Dennis; 'wsabry@doitt.nyc.gov'
+Cc: Pennisi, Allison; Puvogel, Matthew; 'tkeane@doitt.nyc.gov'
+Subject: CALL INFO Zone Finder accessibility check-in
+When: Tuesday, May 29, 2018 10:00 AM-10:30 AM (UTC-05:00) Eastern Time (US & Canada).
+Where: 718-218-0200; access code 326859
+ 
+NYCEMers – I have North booked so we can call together
+NYC EM Confidentiality Notice: This message may contain information that is confidential or privileged. If you are not the intended recipient, please advise the sender immediately and delete this message. 
+ 
+________________________________________
+
+This e-mail, including any attachments, may be confidential, privileged or otherwise legally protected. It is intended only for the addressee. If you received this e-mail in error or from someone who was not authorized to send it to you, do not disseminate, copy or otherwise use this e-mail or its attachments. Please notify the sender immediately by reply e-mail and delete the e-mail from your system. 

@@ -14,9 +14,6 @@ new nyc.ol.FinderApp({
   directionsUrl: 'https://maps.googleapis.com/maps/api/js?client=gme-newyorkcitydepartment&channel=pka&sensor=false&libraries=visualization'
 });
 
-var HurricaneApp = function(finderApp) {
-}
-
 var zoneSrc = new ol.source.Vector({
   format: new ol.format.TopoJSON(),
   url: 'data/zone.json'
@@ -40,5 +37,18 @@ var filters = new nyc.ol.Filters({
     ]
   }]
 });
-filters.on('change', finderApp.resetList, finderApp)
-$('#facilities').prepend(filters.getContainer())
+filters.on('change', finderApp.resetList, finderApp);
+$('#facilities').prepend(filters.getContainer());
+
+function geocoded(location) {
+  
+  finderApp.popup.show(location.coordinate);
+};
+
+function geolocated(location) {
+
+};
+
+finderApp.locationMgr.on('geocoded', geocoded);
+finderApp.locationMgr.on('geolocated', geolocated);
+

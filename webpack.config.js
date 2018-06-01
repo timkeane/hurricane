@@ -5,10 +5,8 @@ const webpack = require('webpack');
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const plugins = [
-  // new BundleAnalyzerPlugin({analyzerMode: 'static'}),
   new CleanWebpackPlugin(['dist']),
   new webpack.optimize.ModuleConcatenationPlugin()
 ]
@@ -18,9 +16,9 @@ if (isProd) {
 }
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/js/index.js'),
+  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-     path: path.resolve(__dirname, 'dist/js'),
+     path: path.resolve(__dirname, 'dist'),
      filename: 'hurricane.js'
   },
   devtool: isProd ? false : "cheap-module-eval-source-map",
@@ -35,34 +33,34 @@ module.exports = {
     }]
   },
   externals: {
-    jquery: 'jQuery',
-    'ol/extent': 'ol.extent',
-    'ol/coordinate': 'ol.coordinate',
-    'ol/tilegrid': 'ol.tilegrid',
-    'ol/feature': 'ol.Feature',
-    'ol/map': 'ol.Map',
-    'ol/view': 'ol.View',
-    'ol/overlay': 'ol.Overlay',
-    'ol/geolocation': 'ol.Geolocation',
-    'ol/format/feature': 'ol.format.Feature',
-    'ol/format/geojson': 'ol.format.GeoJSON',
-    'ol/format/formattype': 'ol.format.FormatType',
-    'ol/source/vector': 'ol.source.Vector',
-    'ol/source/xyz': 'ol.source.XYZ',
-    'ol/layer/vector': 'ol.layer.Vector',
-    'ol/layer/tile': 'ol.layer.Tile',
-    'ol/style/style': 'ol.style.Style',
-    'ol/style/icon': 'ol.style.Icon',
-    'ol/geom/point': 'ol.geom.Point',
-    'ol/geom/linestring': 'ol.geom.LineString',
-    'ol/geom/polygon': 'ol.geom.Polygon',
-    'ol/proj/projection': 'ol.proj.Projection',
+    // jquery: 'jQuery',
+    // 'ol/extent': 'ol.extent',
+    // 'ol/coordinate': 'ol.coordinate',
+    // 'ol/tilegrid': 'ol.tilegrid',
+    // 'ol/feature': 'ol.Feature',
+    // 'ol/map': 'ol.Map',
+    // 'ol/view': 'ol.View',
+    // 'ol/overlay': 'ol.Overlay',
+    // 'ol/geolocation': 'ol.Geolocation',
+    // 'ol/format/feature': 'ol.format.Feature',
+    // 'ol/format/geojson': 'ol.format.GeoJSON',
+    // 'ol/format/formattype': 'ol.format.FormatType',
+    // 'ol/source/vector': 'ol.source.Vector',
+    // 'ol/source/xyz': 'ol.source.XYZ',
+    // 'ol/layer/vector': 'ol.layer.Vector',
+    // 'ol/layer/tile': 'ol.layer.Tile',
+    // 'ol/style/style': 'ol.style.Style',
+    // 'ol/style/icon': 'ol.style.Icon',
+    // 'ol/geom/point': 'ol.geom.Point',
+    // 'ol/geom/linestring': 'ol.geom.LineString',
+    // 'ol/geom/polygon': 'ol.geom.Polygon',
+    // 'ol/proj/projection': 'ol.proj.Projection',
 
-    'text-encoding': 'window',
-    'leaflet': 'L',
-    'shapefile': '(window.shapefile || {})',
-    'papaparse': '(window.Papa || {})',
-    'proj4': '(window.proj4 || {defs: function(){}})'
+    // 'text-encoding': 'window',
+    // 'leaflet': 'L',
+    // 'shapefile': '(window.shapefile || {})',
+    // 'papaparse': '(window.Papa || {})',
+    // 'proj4': '(window.proj4 || {defs: function(){}})'
   },
   resolve: {
     alias: {
