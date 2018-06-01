@@ -37,7 +37,7 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@timkeane/nyc-lib@^0.8.5":
+"@timkeane/nyc-lib@^0.8.5-SNAPSHOT":
   version "0.8.5-SNAPSHOT"
   resolved "https://registry.yarnpkg.com/@timkeane/nyc-lib/-/nyc-lib-0.8.5-SNAPSHOT.tgz#8746137ccb68fd18f531f46fc3a868aa38065f48"
   dependencies:
@@ -1697,6 +1697,12 @@ clean-css@4.1.x:
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.11.tgz#2ecdf145aba38f54740f26cefd0ff3e03e125d6a"
   dependencies:
     source-map "0.5.x"
+
+clean-webpack-plugin@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/clean-webpack-plugin/-/clean-webpack-plugin-0.1.19.tgz#ceda8bb96b00fe168e9b080272960d20fdcadd6d"
+  dependencies:
+    rimraf "^2.6.1"
 
 cli-cursor@^1.0.2:
   version "1.0.2"
