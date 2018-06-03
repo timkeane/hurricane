@@ -3,10 +3,10 @@
  * @module hurricane/App
  */
 
-import $ from 'jquery';
-import hurricane from './hurricane';
-import decorations from './decorations';
-import style from './style';
+import $ from 'jquery'
+import hurricane from './hurricane'
+import decorations from './decorations'
+import style from './style'
 import FinderApp from '@timkeane/nyc-lib/dist/nyc/ol/FinderApp'
 import CsvPoint from  '@timkeane/nyc-lib/dist/nyc/ol/format/CsvPoint'
 import Decorate from  '@timkeane/nyc-lib/dist/nyc/ol/format/Decorate'
@@ -36,7 +36,8 @@ class App extends FinderApp {
       directionsUrl: hurricane.DIRECTIONS_URL
     })
     this.content = content
-    this.layer.setZIndex(1);
+    this.layer.setZIndex(1)
+    this.addZoneLayer(content)
   }
   /**
    * @access protected
@@ -91,7 +92,7 @@ class App extends FinderApp {
    * @private
    * @method
    */
-  addZoneLayer() {
+  addZoneLayer(content) {
     this.zoneSource = new OlSourceVector({
       format: new Decorate({
         parentFormat: new OlFormatTopoJSON(),
@@ -103,7 +104,7 @@ class App extends FinderApp {
       source: this.zoneSource,
       style: style.zone,
       opacity: .6
-    });
+    })
     this.map.addLayer(this.zoneLayer)
   }
 }
