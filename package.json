@@ -10,9 +10,10 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "^0.8.12",
+    "@timkeane/nyc-lib": "^0.8.14-SNAPSHOT",
     "jquery": "^3.3.1",
     "ol": "^4.6.5",
+    "papaparse": "^4.4.0",
     "proj4": "^2.4.4"
   },
   "devDependencies": {

@@ -34,7 +34,7 @@
 	margin-left: -12px;
 	margin-top: .4px;
 }
-.pop>.content {
+.pop .content {
 	margin: 10px;
 	width: 330px;
 	max-height: 500px;
