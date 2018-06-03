@@ -2,23 +2,32 @@
  * @module hurricane/Content
  */
 
+import $ from 'jquery'
 import hurricane from './hurricane'
+import messages from './messages'
+import NycContent from '@timkeane/nyc-lib/dist/Content'
 
 /**
  * @desc A class to manage hurricane evacuation messages
  * @public
  * @class
- * @extends {module:nyc/Content~Content}
+ * @mixes module:nyc/Content~Content
  */
-class Content extends Content {
+class Content {
   /**
    * @desc Create an instance of Content
    * @public
+	 * @param {module:hurricane/Content~Content#callback}
    * @constructor
-   * @param {Object<string, string>|Array<Object<string, string>>} messages The messages with optional tokens mapped by message id
    */
-  constructor(messages) {
-	  super(messages)
+  constructor(callback) {
+		Content.loadCsv({
+			url: hurricane.CONTENT_URL,
+			messages: [messages]
+		}).then(content => {
+			$.extend(this, content)
+			callback(this)
+		})
   }
 	/** 
 	 * @desc Method to return evacuation message for the provided location
@@ -64,5 +73,12 @@ class Content extends Content {
 		}
 	}
 }
+
+/**
+ * @desc Callback for {@link module:hurricane/Content~Content}
+ * @public
+ * @callback module:hurricane/Content~Content#callback
+ * @param {module:hurricane/Content~Content} content The finalized instance
+ */
 
 export default Content
