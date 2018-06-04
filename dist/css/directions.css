@@ -1,0 +1,163 @@
+#directions {
+	display: none;
+	left: 0;
+}
+#directions, #back-to-map, #dir-tabs, #map-tab, #route-tab {
+	position: fixed;
+  display: block;
+  top: 35px;
+	right: 0;
+	bottom: 0;
+}
+#back-to-map {
+  top: 0;
+}
+#dir-tabs {
+  width: 400px;
+}
+#map-tab.tab {
+  margin: 0;
+  left: 0;
+  right: 400px;
+  overflow: hidden;
+  border-top: 1px solid var(--color-medium)
+}
+#route-tab.tab {
+  margin: 5px;
+  width: 390px;
+}
+#map-tab div.map {
+	width: 100%;
+	height: 100%;
+}
+#back-to-map {
+	left: auto;
+	padding: 5px 3px 0 3px;
+	background-color:transparent;
+	color: var(--color-light);
+	border: none;
+}
+#back-to-map.btn:before {
+	display: block;
+	content: ' ';
+	float: left;
+	margin: -4px 3px 0 0;
+	width: 24px;
+	height: 24px;
+	border: 1px solid var(--color-light);
+	border-radius: 50%;
+	background-size: 14px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: var(--color-dark-translucent);
+	background-image: var(--left-icon-light);
+}
+#back-to-map.btn:hover:before {
+	background-color: var(--color-light);
+	background-image: var(--left-icon-dark);
+	border-color: transparent;
+}
+#directions .tabs {
+	top: 35px;
+}
+#directions .tabs .btns {
+	display: none;
+}
+#directions .btn-tab {
+	width: 50%;
+}
+#mode {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 3px 0;
+}
+#mode td {
+	height: 35px;
+	vertical-align: middle;
+	text-align: left;
+	width: 36px;
+}
+#mode td:last-child {
+	width: calc(100% - 144px);
+	text-align: right;
+}
+#mode td .btn-sq {
+	position: relative;
+}
+#mode td .btn-sq.active {
+	background-color: var(--color-dark);
+}
+#car {
+	background-image: var(--car-icon-light);
+}
+#transit {
+	background-image: var(--train-icon-light);
+}
+#walk {
+	background-image: var(--walk-icon-light);
+}
+#bike {
+	background-image: var(--bike-icon-light);
+}
+#mta {
+	width: 139px;
+	background-image: var(--mta-icon-light);
+	background-position: 1px 3px;
+	padding-left: 27px;
+	background-size: 26px;
+}
+#mta img {
+	width: 20px;
+	height: 20px;
+	margin: -6px 0;
+}
+#fld-from input {
+	width: calc(100% - 9px);
+	margin-bottom: 5px;
+}
+.fld-lbl {
+	font-weight: bold;
+}
+.adp-directions {
+	width: 100%;
+}
+button[title="Toggle fullscreen view"] {
+	display: none;
+}
+#route-tab .route {
+	height: calc(100% - 145px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#directions .btn-z-in, #directions .btn-z-out {
+  left: 3px;
+}
+#directions .btn-z-in {
+  top: 3px;
+}
+#directions .btn-z-out {
+  top: 40px;
+}
+@media only screen and (max-width : 750px), screen and (max-device-height: 350px) {
+  #dir-tabs {
+    width: 100%;
+  }
+  #directions .tabs .btns {
+	display: table;
+  }
+  #directions .tab {
+    position: absolute;
+    left: 0;
+		right: 0;
+		width: auto;
+    display: none;
+  }
+  #directions .tab.active {
+		display: block;
+	}
+}
+@media only screen and (max-width : 360px) {
+	#back-to-map {
+		width: 90px;
+	}
+}
