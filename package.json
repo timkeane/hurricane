@@ -1,18 +1,29 @@
 {
-  "name": "test",
+  "name": "hurricane",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "prebuild": "rm -rf ./dist",
+    "postbuild": "yarn html && yarn ver-qstr && yarn manifest && yarn data && yarn img && yarn css",
+    "html": "cp ./src/index.html ./dist",
+    "ver-qstr": "v=$npm_package_version; sed \"s/%ver%/${v}/g\" ./dist/index.html > tmpfile && mv tmpfile ./dist/index.html",
+    "manifest": "cp ./src/manifest.webmanifest ./dist",
+    "data": "cp -r ./src/data ./dist/data",
+    "img": "cp -r ./src/img ./dist/img",
+    "css": "cp -r ./src/css ./dist/css && cp -r ./node_modules/@timkeane/nyc-lib/dist/css/ ./dist/css/"
   },
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "^0.8.12",
+    "@timkeane/nyc-lib": "^0.8.45-SNAPSHOT",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "ol": "^4.6.5",
+    "papaparse": "^4.4.0",
     "proj4": "^2.4.4"
   },
   "devDependencies": {
