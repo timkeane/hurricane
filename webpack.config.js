@@ -3,11 +3,9 @@ console.warn(`process.env.NODE_ENV=${process.env.NODE_ENV}`)
 const isProd = ['production', 'prod', 'prd'].indexOf(process.env.NODE_ENV) > -1
 const webpack = require('webpack');
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 
 const plugins = [
-  new CleanWebpackPlugin(['dist']),
   new webpack.optimize.ModuleConcatenationPlugin()
 ]
 
@@ -19,13 +17,12 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
      path: path.resolve(__dirname, 'dist'),
-     filename: 'hurricane.js'
+     filename: 'js/hurricane.js'
   },
   devtool: isProd ? false : "cheap-module-eval-source-map",
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
       loader: 'babel-loader',
       query: {
         presets: ['es2015']
@@ -61,11 +58,6 @@ module.exports = {
     // 'shapefile': '(window.shapefile || {})',
     // 'papaparse': '(window.Papa || {})',
     // 'proj4': '(window.proj4 || {defs: function(){}})'
-  },
-  resolve: {
-    alias: {
-      nyc: path.resolve(__dirname, './src')
-    }
   },
   plugins: plugins
 }

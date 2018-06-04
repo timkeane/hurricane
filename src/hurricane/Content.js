@@ -4,8 +4,11 @@
 
 import $ from 'jquery'
 import hurricane from './hurricane'
-import messages from './messages'
-import NycContent from '@timkeane/nyc-lib/dist/Content'
+import messages from './message'
+import NycContent from '@timkeane/nyc-lib/dist/nyc/Content'
+
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
 
 /**
  * @desc A class to manage hurricane evacuation messages
@@ -13,7 +16,7 @@ import NycContent from '@timkeane/nyc-lib/dist/Content'
  * @class
  * @mixes module:nyc/Content~Content
  */
-class Content {
+class Content extends NycContent {
   /**
    * @desc Create an instance of Content
    * @public
@@ -21,12 +24,25 @@ class Content {
    * @constructor
    */
   constructor(callback) {
-		Content.loadCsv({
+		super([])
+		this.zoneOrders = {}
+		this.evacReq = []
+		NycContent.loadCsv({
 			url: hurricane.CONTENT_URL,
 			messages: [messages]
 		}).then(content => {
-			$.extend(this, content)
-			callback(this)
+			this.messages = content.messages
+			fetch(hurricane.ORDER_URL).then(response => {
+				response.text().then(csv => {
+					Papa.parse(csv, {header: true}).data.forEach(zone => {
+						if (zone.EVACUATE === 'YES') {
+							this.zoneOrders[zone.ZONE] = true
+							this.evacReq.push(zone)
+						}
+					})
+					callback(this)
+				})
+			})
 		})
   }
 	/** 

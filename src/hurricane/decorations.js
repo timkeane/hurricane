@@ -1,3 +1,5 @@
+import hurricane from "./hurricane";
+
 /**
  * @module hurricane/decorations
  */
@@ -5,7 +7,7 @@
 const decorations = {
   center: {    
     getName() {
-      return this.get('OEM_LABEL')
+      return `${this.get('OEM_LABEL')}<span class="screen-reader-only"> - this is an accessible facility</span>`
     },
     getAddress1() {
       return this.get('BLDG_ADD')
@@ -16,15 +18,15 @@ const decorations = {
     getCityStateZip() {
       return `${this.get('CITY')} , NY ${this.get('ZIP_CODE')}`
     },
+    isAccessible() {
+      return this.get('ACCESSIBLE') === 'Y'
+    },
     cssClass() {
-      return this.get('ACCESSIBLE') == 'Y' ? 'acc' : ''
+      return this.isAccessible() ? 'acc' : ''
     },
     detailsHtml() {
-      const detail = this.get('ACC_FEAT')
-      if (detail) {
-        return $('<ul class="rad-all details"></ul>')
-          .append('<li>${detail}</li>')
-          .append('<li>generic</li>')
+      if (this.isAccessible()) {
+        return this.content.message('acc_feat', this.getProperties())
       }
     },
     detailsCollapsible() {
@@ -43,12 +45,13 @@ const decorations = {
       return this.get('zone')
     },
     isSurfaceWater() {
-      return this.getZone() === nyc.SURFACE_WATER_ZONE
+      return this.getZone() === hurricane.SURFACE_WATER_ZONE
     },
     html() {
-      var zone = this.getZone()
       if (!this.isSurfaceWater()) {
-        return this.message('zone_info', {zone: zone, order: this.zoneMsg(zone)})
+        const content = this.content
+        const zone = this.getZone()
+        return content.message('zone_info', {zone: zone, order: content.zoneMsg(zone)})
       }
     }
   }

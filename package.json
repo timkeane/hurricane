@@ -5,12 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "prebuild": "rm -rf ./dist",
+    "postbuild": "yarn html && yarn manifest && yarn data && yarn img && yarn css",
+    "html": "cp ./src/index.html ./dist",
+    "manifest": "cp ./src/manifest.webmanifest ./dist",
+    "data": "cp -r ./src/data ./dist/data",
+    "img": "cp -r ./src/img ./dist/img",
+    "css": "cp -r ./src/css ./dist/css && cp ./node_modules/@timkeane/nyc-lib/dist/css/nyc-ol-lib.css ./dist/css/"
   },
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "^0.8.14-SNAPSHOT",
+    "@timkeane/nyc-lib": "^0.8.36",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "ol": "^4.6.5",
     "papaparse": "^4.4.0",
