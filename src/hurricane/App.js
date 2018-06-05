@@ -29,9 +29,9 @@ class App extends FinderApp {
   constructor(content) {
     const centers = content.message('filter_centers')
     super({
-      title: content.message('banner_text'),
+      title: `<span><span><span>${content.message('banner_text')}</span></span></span>`,
       splashOptions: {
-        message: `<div class="orders">${content.message('splash_msg')}</div>}`,
+        message: `<div class="orders">${content.message('splash_msg')}</div>`,
         buttonText: [content.message('btn_text')]
       },
       facilityUrl: hurricane.CENTER_URL,
