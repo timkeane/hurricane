@@ -344,5 +344,8 @@ ul.details li {
   #patch {
     display: block;
   }
+  #route-tab.tab {
+    margin-top: 25px;
+  }
 }
 
