@@ -29,9 +29,9 @@ class App extends FinderApp {
   constructor(content) {
     const centers = content.message('filter_centers')
     super({
-      title: content.message('banner_text'),
+      title: `<span><span><span>${content.message('banner_text')}</span></span></span>`,
       splashOptions: {
-        message: `<div class="orders">${content.message('splash_msg')}</div>}`,
+        message: `<div class="orders">${content.message('splash_msg')}</div>`,
         buttonText: [content.message('btn_text')]
       },
       facilityUrl: hurricane.CENTER_URL,
@@ -176,20 +176,23 @@ class App extends FinderApp {
    */
   renderEvacOrder(content) {
     let zones = 'Zone '
-    if (content.evacReq.length && content.messages.post_storm === 'NO') {
-			$('body').addClass('pre-storm').addClass('has-order')
-			$('#splash').addClass('active-order')
-			$('.orders').html(content.message('splash_yes_order'))
-			if (content.evacReq.length > 1) {
+    const evacuations = content.evacuations
+    if (evacuations.length && content.messages.post_storm === 'NO') {
+      const orders = content.message('splash_yes_order')
+      $('body').addClass('active-order')
+      $('.dia-container.splash').append('<div id="patch"></div>')
+      $('.orders').html(orders)
+			if (evacuations.length > 1) {
 				zones = 'Zones '
 			}
-			content.evacReq.forEach(zone => {
+			evacuations.forEach((zone, i) => {
 				zones += zone
-				zones += (i == evacReq.length - 2) ? ' and ' : ', '								
-			})
-			$('.orders').append(content.message('splash_zone_order', {zones: zones.substr(0, zones.length - 2)}))
-		} else if (content.messages.post_storm === 'YES') {
-			$('body').addClass('post-storm')
+				zones += (i === evacuations.length - 2) ? ' and ' : ', '								
+      })
+      zones = zones.substr(0, zones.length - 2)
+			$('.orders').append(content.message('splash_zone_order', {zones: zones}))
+      $(`<h2 class="alert"><div><div>${orders}</div></div></h2>`).insertAfter('#banner')
+      $('.alert div>div>div').append(` ${zones}`)
 		}
   }
   /**

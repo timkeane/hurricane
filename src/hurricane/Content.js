@@ -26,7 +26,7 @@ class Content extends NycContent {
   constructor(callback) {
 		super([])
 		this.zoneOrders = {}
-		this.evacReq = []
+		this.evacuations = []
 		NycContent.loadCsv({
 			url: hurricane.CONTENT_URL,
 			messages: [messages]
@@ -37,7 +37,7 @@ class Content extends NycContent {
 					Papa.parse(csv, {header: true}).data.forEach(zone => {
 						if (zone.EVACUATE === 'YES') {
 							this.zoneOrders[zone.ZONE] = true
-							this.evacReq.push(zone)
+							this.evacuations.push(zone.ZONE)
 						}
 					})
 					callback(this)
