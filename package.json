@@ -18,7 +18,7 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-v0.8.58-SNAPSHOT.tgz",
+    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-v0.8.62-SNAPSHOT.tgz",
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",

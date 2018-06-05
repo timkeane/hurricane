@@ -4,6 +4,13 @@
 #legend {
   margin: 5px;
 }
+.btn, .splash, label, .leg, .alert div {
+  text-transform: capitalize;
+}
+.dia-container.splash {
+  background-color: rgba(8,80,149,.3);
+  top: 35px;
+}
 p {
   margin: 0 0 5px 0;
 }
@@ -238,6 +245,76 @@ ul.details li {
     display: block; 
 	max-height: 28px;
 }
+
+
+
+.active-order .dia-container.splash, .fnd.active-order #tabs, #directions .tabs {
+  top: 60px;
+}
+.active-order .splash .dia {
+  font-weight: bold;
+  background-color: #e75624;
+  border-color: var(--color-border);
+}
+.active-order .splash .dia .dia-msg:focus {
+  box-shadow: none;
+}
+
+.alert {
+  border-top: 1px solid var(--color-light);
+  border-bottom: 1px solid var(--color-light);
+  background-color: #e75624;
+  display: table;
+  position: fixed;
+  top: 36px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  margin: 0;
+  z-index: 10000;
+  width: 100%;
+}
+.alert div {
+  display: table-row;
+}
+.alert div>div {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+}
+.alert div>div>div {
+  white-space: nowrap;
+  display: inline-block;
+  color: var(--color-light);
+  animation: alert 30s linear infinite;
+}
+#patch {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 400px;
+  height: 25px;
+  background-color: rgba(8,80,149,0.3);
+  top: 35px;
+}
+@keyframes alert {
+  0% {
+    margin-left: 50%;
+    margin-right: -50%;
+  }
+  100% {
+    margin-left: -100%;
+    margin-right: 100%;
+  }
+}
+
+
+
+
+
+
+
+
 @media only screen and (max-width : 613px) {
   .fnd h1#banner span {
       font-size: calc(16px + 6 * ((100vw - 320px) / 613));
@@ -257,5 +334,15 @@ ul.details li {
 	.fnd h1#banner span {
 		font-size: 16px;
 	}
+}
+@media only screen and (min-width : 750px) {
+  .alert {
+    left: auto;
+    width: 400px;
+    overflow: hidden;
+  }
+  #patch {
+    display: block;
+  }
 }
 
