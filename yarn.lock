@@ -37,9 +37,9 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@timkeane/nyc-lib@file:../nyc-lib/timkeane-nyc-lib-0.8.97-SNAPSHOT.tgz":
-  version "0.8.97-SNAPSHOT"
-  resolved "file:../nyc-lib/timkeane-nyc-lib-0.8.97-SNAPSHOT.tgz#f9893be11f9b16713521278c71a69baee04c09c4"
+"@timkeane/nyc-lib@file:../nyc-lib/timkeane-nyc-lib-0.8.99-SNAPSHOT.tgz":
+  version "0.8.99-SNAPSHOT"
+  resolved "file:../nyc-lib/timkeane-nyc-lib-0.8.99-SNAPSHOT.tgz#eb83947654d50a5b87802fba9c14adde0a0482f8"
   dependencies:
     es6-promise "^4.2.4"
     isomorphic-fetch "^2.2.1"
