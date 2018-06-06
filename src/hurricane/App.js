@@ -8,12 +8,12 @@ import hurricane from './hurricane'
 import decorations from './decorations'
 import style from './style'
 import FinderApp from '@timkeane/nyc-lib/dist/nyc/ol/FinderApp'
-import CsvPoint from  '@timkeane/nyc-lib/dist/nyc/ol/format/CsvPoint'
-import Decorate from  '@timkeane/nyc-lib/dist/nyc/ol/format/Decorate'
-import Filters from  '@timkeane/nyc-lib/dist/nyc/ol/Filters'
+import CsvPoint from '@timkeane/nyc-lib/dist/nyc/ol/format/CsvPoint'
+import Decorate from '@timkeane/nyc-lib/dist/nyc/ol/format/Decorate'
+import Filters from '@timkeane/nyc-lib/dist/nyc/ol/Filters'
 import FeatureTip from '@timkeane/nyc-lib/dist/nyc/ol/FeatureTip';
-import Tabs from  '@timkeane/nyc-lib/dist/nyc/Tabs'
-import Slider from  '@timkeane/nyc-lib/dist/nyc/Slider'
+import Tabs from '@timkeane/nyc-lib/dist/nyc/Tabs'
+import Slider from '@timkeane/nyc-lib/dist/nyc/Slider'
 
 import OlFeature from 'ol/feature'
 import OlGeomPoint from 'ol/geom/point'
@@ -93,7 +93,7 @@ class App extends FinderApp {
       {tab: '#facilities', title: options.facilityTabTitle},
       {tab: '#legend', title: 'Legend'}
     ]})
-    tabs.on('change', this.resizeMap, this)
+    tabs.on('change', this.tabChange, this)
     $(window).resize($.proxy(this.adjustTabs, this))
     return tabs
   }

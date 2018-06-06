@@ -12,7 +12,7 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-0.8.88-SNAPSHOT.tgz",
+    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-0.8.97-SNAPSHOT.tgz",
     "es6-promise": "^4.2.4",
     "global": "^4.3.2",
     "isomorphic-fetch": "^2.2.1",
