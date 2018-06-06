@@ -68,6 +68,11 @@ class Content extends NycContent {
 					oem_supplied: this.message('user_zone', {zone: zone})
 				})			
 			}
+		} else {
+			return this.message('location_zone_unkown', { 
+				name: name, 
+				oem_supplied: this.message('user_zone_unkown')
+			})
 		}
 	}
 	/** 

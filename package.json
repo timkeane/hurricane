@@ -11,7 +11,7 @@
     "html": "cp ./src/index.html ./dist",
     "replace": "replace '%ver%' $npm_package_version ./dist/index.html",
     "manifest": "cp ./src/manifest.webmanifest ./dist",
-    "data": "cp -r ./src/data ./dist/da ta",
+    "data": "cp -r ./src/data ./dist/data",
     "img": "cp -r ./src/img ./dist/img",
     "roll-css": "./node_modules/@timkeane/nyc-lib/etc/css/roll-css.sh ./src/css/hurricane.theme.css ./src/css/hurricane.css",
     "css": "yarn roll-css && mkdir ./dist/css && mv ./src/css/nyc.ol.hurricane.theme.css ./dist/css/ && rm ./src/css/nyc.hurricane.theme.css"
@@ -19,7 +19,7 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-v0.8.84-SNAPSHOT.tgz",
+    "@timkeane/nyc-lib": "file:../nyc-lib/timkeane-nyc-lib-v0.8.86-SNAPSHOT.tgz",
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
