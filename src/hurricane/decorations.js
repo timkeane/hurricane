@@ -32,15 +32,18 @@ const decorations = {
     detailsCollapsible() {
       const details = this.detailsHtml()
       if (details) {
-        return $('<a class="btn rad-all details"></a>')
-        .html('<span class="screen-reader-only">Click for accessibility </span>')
-        .append('Details...')
-        .attr('onclick', '$(this).next().slideToggle()')  
-        .add(details)
+        return $('<a class="btn rad-all dtl"></a>')
+          .html('<span class="screen-reader-only">Click for accessibility </span>')
+          .append('Details...')
+          .click($.proxy(this.finderApp.expandDetail, this.finderApp))
+          .add(details)
       }
     }
   },
   zone: {
+    cssClass() {
+      return 'zone'
+    },
     getZone() {
       return this.get('zone')
     },

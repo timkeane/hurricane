@@ -15,6 +15,8 @@ import FeatureTip from '@timkeane/nyc-lib/dist/nyc/ol/FeatureTip';
 import Tabs from  '@timkeane/nyc-lib/dist/nyc/Tabs'
 import Slider from  '@timkeane/nyc-lib/dist/nyc/Slider'
 
+import OlFeature from 'ol/feature'
+import OlGeomPoint from 'ol/geom/point'
 import OlFormatTopoJSON from 'ol/format/topojson'
 import OlSourceVector from 'ol/source/vector'
 import OlLayerVector from 'ol/layer/vector'
@@ -102,11 +104,29 @@ class App extends FinderApp {
    */
   located(location) {
     super.located(location)
-    this.popup.show({
-      coordinate: location.coordinate,
-      html: this.content.locationMsg(location)
+    const popup = this.popup
+    const feature = new OlFeature({
+      geometry: new OlGeomPoint(location.coordinate)
     })
-    $('.pop').attr('tabindex', 0).focus()
+    feature.html = () => {
+      return this.content.locationMsg(location)
+    }
+    popup.hide()
+    setTimeout(() => {
+      popup.showFeatures([feature])
+      $('.pop').attr('tabindex', 0).focus()
+    }, 500)
+  }
+  /**
+   * @access protected
+   * @method
+   * @param {Object} event
+   */
+  expandDetail(event) {
+    const popup = this.popup
+    $(event.target).next().slideToggle(() => {
+      popup.pan()
+    })
   }
   /**
    * @private
