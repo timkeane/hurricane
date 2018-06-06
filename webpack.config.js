@@ -60,7 +60,6 @@ module.exports = {
   externals: {
     jquery: 'jQuery',
     
-    // 'ol': 'ol',
     // 'ol/extent': 'ol.extent',
     // 'ol/coordinate': 'ol.coordinate',
     // 'ol/tilegrid': 'ol.tilegrid',
@@ -69,31 +68,25 @@ module.exports = {
     // 'ol/view': 'ol.View',
     // 'ol/overlay': 'ol.Overlay',
     // 'ol/geolocation': 'ol.Geolocation',
-    // 'ol/format': 'ol.format',
     // 'ol/format/feature': 'ol.format.Feature',
     // 'ol/format/geojson': 'ol.format.GeoJSON',
     // 'ol/format/formattype': 'ol.format.FormatType',
-    // 'ol/source': 'ol.source',
     // 'ol/source/vector': 'ol.source.Vector',
     // 'ol/source/xyz': 'ol.source.XYZ',
-    // 'ol/layer': 'ol.layer',
     // 'ol/layer/vector': 'ol.layer.Vector',
     // 'ol/layer/tile': 'ol.layer.Tile',
-    // 'ol/style': 'ol.style',
     // 'ol/style/style': 'ol.style.Style',
     // 'ol/style/icon': 'ol.style.Icon',
-    // 'ol/geom': 'ol.geom',
     // 'ol/geom/point': 'ol.geom.Point',
     // 'ol/geom/linestring': 'ol.geom.LineString',
     // 'ol/geom/polygon': 'ol.geom.Polygon',
-    // 'ol/proj': 'ol.proj',
     // 'ol/proj/projection': 'ol.proj.Projection',
 
-    // 'text-encoding': 'window',
-    // leaflet: 'L',
-    // shapefile: '(window.shapefile || {})',
-    // papaparse: '(window.Papa || {})',
-    // proj4: '(window.proj4 || {defs: function(){}})'
+    'text-encoding': 'window',
+    leaflet: 'L',
+    shapefile: '(window.shapefile || {})',
+    papaparse: '(window.Papa || {})',
+    proj4: '(window.proj4 || {defs: function(){}})'
   },
   plugins: plugins
 }

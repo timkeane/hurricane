@@ -37,10 +37,11 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@timkeane/nyc-lib@file:../nyc-lib/timkeane-nyc-lib-0.8.99-SNAPSHOT.tgz":
-  version "0.8.99-SNAPSHOT"
-  resolved "file:../nyc-lib/timkeane-nyc-lib-0.8.99-SNAPSHOT.tgz#eb83947654d50a5b87802fba9c14adde0a0482f8"
+"@timkeane/nyc-lib@file:../nyc-lib/timkeane-nyc-lib-0.9.2-SNAPSHOT.tgz":
+  version "0.9.2-SNAPSHOT"
+  resolved "file:../nyc-lib/timkeane-nyc-lib-0.9.2-SNAPSHOT.tgz#8a1ba66c6c409eecf695829c0d011b1d22fe309b"
   dependencies:
+    canvas-prebuilt "^1.6.5-prerelease.1"
     es6-promise "^4.2.4"
     isomorphic-fetch "^2.2.1"
     jquery "^3.3.1"

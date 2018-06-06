@@ -1,6 +1,9 @@
 .loading #legend {
   display: none;
 }
+#map {
+  background-color: #d8d8d8;
+}
 #legend {
   margin: 5px;
 }
