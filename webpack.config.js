@@ -1,16 +1,44 @@
-console.warn(`process.env.NODE_ENV=${process.env.NODE_ENV}`)
 
-const isProd = ['production', 'prod', 'prd'].indexOf(process.env.NODE_ENV) > -1
+const nodeEnv = process.env.NODE_ENV
+const version = require('./package.json').version
+
+console.warn(`NODE_ENV=${process.env.NODE_ENV}`)
+console.warn(`version=${version}`)
+
+const isProd = ['production', 'prod', 'prd'].indexOf(nodeEnv) > -1
 const webpack = require('webpack');
 const path = require('path')
-const MinifyPlugin = require('babel-minify-webpack-plugin')
+const Minify = require('babel-minify-webpack-plugin')
+const Clean = require('clean-webpack-plugin')
+const Copy = require('copy-webpack-plugin')
+const Replace = require('replace-in-file-webpack-plugin');
 
 const plugins = [
-  new webpack.optimize.ModuleConcatenationPlugin()
+  new Clean(['dist']),
+  new webpack.optimize.ModuleConcatenationPlugin(),
+  new Copy([
+    './src/index.html',
+    './src/manifest.webmanifest',
+    {from: './src/img', to: 'img'},
+    {from: './src/data', to: 'data'},
+    {
+      from: './node_modules/@timkeane/nyc-lib/etc/css/build/nyc.ol.hurricane.theme.css',
+      to: 'css/hurricane.css',
+      type: 'dir'
+    }
+  ]),
+  new Replace([{
+      dir: 'dist',
+      files: ['index.html'],
+      rules: [{
+          search: /%ver%/g,
+          replace: version
+      }]
+  }])
 ]
 
 if (isProd) {
-  plugins.push(new MinifyPlugin())
+  plugins.push(new Minify())
 }
 
 module.exports = {
