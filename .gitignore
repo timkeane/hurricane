@@ -1,3 +1,14 @@
+.project
+/.gradle/
+/.DS_Store
+/doc.sh
+/gradle.properties
+/Userstkeane
+build.settings
+.DS_Store
+.settings
+
+
 # Logs
 logs
 *.log
@@ -29,14 +40,19 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
+# Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+
+# Builds and distribution
+build/
+dist/
+out/
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
+# Typescript v1 declaration files
 typings/
 
 # Optional npm cache directory
@@ -57,5 +73,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# next.js build output
-.next
+.vscode/
+
+replace-hosts.sh
