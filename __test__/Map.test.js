@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Basemap from '@timkeane/nyc-lib/dist/nyc/ol/Basemap'
+import Basemap from 'nyc-lib/dist/nyc/ol/Basemap'
 import Map from '../src/Map'
 
 let target

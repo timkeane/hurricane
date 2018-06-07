@@ -5,7 +5,7 @@
 import $ from 'jquery'
 import hurricane from './hurricane'
 import messages from './message'
-import NycContent from '@timkeane/nyc-lib/dist/nyc/Content'
+import NycContent from 'nyc-lib/dist/nyc/Content'
 
 require('es6-promise').polyfill()
 require('isomorphic-fetch')

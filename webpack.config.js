@@ -22,7 +22,7 @@ const plugins = [
     {from: './src/img', to: 'img'},
     {from: './src/data', to: 'data'},
     {
-      from: './node_modules/@timkeane/nyc-lib/etc/css/build/nyc.ol.hurricane.theme.css',
+      from: './node_modules/nyc-lib/dist/css/build/nyc.ol.hurricane.theme.css',
       to: 'css/hurricane.css',
       type: 'dir'
     }
