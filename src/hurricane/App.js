@@ -88,6 +88,9 @@ class App extends FinderApp {
    * @returns {module:nyc/Tabs~Tabs}
    */
   createTabs(options) {
+    if (options.splashOptions) {
+      $('#tabs').attr('aria-hidden', true)
+    }
     const tabs = new Tabs({target: '#tabs', tabs: [
       {tab: '#map', title: 'Map'},
       {tab: '#facilities', title: options.facilityTabTitle},
