@@ -4729,9 +4729,9 @@ nwsapi@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.2.tgz#33a0aab27c678d4dfdbba6a7f84b1c627fc4966f"
 
-"nyc-lib@file:../nyc-lib/nyc-lib-0.9.7-SNAPSHOT.tgz":
-  version "0.9.7-SNAPSHOT"
-  resolved "file:../nyc-lib/nyc-lib-0.9.7-SNAPSHOT.tgz#803d08d58f2d78305af7ac240e9e54d573c3e863"
+"nyc-lib@file:../nyc-lib/nyc-lib-0.9.9-SNAPSHOT.tgz":
+  version "0.9.9-SNAPSHOT"
+  resolved "file:../nyc-lib/nyc-lib-0.9.9-SNAPSHOT.tgz#777ce027565522eca988b0b8a9898c7273ad8baf"
   dependencies:
     es6-promise "^4.2.4"
     isomorphic-fetch "^2.2.1"
