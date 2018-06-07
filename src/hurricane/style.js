@@ -7,7 +7,7 @@ import OlStyleFill from 'ol/style/fill'
 import OlStyleStroke from 'ol/style/stroke' 
 import OlStyleCircle from 'ol/style/circle' 
 import OlStyleIcon from 'ol/style/icon' 
-import NycOl from 'nyc-lib/dist/nyc/ol' 
+import NycOl from 'nyc-lib/nyc/ol' 
 import hurricane from './hurricane';
 
 const style = {

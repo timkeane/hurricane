@@ -2,7 +2,7 @@
  * @module hurricane
  */
 
-import nyc from 'nyc-lib/dist/nyc'
+import nyc from 'nyc-lib/nyc'
 
 /**
  * @private
