@@ -47,8 +47,8 @@ class App extends FinderApp {
       decorations: [{content: content}, decorations.center],
       facilitySearchOptions: {
         layerName: 'evac-center',
-        name: 'OEM_LABEL',
-        displayField: 'OEM_LABEL'
+        nameField: 'OEM_LABEL',
+        displayField: 'label'
       },
       filterChoiceOptions: [{
         radio: true,

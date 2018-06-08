@@ -5,7 +5,12 @@ import hurricane from "./hurricane";
  */
 
 const decorations = {
-  center: {    
+  center: {
+    extendFeature() {
+      const label = $(`<span>${this.getName()}</span>`)
+      if (this.isAccessible()) label.addClass('acc')
+      this.set('label', label)
+    },
     getName() {
       const name = this.get('OEM_LABEL')
       if (this.isAccessible()){
