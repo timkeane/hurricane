@@ -4731,7 +4731,7 @@ nwsapi@^2.0.0:
 
 "nyc-lib@file:../nyc-lib/nyc-lib-0.9.94-SNAPSHOT.tgz":
   version "0.9.94-SNAPSHOT"
-  resolved "file:../nyc-lib/nyc-lib-0.9.94-SNAPSHOT.tgz#1694209400afb89dd61ead83014291376d6c6921"
+  resolved "file:../nyc-lib/nyc-lib-0.9.94-SNAPSHOT.tgz#62ec42b94b1f1f9f8e7b485f67273d6facd214e1"
   dependencies:
     es6-promise "^4.2.4"
     isomorphic-fetch "^2.2.1"

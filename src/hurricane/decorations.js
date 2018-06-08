@@ -7,7 +7,12 @@ import hurricane from "./hurricane";
 const decorations = {
   center: {    
     getName() {
-      return `${this.get('OEM_LABEL')}<span class="screen-reader-only"> - this is an accessible facility</span>`
+      const name = this.get('OEM_LABEL')
+      if (this.isAccessible()){
+        return `${name}<span class="screen-reader-only"> - this is an accessible facility</span>`
+      } else {
+        return name
+      }
     },
     getAddress1() {
       return this.get('BLDG_ADD')
