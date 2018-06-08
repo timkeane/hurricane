@@ -75,9 +75,6 @@ p {
   width: 50%;
   border: none;
 }
-#acc-filter input {
-  display: none;
-}
 #acc-filter label {
   background-color: var(--color-button);
   display: table;
@@ -307,9 +304,6 @@ ul.dtl li {
   height: 25px;
   background-color: rgba(8,80,149,0.3);
   top: 35px;
-}
-.srch ul {
-  display: none !important;
 }
 @keyframes alert {
   0% {

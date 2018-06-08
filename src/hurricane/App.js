@@ -45,6 +45,11 @@ class App extends FinderApp {
       facilityStyle: style.center,
       facilityTabTitle: content.message('centers_tab'),
       decorations: [{content: content}, decorations.center],
+      facilitySearchOptions: {
+        layerName: 'evac-center',
+        name: 'OEM_LABEL',
+        displayField: 'OEM_LABEL'
+      },
       filterChoiceOptions: [{
         radio: true,
         choices: [
@@ -75,6 +80,7 @@ class App extends FinderApp {
       source: this.source,
       choiceOptions: choiceOptions
     })
+    filters.find('input').addClass('screen-reader-only')
     $('#facilities').prepend(filters.getContainer())
       .prepend('<div class="note"></div>')
     filters.on('change', this.resetList, this)
