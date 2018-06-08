@@ -37,7 +37,7 @@ const decorations = {
     detailsCollapsible() {
       const details = this.detailsHtml()
       if (details) {
-        return $('<a class="btn rad-all dtl"></a>')
+        return $('<a class="btn rad-all dtl" href="#"></a>')
           .html('<span class="screen-reader-only">Click for accessibility </span>')
           .append('Details...')
           .click($.proxy(this.finderApp.expandDetail, this.finderApp))
