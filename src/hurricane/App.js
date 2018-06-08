@@ -133,9 +133,12 @@ class App extends FinderApp {
    */
   expandDetail(event) {
     const popup = this.popup
-    $(event.target).next().slideToggle(() => {
-      popup.pan()
-    })
+    const target = $(event.target)
+    const collapsed = new Boolean(target.attr('aria-collapsed'))
+    target.attr('aria-collapsed', !collapsed)
+      .next().slideToggle(() => {
+        popup.pan()
+      })
   }
   /**
    * @private
