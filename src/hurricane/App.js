@@ -31,7 +31,7 @@ class App extends FinderApp {
   constructor(content) {
     const centers = content.message('filter_centers')
     super({
-      title: `<span><span><span>${content.message('banner_text')}</span></span></span>`,
+      title: `<table><tbody><tr><td>${content.message('banner_text')}</td></tr></tbody></table>`,
       splashOptions: {
         message: `<div class="orders">${content.message('splash_msg')}</div>`,
         buttonText: [content.message('btn_text')]
@@ -224,7 +224,7 @@ class App extends FinderApp {
       zones = zones.substr(0, zones.length - 2)
 			$('.orders').append(content.message('splash_zone_order', {zones: zones}))
       $(`<h2 class="alert"><div><div>${orders}</div></div></h2>`).insertAfter('#banner')
-      $('.alert div>div>div').append(` ${zones}`)
+      $('.alert div>div>div').html(`${$('.alert div>div>div').html()} ${zones}`)
 		}
   }
   /**

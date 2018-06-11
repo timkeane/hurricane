@@ -1,6 +1,6 @@
 key,value
 post_storm,NO
-banner_text,Hurricane Evacuation Zone Finder
+banner_text,hurricane evacuation zone finder
 splash_msg,No evacuation order currently in effect
 btn_text,<span>view map</span><br><span>to find your evacuation zone</span>
 centers_tab,evacuation centers

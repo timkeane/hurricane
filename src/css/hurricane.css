@@ -31,11 +31,11 @@ p {
   height: auto;
   padding: 5px;
 }
-.tabs .btns h3 {
+.tabs .btns h3, .tabs .btns h3 * {
   background-color: var(--color-dark);
   color: var(--color-light);
 }
-.tabs .btns h3.active {
+.tabs .btns h3.active, .tabs .btns h3.active * {
   background-color: var(--color-light);
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark);
@@ -89,7 +89,7 @@ p {
 #acc-filter label[for="chc-chc-1"] {
   width: calc(100% - 8px);
 }
-#acc-filter input:checked+label {
+#acc-filter input:checked+label, #acc-filter input:checked+label * {
   background-color: var(--color-dark);
   color: var(--color-light);
 }
@@ -234,29 +234,6 @@ ul.dtl li {
     line-height: 17px;
   }
 }
-.fnd h1#banner {
-  padding: 0 142px 0 80px;
-  height: 36px;
-  display: table;
-  width: calc(100% - 222px);
-}
-.fnd h1#banner span {
-    display: table-row;
-    height: 36px;
-}
-.fnd h1#banner span>span {
-    display: table-cell;
-    vertical-align: middle;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.fnd h1#banner span>span>span {
-    display: block; 
-	max-height: 28px;
-}
-
-
-
 .active-order .dia-container.splash, .fnd.active-order #tabs, #directions .tabs {
   top: 60px;
 }
@@ -293,7 +270,7 @@ ul.dtl li {
   text-align: right;
   vertical-align: middle;
 }
-.alert div>div>div {
+.alert div>div>div, .alert div>div>div * {
   white-space: nowrap;
   display: inline-block;
   color: var(--color-light);
@@ -318,26 +295,46 @@ ul.dtl li {
     margin-right: 100%;
   }
 }
+
+
+.fnd h1#banner table {
+  position: absolute;
+  left: 80px;
+  top: 2px;
+  width: calc(100% - 222px);
+  max-height: 30px;
+  overflow: hidden;
+}
+.goog h1#banner table {
+  top: -6px;
+}
 @media only screen and (max-width : 613px) {
-  .fnd h1#banner span {
+  .fnd h1#banner td, .fnd h1#banner font {
       font-size: calc(16px + 6 * ((100vw - 320px) / 613));
       line-height: calc(16px + 6 * (613 / (100vw - 320px)));
   }
 }
 @media only screen and (max-width : 512px) {
-  .fnd h1#banner span {
+  .fnd h1#banner td, .fnd h1#banner font {
       line-height: calc(14px + 2 * ((100vw - 320px) / 613));
   }
 }
+@media only screen and (max-width : 450px) {
+  .fnd h1#banner table {
+    clip: rect(0,200px,29px,0);
+  }
+}
 @media only screen and (max-width : 360px) {
-	.fnd h1#banner {
-        padding: 0 90px 0 80px;
-  width: calc(100% - 170px);
+	.fnd h1#banner table {
+    width: calc(100% - 170px);
 	}
-	.fnd h1#banner span {
+	.fnd h1#banner td {
 		font-size: 16px;
 	}
 }
+
+
+
 @media only screen and (min-width : 750px) {
   .alert {
     left: auto;
