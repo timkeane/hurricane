@@ -7,6 +7,8 @@ import $ from 'jquery'
 import hurricane from './hurricane'
 import decorations from './decorations'
 import style from './style'
+
+import nyc from 'nyc-lib/nyc'
 import FinderApp from 'nyc-lib/nyc/ol/FinderApp'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
 import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
@@ -233,7 +235,7 @@ class App extends FinderApp {
    * @param {module:hurricane/Content~Content}
    */
   renderPrePostStorm(content) {
-    const title = `NYC ${content.message('banner_text')}`
+    const title = `NYC ${nyc.capitalize(content.message('banner_text'))}`
 		document.title = title
     $('#home').attr('title', title)		
 		$('#legend .center').html(content.message('legend_center'))		

@@ -296,8 +296,7 @@ ul.dtl li {
   }
 }
 
-
-.fnd h1#banner table {
+.fnd h1#banner table, .fnd h1#banner table {
   position: absolute;
   left: 80px;
   top: 2px;
@@ -305,7 +304,7 @@ ul.dtl li {
   max-height: 30px;
   overflow: hidden;
 }
-.goog h1#banner table {
+.fnd.translated h1#banner table {
   top: -6px;
 }
 @media only screen and (max-width : 613px) {
