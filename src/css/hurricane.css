@@ -293,9 +293,6 @@ ul.dtl li {
   max-height: 30px;
   overflow: hidden;
 }
-.fnd.translated h1#banner table {
-  top: -6px;
-}
 .fnd h1#banner td {
   vertical-align: top;
   overflow: hidden;
