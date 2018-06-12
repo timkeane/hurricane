@@ -7,9 +7,6 @@ import hurricane from './hurricane'
 import messages from './message'
 import NycContent from 'nyc-lib/nyc/Content'
 
-require('es6-promise').polyfill()
-require('isomorphic-fetch')
-
 /**
  * @desc A class to manage hurricane evacuation messages
  * @public

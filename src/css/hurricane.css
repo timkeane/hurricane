@@ -1,9 +1,6 @@
 .loading #legend {
   display: none;
 }
-.loading h2.alert {
-  width: 100%;
-}
 #map {
   background-color: #d8d8d8;
 }
@@ -255,11 +252,14 @@ ul.dtl li {
   display: table;
   position: fixed;
   top: 36px;
-  left: 0;
   right: 0;
   height: 24px;
   margin: 0;
   z-index: 10000;
+  width: 100%;
+}
+.loading h2.alert {
+  left: 0;
   width: 100%;
 }
 .alert div {
@@ -307,8 +307,13 @@ ul.dtl li {
 .fnd.translated h1#banner table {
   top: -6px;
 }
+.fnd h1#banner td {
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media only screen and (max-width : 613px) {
-  .fnd h1#banner td, .fnd h1#banner font {
+  .fnd h1#banner td>div, .fnd h1#banner font {
       font-size: calc(16px + 6 * ((100vw - 320px) / 613));
       line-height: calc(16px + 6 * (613 / (100vw - 320px)));
   }
@@ -331,9 +336,6 @@ ul.dtl li {
 		font-size: 16px;
 	}
 }
-
-
-
 @media only screen and (min-width : 750px) {
   .alert {
     left: calc(100% - 400px);

@@ -33,7 +33,7 @@ class App extends FinderApp {
   constructor(content) {
     const centers = content.message('filter_centers')
     super({
-      title: `<table><tbody><tr><td>${content.message('banner_text')}</td></tr></tbody></table>`,
+      title: `<table><tbody><tr><td><div>${content.message('banner_text')}</div></td></tr></tbody></table>`,
       splashOptions: {
         message: `<div class="orders">${content.message('splash_msg')}</div>`,
         buttonText: [content.message('btn_text')]
@@ -135,7 +135,7 @@ class App extends FinderApp {
    */
   expandDetail(event) {
     const popup = this.popup
-    const target = $(event.target)
+    const target = $(event.currentTarget)
     const collapsed = new Boolean(target.attr('aria-collapsed'))
     target.attr('aria-collapsed', !collapsed)
       .next().slideToggle(() => {

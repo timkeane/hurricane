@@ -42,7 +42,7 @@ if (isProd) {
 }
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/js/index.js'),
   output: {
      path: path.resolve(__dirname, 'dist'),
      filename: 'js/hurricane.js'
