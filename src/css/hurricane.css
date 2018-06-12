@@ -328,7 +328,7 @@ ul.dtl li {
 .alert div>div>div {
   display: block;
   position: absolute;
-  top: 2px;
+  top: 3px;
   left: 100%;
   animation: alert 30s linear infinite;
 }
@@ -346,6 +346,7 @@ ul.dtl li {
   .alert {
     left: calc(100% - 400px);
     overflow: hidden;
+    z-index: 0;
   }
   #patch {
     display: block;
