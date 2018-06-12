@@ -4736,9 +4736,9 @@ nwsapi@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.3.tgz#3f4010d6c943f34018d3dfb5f2fbc0de90476959"
 
-"nyc-lib@file:../nyc-lib/nyc-lib-1.0.5-SNAPSHOT.tgz":
-  version "1.0.5-SNAPSHOT"
-  resolved "file:../nyc-lib/nyc-lib-1.0.5-SNAPSHOT.tgz#4519d9bb086720489a05e0b3b1629adbbf58d04e"
+"nyc-lib@file:../nyc-lib/nyc-lib-1.0.8-SNAPSHOT.tgz":
+  version "1.0.8-SNAPSHOT"
+  resolved "file:../nyc-lib/nyc-lib-1.0.8-SNAPSHOT.tgz#04de6d7dc9d36144a7993862f83b6a30d658cb3f"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"

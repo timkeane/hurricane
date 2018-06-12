@@ -12,13 +12,21 @@ const decorations = {
       this.set('label', label)
     },
     getName() {
-      const name = this.get('OEM_LABEL')
-      if (this.isAccessible()){
-        return `${name}<span class="screen-reader-only"> - this is an accessible facility</span>`
-      } else {
-        return name
-      }
+      return this.get('OEM_LABEL')
     },
+  /**
+   * @desc Returns the name of a facility feature to append to HTML
+   * @public
+   * @method
+   * @return {jQuery}
+   */
+  nameHtml() {
+    let name = this.getName()
+    if (this.isAccessible()){
+      name = `${name}<span class="screen-reader-only"> - this is an accessible facility</span>`
+    }
+    return $('<h2 class="name notranslate"></h2>').html(name)
+  },
     getAddress1() {
       return this.get('BLDG_ADD')
     },

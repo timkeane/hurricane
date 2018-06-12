@@ -1,19 +1,21 @@
 {
   "name": "hurricane",
-  "version": "0.3.18",
+  "version": "0.3.20",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "webpack",
     "prebuild": "yarn roll-css",
-    "postbuild": "cp ./babel-polyfill.js ./dist/js/",
+    "postbuild": "yarn polyfill && yarn mta-hack",
+    "polyfill": "cp ./babel-polyfill.js ./dist/js/",
+    "mta-hack": "cp ./node_modules/nyc-lib/nyc/mta/mta.html ./dist/",
     "roll-css": "./node_modules/nyc-lib/css/roll-css.sh ./src/css/hurricane.theme.css ./src/css/hurricane.css"
   },
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "nyc-lib": "file:../nyc-lib/nyc-lib-1.0.5-SNAPSHOT.tgz",
+    "nyc-lib": "file:../nyc-lib/nyc-lib-1.0.8-SNAPSHOT.tgz",
     "es6-promise": "^4.2.4",
     "global": "^4.3.2",
     "isomorphic-fetch": "^2.2.1",
