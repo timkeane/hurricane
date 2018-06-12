@@ -245,6 +245,16 @@ ul.dtl li {
 .pop .content.zone {
   width: 150px; 
 }
+
+#patch {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 400px;
+  height: 25px;
+  background-color: rgba(8,80,149,0.3);
+  top: 35px;
+}
 .alert {
   border-top: 1px solid var(--color-light);
   border-bottom: 1px solid var(--color-light);
@@ -252,6 +262,7 @@ ul.dtl li {
   display: table;
   position: fixed;
   top: 36px;
+  left: 0;
   right: 0;
   height: 24px;
   margin: 0;
@@ -260,7 +271,6 @@ ul.dtl li {
 }
 .loading h2.alert {
   left: 0;
-  width: 100%;
 }
 .alert div {
   display: table-row;
@@ -271,29 +281,8 @@ ul.dtl li {
   vertical-align: middle;
 }
 .alert div>div>div, .alert div>div>div * {
-  white-space: nowrap;
-  display: inline-block;
   color: var(--color-light);
-  animation: alert 30s linear infinite;
-}
-#patch {
-  display: none;
-  position: fixed;
-  left: 0;
-  right: 400px;
-  height: 25px;
-  background-color: rgba(8,80,149,0.3);
-  top: 35px;
-}
-@keyframes alert {
-  0% {
-    margin-left: 50%;
-    margin-right: -50%;
-  }
-  100% {
-    margin-left: -100%;
-    margin-right: 100%;
-  }
+  white-space: nowrap;
 }
 
 .fnd h1#banner table, .fnd h1#banner table {
@@ -336,6 +325,23 @@ ul.dtl li {
 		font-size: 16px;
 	}
 }
+.alert div>div>div {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 100%;
+  animation: alert 30s linear infinite;
+}
+@keyframes alert {
+  0% {
+    left: 100%;
+    right: -415px;
+  }
+  100% {
+    left: -415px;
+    right: calc(100% + 415px);
+  }
+}
 @media only screen and (min-width : 750px) {
   .alert {
     left: calc(100% - 400px);
@@ -347,5 +353,17 @@ ul.dtl li {
   #route-tab.tab {
     margin-top: 25px;
   }
+  .alert div>div>div {
+    animation: alert 15s linear infinite;
+  }
+  @keyframes alert {
+    0% {
+      left: 400px;
+      right: auto;
+    }
+    100% {
+      left: -415px;
+      right: auto;
+    }
+  }
 }
-
