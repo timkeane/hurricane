@@ -7,7 +7,7 @@
 #legend {
   margin: 5px;
 }
-.btn, .splash, label, .leg, .alert div {
+.btn, .splash, label, .leg, .alert div, .f-tip.zone div:first-child {
   text-transform: capitalize;
 }
 .dia-container.splash {
