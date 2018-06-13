@@ -1,17 +1,17 @@
 
 const nodeEnv = process.env.NODE_ENV
 const version = require('./package.json').version
+const path = require('path')
 
 console.warn(`NODE_ENV=${process.env.NODE_ENV}`)
 console.warn(`version=${version}`)
 
 const isProd = ['production', 'prod', 'prd'].indexOf(nodeEnv) > -1
-const webpack = require('webpack');
-const path = require('path')
+const webpack = require('webpack')
 const Minify = require('babel-minify-webpack-plugin')
 const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
-const Replace = require('replace-in-file-webpack-plugin');
+const Replace = require('replace-in-file-webpack-plugin')
 
 const plugins = [
   new Clean(['dist']),
@@ -47,7 +47,7 @@ module.exports = {
      path: path.resolve(__dirname, 'dist'),
      filename: 'js/hurricane.js'
   },
-  devtool: isProd ? false : "cheap-module-eval-source-map",
+  devtool: isProd ? false : 'cheap-module-eval-source-map',
   module: {
     rules: [{
       test: /\.js$/,
