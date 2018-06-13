@@ -1,8 +1,9 @@
-import hurricane from "./hurricane";
-
 /**
  * @module hurricane/decorations
  */
+
+import hurricane from './hurricane'
+import nyc from 'nyc-lib/nyc'
 
 const decorations = {
   center: {
@@ -44,17 +45,19 @@ const decorations = {
     },
     detailsHtml() {
       if (this.isAccessible()) {
-        return this.content.message('acc_feat', this.getProperties())
+        return $(this.content.message('acc_feat', this.getProperties()))
       }
     },
     detailsCollapsible() {
       const details = this.detailsHtml()
       if (details) {
-        return $('<a class="btn rad-all dtl" aria-expanded="false" role="button" href="#"></a>')
-          .html('<span class="screen-reader-only">Accessibility </span>')
+        const id = nyc.nextId('acc-dtl')
+        details.attr('aria-labelledby', id)
+        return $('<a class="btn rad-all dtl" aria-expanded="false" aria-collapsed="true" role="button" href="#"></a>')
+        .html('<span class="screen-reader-only">Accessibility </span>')
           .append('Details<span aria-hidden="true">...</span>')
-          // .append('<span class="screen-reader-only state"> - collapsed</span>')
           .click($.proxy(this.finderApp.expandDetail, this.finderApp))
+          .attr('id', id)  
           .add(details)
       }
     }
