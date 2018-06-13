@@ -7,13 +7,13 @@ import OlStyleFill from 'ol/style/fill'
 import OlStyleStroke from 'ol/style/stroke' 
 import OlStyleCircle from 'ol/style/circle' 
 import OlStyleIcon from 'ol/style/icon' 
-import NycOl from 'nyc-lib/nyc/ol' 
+import nycOl from 'nyc-lib/nyc/ol' 
 import hurricane from './hurricane';
 
 const style = {
   zoneColors: {'1': [231, 86, 36], '2': [242, 133, 35], '3': [251, 237, 48], '4': [185, 212, 49], '5': [126, 195, 74], '6': [18, 147, 122]},
   center(feature, resolution) {
-    const zoom = NycOl.TILE_GRID.getZForResolution(resolution)
+    const zoom = nycOl.TILE_GRID.getZForResolution(resolution)
     const style = [new OlStyleStyle({
       image: new OlStyleCircle({
         fill: new OlStyleFill({color: '#085095'}),

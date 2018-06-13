@@ -137,8 +137,8 @@ class App extends FinderApp {
     const popup = this.popup
     const target = $(event.currentTarget)
     const expanded = 'true' === target.attr('aria-expanded')
-    // target.find('.state').html(collapsed ? ' - expanded' : ' - collapsed')
     target.attr('aria-expanded', !expanded)
+    target.attr('aria-collapsed', expanded)
       .next().slideToggle(() => {
         popup.pan()
       })
