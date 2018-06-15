@@ -116,19 +116,19 @@ class App extends FinderApp {
   located(location) {
     super.located(location)
     const popup = this.popup
+    const tabs = this.tabs
     const feature = new OlFeature({
       geometry: new OlGeomPoint(location.coordinate)
     })
     feature.html = () => {
       return this.content.locationMsg(location)
     }
-
     popup.hide()
     setTimeout(() => {
       popup.showFeatures([feature])
       $('.pop').attr('tabindex', 0).focus()
       $('.pop').find('.btn-x').one('click', () => {
-        $('#facilities .name').first().attr('tab-index', 0).focus()
+        tabs.open('#facilities')
       })
     }, 500)
   }
