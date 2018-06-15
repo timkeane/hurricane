@@ -55,7 +55,7 @@ const decorations = {
         details.attr('aria-labelledby', id)
         return $('<a class="btn rad-all dtl" aria-expanded="false" aria-collapsed="true" role="button" href="#"></a>')
           .html('<span class="screen-reader-only">Accessibility </span>')
-          .append('Details<span aria-hidden="true">...</span>')
+          .append('Details')
           .click($.proxy(this.finderApp.expandDetail, this.finderApp))
           .attr('id', id)  
           .add(details)
