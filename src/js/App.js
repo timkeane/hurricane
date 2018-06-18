@@ -65,7 +65,7 @@ class App extends FinderApp {
     this.layer.setZIndex(1)
     this.content = content
     this.addZoneLayer(content)
-    this.createSlider()
+    this.createSlider(this.map)
     this.renderEvacOrder(content)
     this.renderPrePostStorm(content)
   }
@@ -187,16 +187,27 @@ class App extends FinderApp {
    * @private
    * @method
    */
-  createSlider() {
-    const slider = new Slider({
-      target: '#transparency',
+  createSlider(map) {
+    $(map.getTargetElement()).find('.ol-overlaycontainer-stopevent').append($('#slider-map'))
+    const btnSlider = new Slider({
+      target: '#slider-map .slider',
       min: 0,
       max: 100,
       value: 45,
       units: '%',
       label: 'Zone Transparency:'
     })
-    slider.on('change', this.zoneOpacity, this)
+    const legendSlider = new Slider({
+      target: '#leg-slider',
+      min: 0,
+      max: 100,
+      value: 45,
+      units: '%',
+      label: 'Zone Transparency:'
+    })
+    $('#slider-map .btn').click(() => {$('#slider-map .slider').slideToggle()})
+    btnSlider.on('change', this.zoneOpacity, this)
+    legendSlider.on('change', this.zoneOpacity, this)
   }
   /**
    * @private
