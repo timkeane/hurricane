@@ -64,6 +64,26 @@ class App extends FinderApp {
     })
     this.layer.setZIndex(1)
     this.content = content
+    /**
+     * @private
+     * @member {ol.source.Vector}
+     */
+    this.zoneSource = null
+    /**
+     * @private
+     * @member {ol.layer.Vector}
+     */
+    this.zoneLayer = null
+    /**
+     * @private
+     * @member {module:nyc/Slider~Slider}
+     */
+    this.btnSlider = null
+    /**
+     * @private
+     * @member {module:nyc/Slider~Slider}
+     */
+    this.legendSlider = null
     this.addZoneLayer(content)
     this.createSlider(this.map)
     this.renderEvacOrder(content)
@@ -189,7 +209,7 @@ class App extends FinderApp {
    */
   createSlider(map) {
     $(map.getTargetElement()).find('.ol-overlaycontainer-stopevent').append($('#slider-map'))
-    const btnSlider = new Slider({
+    this.btnSlider = new Slider({
       target: '#slider-map .slider',
       min: 0,
       max: 100,
@@ -197,7 +217,7 @@ class App extends FinderApp {
       units: '%',
       label: 'Zone Transparency:'
     })
-    const legendSlider = new Slider({
+    this.legendSlider = new Slider({
       target: '#leg-slider',
       min: 0,
       max: 100,
@@ -206,8 +226,8 @@ class App extends FinderApp {
       label: 'Zone Transparency:'
     })
     $('#slider-map .btn').click(() => {$('#slider-map .slider').slideToggle()})
-    btnSlider.on('change', this.zoneOpacity, this)
-    legendSlider.on('change', this.zoneOpacity, this)
+    this.btnSlider.on('change', this.zoneOpacity, this)
+    this.legendSlider.on('change', this.zoneOpacity, this)
   }
   /**
    * @private
@@ -215,8 +235,11 @@ class App extends FinderApp {
    * @param {module:nyc/Slider~Slider}
    */
   zoneOpacity(slider) {
-    const opacity = (100 - slider.val()) / 100
+    const val = slider.val()
+    const opacity = (100 - val) / 100
     this.zoneLayer.setOpacity(opacity)
+    this.legendSlider.val(val)
+    this.btnSlider.val(val)
     $('.leg-sw.zone').css('opacity', opacity)
   }
   /**
