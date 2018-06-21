@@ -208,7 +208,7 @@ class App extends FinderApp {
    * @method
    */
   createSlider(map) {
-    $(map.getTargetElement()).find('.ol-overlaycontainer-stopevent').append($('#slider-map'))
+    $(map.getTargetElement()).append($('#slider-map'))
     this.btnSlider = new Slider({
       target: '#slider-map .slider',
       min: 0,
