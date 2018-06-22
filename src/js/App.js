@@ -47,11 +47,6 @@ class App extends FinderApp {
       facilityStyle: style.center,
       facilityTabTitle: content.message('centers_tab'),
       decorations: [{content: content}, decorations.center],
-      facilitySearchOptions: {
-        layerName: 'evac-center',
-        nameField: 'OEM_LABEL',
-        displayField: 'label'
-      },
       filterChoiceOptions: [{
         radio: true,
         choices: [
@@ -62,7 +57,6 @@ class App extends FinderApp {
       geoclientUrl: hurricane.GEOCLIENT_URL,
       directionsUrl: hurricane.DIRECTIONS_URL
     })
-    this.locationMgr.zoomSearch.setFeatures = () => {}
     this.layer.setZIndex(1)
     this.content = content
     /**

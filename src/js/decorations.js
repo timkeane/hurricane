@@ -7,11 +7,6 @@ import nyc from 'nyc-lib/nyc'
 
 const decorations = {
   center: {
-    extendFeature() {
-      const label = $(`<span>${this.getName()}</span>`)
-      if (this.isAccessible()) label.addClass('acc')
-      this.set('label', label)
-    },
     getName() {
       return this.get('OEM_LABEL')
     },
