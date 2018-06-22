@@ -62,6 +62,7 @@ class App extends FinderApp {
       geoclientUrl: hurricane.GEOCLIENT_URL,
       directionsUrl: hurricane.DIRECTIONS_URL
     })
+    this.locationMgr.zoomSearch.setFeatures = () => {}
     this.layer.setZIndex(1)
     this.content = content
     /**
@@ -183,7 +184,7 @@ class App extends FinderApp {
     this.zoneLayer = new OlLayerVector({
       source: this.zoneSource,
       style: style.zone,
-      opacity: .55
+      opacity: .35
     })
     this.map.addLayer(this.zoneLayer)
     this.popup.addLayer(this.zoneLayer)
@@ -213,7 +214,7 @@ class App extends FinderApp {
       target: '#slider-map .slider',
       min: 0,
       max: 100,
-      value: 45,
+      value: 65,
       units: '%',
       label: 'Zone Transparency:'
     })
@@ -221,7 +222,7 @@ class App extends FinderApp {
       target: '#leg-slider',
       min: 0,
       max: 100,
-      value: 45,
+      value: 65,
       units: '%',
       label: 'Zone Transparency:'
     })

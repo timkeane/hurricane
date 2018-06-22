@@ -160,7 +160,7 @@ ul.dtl li {
   margin-top: 5px;
 }
 .pop h2 {
-  margin: 0;
+  margin: 0 10px 0 0;
 }
 .leg {
 	padding: 10px 5px 5px 5px;
@@ -197,7 +197,7 @@ ul.dtl li {
 	background-size: 15px;
 }
 .leg-sw.zone {
-	opacity: .55;
+	opacity: .35;
 }
 .leg-sw.z1 {
 	background-color: rgb(231,86,36);
