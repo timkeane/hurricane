@@ -17,7 +17,7 @@ class Content extends NycContent {
   /**
    * @desc Create an instance of Content
    * @public
-	 * @param {module:hurricane/Content~Content#callback}
+	 * @param {module:hurricane/Content~Content#callback} callback
    * @constructor
    */
   constructor(callback) {

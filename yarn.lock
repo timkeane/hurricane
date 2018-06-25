@@ -4738,7 +4738,7 @@ nwsapi@^2.0.0:
 
 "nyc-lib@file:../nyc-lib/nyc-lib-1.0.42-SNAPSHOT.tgz":
   version "1.0.42-SNAPSHOT"
-  resolved "file:../nyc-lib/nyc-lib-1.0.42-SNAPSHOT.tgz#9ffc524b19785e18c6330258041fe5e3d923335a"
+  resolved "file:../nyc-lib/nyc-lib-1.0.42-SNAPSHOT.tgz#7ee9a3961744493732a7879209e35bdb5c82ea2d"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"

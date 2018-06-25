@@ -10,12 +10,12 @@ import nyc from 'nyc-lib/nyc'
  */ 
 const cacheBust = nyc.cacheBust(5)
 
- /**
-	* @desc Constants
-	* @public
-	* @const {Object<>string, string}
-	*/
-  const hurricane = {
+/**
+* @desc Constants
+* @public
+* @const {Object<string, string>}
+*/
+const hurricane = {
   CENTER_URL: `data/center.csv?${cacheBust}`,
   ORDER_URL: `data/order.csv?${cacheBust}`,
   ZONE_URL: `data/zone.json?${cacheBust}`,
