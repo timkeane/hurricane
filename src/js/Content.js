@@ -50,9 +50,12 @@ class Content extends NycContent {
 	 * @return {string} An HTML message
 	 */
 	locationMsg(location) {
-		const zone = location.data ? location.data.hurricaneEvacuationZone : null
+		let zone = location.data ? location.data.hurricaneEvacuationZone : null
 		const name = location.name.replace(/,/, '<br>')
 		if (zone) {
+			if (zone === hurricane.SURFACE_WATER_ZONE) {
+				zone = '1'
+			}
 			if (zone === hurricane.NO_ZONE) {
 				return this.message('location_no_zone', {
 					name: name, 
