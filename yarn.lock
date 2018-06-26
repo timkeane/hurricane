@@ -2241,6 +2241,10 @@ domutils@1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
+dotenv@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -4736,9 +4740,9 @@ nwsapi@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.3.tgz#3f4010d6c943f34018d3dfb5f2fbc0de90476959"
 
-"nyc-lib@file:../nyc-lib/nyc-lib-1.0.42-SNAPSHOT.tgz":
-  version "1.0.42-SNAPSHOT"
-  resolved "file:../nyc-lib/nyc-lib-1.0.42-SNAPSHOT.tgz#7ee9a3961744493732a7879209e35bdb5c82ea2d"
+nyc-lib@^1.0.42:
+  version "1.0.42"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.0.42.tgz#b9363c17e18514d17380a938f9f7b6bec5cd5bc9"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"

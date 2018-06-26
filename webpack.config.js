@@ -1,17 +1,27 @@
-
 const nodeEnv = process.env.NODE_ENV
+require('dotenv').config()
 const version = require('./package.json').version
 const path = require('path')
 
 console.warn(`NODE_ENV=${process.env.NODE_ENV}`)
 console.warn(`version=${version}`)
 
-const isProd = ['production', 'prod', 'prd'].indexOf(nodeEnv) > -1
+const isPrd = ['production', 'prod', 'prd'].indexOf(nodeEnv) > -1
+const isStg = ['stg', 'staging'].indexOf(nodeEnv) > -1
 const webpack = require('webpack')
 const Minify = require('babel-minify-webpack-plugin')
 const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
 const Replace = require('replace-in-file-webpack-plugin')
+
+const replaceOptions = [{
+  dir: 'dist',
+  files: ['index.html'],
+  rules: [{
+    search: /%ver%/g,
+    replace: version
+  }]
+}]
 
 const plugins = [
   new Clean(['dist']),
@@ -26,20 +36,42 @@ const plugins = [
       to: 'css/hurricane.css',
       type: 'dir'
     }
-  ]),
-  new Replace([{
-      dir: 'dist',
-      files: ['index.html'],
-      rules: [{
-          search: /%ver%/g,
-          replace: version
-      }]
-  }])
+  ])
 ]
 
-if (isProd) {
+if (isStg || isPrd) {
+  replaceOptions.push({
+    dir: 'dist/js',
+    files: ['hurricane.js'],
+  rules: [{
+      search: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
+      replace: isStg ? process.env.STG_GEOCLIENT : process.env.PRD_GEOCLIENT
+    }]
+  })
+  replaceOptions.push({
+    dir: 'dist/js',
+    files: ['hurricane.js'],
+    rules: [{
+      search: 'https://maps.googleapis.com/maps/api/js?&channel=pka&sensor=false&libraries=visualization',
+      replace: process.env.GOOGLE_DIRECTIONS
+    }]
+  }) 
+  if (isPrd) {
+    replaceOptions.push({
+      dir: 'dist',
+      files: ['index.html'],
+        rules: [{
+        search: '/* google analytics */',
+        replace: process.env.GOOGLE_ANALYTICS
+      }]
+    })
+  }
   plugins.push(new Minify())
 }
+
+console.warn(JSON.stringify(replaceOptions));
+
+plugins.push(new Replace(replaceOptions))
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/js/index.js'),
@@ -47,7 +79,7 @@ module.exports = {
      path: path.resolve(__dirname, 'dist'),
      filename: 'js/hurricane.js'
   },
-  devtool: isProd ? false : 'cheap-module-eval-source-map',
+  devtool: (isStg || isPrd) ? false : 'cheap-module-eval-source-map',
   module: {
     rules: [{
       test: /\.js$/,
@@ -59,29 +91,6 @@ module.exports = {
   },
   externals: {
     jquery: 'jQuery',
-    
-    // 'ol/extent': 'ol.extent',
-    // 'ol/coordinate': 'ol.coordinate',
-    // 'ol/tilegrid': 'ol.tilegrid',
-    // 'ol/feature': 'ol.Feature',
-    // 'ol/map': 'ol.Map',
-    // 'ol/view': 'ol.View',
-    // 'ol/overlay': 'ol.Overlay',
-    // 'ol/geolocation': 'ol.Geolocation',
-    // 'ol/format/feature': 'ol.format.Feature',
-    // 'ol/format/geojson': 'ol.format.GeoJSON',
-    // 'ol/format/formattype': 'ol.format.FormatType',
-    // 'ol/source/vector': 'ol.source.Vector',
-    // 'ol/source/xyz': 'ol.source.XYZ',
-    // 'ol/layer/vector': 'ol.layer.Vector',
-    // 'ol/layer/tile': 'ol.layer.Tile',
-    // 'ol/style/style': 'ol.style.Style',
-    // 'ol/style/icon': 'ol.style.Icon',
-    // 'ol/geom/point': 'ol.geom.Point',
-    // 'ol/geom/linestring': 'ol.geom.LineString',
-    // 'ol/geom/polygon': 'ol.geom.Polygon',
-    // 'ol/proj/projection': 'ol.proj.Projection',
-
     'text-encoding': 'window',
     leaflet: 'L',
     shapefile: '(window.shapefile || {})',

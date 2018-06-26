@@ -33,7 +33,7 @@ const style = {
     return style
   },
   zone(feature, resolution) {
-    const zone = feature.get('zone')
+    const zone = `${feature.get('zone')}`
     if (zone !== hurricane.SURFACE_WATER_ZONE) {
       return new OlStyleStyle({
         fill: new OlStyleFill({
