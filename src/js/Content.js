@@ -49,9 +49,9 @@ class Content extends NycContent {
 	 * @param {nyc.Locate.Result} location
 	 * @return {string} An HTML message
 	 */
-	locationMsg(location) {
-		let zone = location.data ? location.data.hurricaneEvacuationZone : null
+	locationMsg(location, zone) {
 		const name = location.name.replace(/,/, '<br>')
+		zone = location.data ? location.data.hurricaneEvacuationZone : zone
 		if (zone) {
 			if (zone === hurricane.SURFACE_WATER_ZONE) {
 				zone = '1'
@@ -68,12 +68,21 @@ class Content extends NycContent {
 					oem_supplied: this.message('user_zone', {zone: zone})
 				})			
 			}
-		} else {
-			return this.message('location_zone_unkown', { 
-				name: name, 
-				oem_supplied: this.message('user_zone_unkown')
-			})
 		}
+	}
+	/** 
+	 * @desc Method to return message for when zone cannot be determined the provided location
+	 * @public 
+	 * @method
+	 * @param {nyc.Locate.Result} location
+	 * @return {string} An HTML message
+	 */
+	unkownZone(location) {
+		const name = location.name.replace(/,/, '<br>')
+		return this.message('location_zone_unkown', { 
+			name: name, 
+			oem_supplied: this.message('user_zone_unkown')
+		})
 	}
 	/** 
 	 * @desc Method to return evacuation message for the provided location

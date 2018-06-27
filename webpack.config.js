@@ -69,8 +69,6 @@ if (isStg || isPrd) {
   plugins.push(new Minify())
 }
 
-console.warn(JSON.stringify(replaceOptions));
-
 plugins.push(new Replace(replaceOptions))
 
 module.exports = {

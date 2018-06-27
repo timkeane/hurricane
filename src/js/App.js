@@ -9,11 +9,12 @@ import decorations from './decorations'
 import style from './style'
 
 import nyc from 'nyc-lib/nyc'
+import Locator from 'nyc-lib/nyc/Locator'
 import FinderApp from 'nyc-lib/nyc/ol/FinderApp'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
 import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
 import Filters from 'nyc-lib/nyc/ol/Filters'
-import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip';
+import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import Tabs from 'nyc-lib/nyc/Tabs'
 import Slider from 'nyc-lib/nyc/Slider'
 
@@ -132,12 +133,11 @@ class App extends FinderApp {
     super.located(location)
     const popup = this.popup
     const tabs = this.tabs
+    const html = this.locationMsg(location)
     const feature = new OlFeature({
       geometry: new OlGeomPoint(location.coordinate)
     })
-    feature.html = () => {
-      return this.content.locationMsg(location)
-    }
+    feature.html = () => {return html}
     popup.hide()
     setTimeout(() => {
       popup.showFeatures([feature])
@@ -147,6 +147,46 @@ class App extends FinderApp {
       })
     }, 500)
   }
+  /**
+   * @private
+   * @method
+   * @param {module:nycLocator~Locator.Result} location
+   * @returns {string}
+   */
+  locationMsg(location) {
+    const html = this.content.locationMsg(location)
+    if (html) {
+      return html
+    }
+    return this.queryZone(location)
+  }
+  /**
+   * @private
+   * @method
+   * @param {module:nycLocator~Locator.Result} location
+   * @returns {string}
+   */
+	queryZone(location) {
+		let features = []
+		if (location.accuracy === Locator.Accuracy.HIGH) {
+			features = zones.getFeaturesAtCoordinate(coords)
+		} else {
+			const extent = ol.extent.buffer(
+        ol.extent.boundingExtent([location.coordinate]), 
+        this.geocoder.accuracyDistance(location.accuracy)
+      )
+			this.zoneSource.forEachFeatureIntersectingExtent(extent, feature => {
+				features.push(feature)
+			})
+		}
+		if (features.length === 0 || features.length > 1) {
+			return this.content.unkownZone(location)
+		} else {
+			if (features.length === 1) {
+				return this.content.locationMsg(location, features[0].getZone())
+			}
+		}
+	}
   /**
    * @access protected
    * @method
