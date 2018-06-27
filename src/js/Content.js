@@ -51,7 +51,8 @@ class Content extends NycContent {
 	 */
 	locationMsg(location, zone) {
 		const name = location.name.replace(/,/, '<br>')
-		zone = location.data ? location.data.hurricaneEvacuationZone : zone
+		const data = location.data || {}
+		zone = zone || data.hurricaneEvacuationZone
 		if (zone) {
 			if (zone === hurricane.SURFACE_WATER_ZONE) {
 				zone = '1'

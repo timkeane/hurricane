@@ -18,11 +18,14 @@ import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import Tabs from 'nyc-lib/nyc/Tabs'
 import Slider from 'nyc-lib/nyc/Slider'
 
+import olExtent from 'ol/extent'
 import OlFeature from 'ol/feature'
 import OlGeomPoint from 'ol/geom/point'
 import OlFormatTopoJSON from 'ol/format/topojson'
 import OlSourceVector from 'ol/source/vector'
 import OlLayerVector from 'ol/layer/vector'
+
+console.warn(olExtent);
 
 class App extends FinderApp {
   /**
@@ -171,9 +174,9 @@ class App extends FinderApp {
 		if (location.accuracy === Locator.Accuracy.HIGH) {
 			features = zones.getFeaturesAtCoordinate(coords)
 		} else {
-			const extent = ol.extent.buffer(
-        ol.extent.boundingExtent([location.coordinate]), 
-        this.geocoder.accuracyDistance(location.accuracy)
+			const extent = olExtent.buffer(
+        olExtent.boundingExtent([location.coordinate]), 
+        this.locationMgr.locator.accuracyDistance(location.accuracy)
       )
 			this.zoneSource.forEachFeatureIntersectingExtent(extent, feature => {
 				features.push(feature)
