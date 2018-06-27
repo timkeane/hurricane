@@ -230,11 +230,12 @@ class App extends FinderApp {
       tips: [{
         layer: this.zoneLayer,
         label: (feature) => {
+          const zone = feature.getZone()
           return {
             css: 'zone',
             html: feature.content.message('zone_tip', {
-              zone: feature.getZone(),
-              order: feature.content.zoneMsg()
+              zone: zone,
+              order: feature.content.zoneMsg(zone)
             })
           }
         }

@@ -1,0 +1,8 @@
+3)      zone tip: Should be easy fix
+4)      ARTHUR: transparency keyboard entry does not work from num pad
+5)      WALEI: various Mac issues
+a.       Shifting focus does not work from search field to suggested addresses.
+b.       The map, the search controls and the results are being treated as if they are in different pannels or frames.
+c.       The accordian for accessibility details expands but Voiceover doesn't initially see the new content on the page unless I refresh the screen reader by moving to another window and then moving back to the finder.
+6)      JOSH: When trying to revert back to pre-storm when testing the uploader I get an error stating that Columns key and value are not defined in the Data Uploader system
+a.       Note: tests of centers list, orders, post storm content all seem to be working
