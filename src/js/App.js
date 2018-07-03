@@ -141,14 +141,11 @@ class App extends FinderApp {
       geometry: new OlGeomPoint(location.coordinate)
     })
     feature.html = () => {return html}
-    popup.hide()
-    setTimeout(() => {
-      popup.showFeatures([feature])
-      $('.pop').attr('tabindex', 0).focus()
-      $('.pop').find('.btn-x').one('click', () => {
-        tabs.open('#facilities')
-      })
-    }, 500)
+    popup.showFeatures([feature])
+    $('.pop').attr('tabindex', 0).focus()
+    $('.pop').find('.btn-x').one('click', () => {
+      tabs.open('#facilities')
+    })
   }
   /**
    * @private
