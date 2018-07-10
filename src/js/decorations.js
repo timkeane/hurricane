@@ -41,19 +41,21 @@ const decorations = {
     detailsHtml() {
       if (this.isAccessible()) {
         return $(this.content.message('acc_feat', this.getProperties()))
+          .attr('aria-expanded', false)
+          .attr('aria-collapsed', true)
+          .attr('aria-hidden', true)
       }
     },
     detailsCollapsible() {
       const details = this.detailsHtml()
       if (details) {
-        const id = nyc.nextId('acc-dtl')
-        details.attr('aria-labelledby', id)
-        return $('<a class="btn rad-all dtl" aria-expanded="false" aria-collapsed="true" role="button" href="#"></a>')
-          .html('<span class="screen-reader-only">Accessibility </span>')
-          .append('Details')
+        const btnId = nyc.nextId('acc-btn')
+        const cntId = nyc.nextId('acc-cnt')
+        return $('<a class="btn rad-all dtl" aria-pressed="false" role="button" href="#"><span class="screen-reader-only">Accessibility </span>Details</a>')
+          .attr('id', btnId)  
+          .attr('aria-controls', cntId)
           .click($.proxy(this.finderApp.expandDetail, this.finderApp))
-          .attr('id', id)  
-          .add(details)
+          .add(details.attr('aria-labelledby', btnId))
       }
     }
   },

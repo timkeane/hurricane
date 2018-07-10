@@ -194,11 +194,14 @@ class App extends FinderApp {
    */
   expandDetail(event) {
     const popup = this.popup
-    const target = $(event.currentTarget)
-    const expanded = 'true' === target.attr('aria-expanded')
-    target.attr('aria-expanded', !expanded)
-    target.attr('aria-collapsed', expanded)
-      .next().slideToggle(() => {
+    const btn = $(event.currentTarget)
+    const content = btn.next()
+    const expanded = 'true' === btn.attr('aria-pressed')
+    btn.attr('aria-pressed', !expanded)
+    content.attr('aria-hidden', expanded)
+      .attr('aria-expanded', !expanded)
+      .attr('aria-collapsed', expanded)
+      .slideToggle(() => {
         popup.pan()
       })
   }

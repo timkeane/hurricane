@@ -14,15 +14,6 @@ const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
 const Replace = require('replace-in-file-webpack-plugin')
 
-const replaceOptions = [{
-  dir: 'dist',
-  files: ['index.html'],
-  rules: [{
-    search: /%ver%/g,
-    replace: version
-  }]
-}]
-
 const plugins = [
   new Clean(['dist']),
   new webpack.optimize.ModuleConcatenationPlugin(),
@@ -39,37 +30,54 @@ const plugins = [
   ])
 ]
 
-if (isStg || isPrd) {
-  replaceOptions.push({
+const replaceOptions = [
+  {
+    dir: 'dist',
+    files: ['index.html'],
+    rules: [{
+      search: /%ver%/g,
+      replace: version
+    }]
+  }, 
+  {
     dir: 'dist/js',
     files: ['hurricane.js'],
-  rules: [{
-      search: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
-      replace: isStg ? process.env.STG_GEOCLIENT : process.env.PRD_GEOCLIENT
+    rules: [{
+      search: 'app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
+      replace: process.env.GEOCLIENT_KEY
     }]
-  })
-  replaceOptions.push({
+  },
+  {
     dir: 'dist/js',
     files: ['hurricane.js'],
     rules: [{
       search: 'https://maps.googleapis.com/maps/api/js?&channel=pka&sensor=false&libraries=visualization',
       replace: process.env.GOOGLE_DIRECTIONS
     }]
-  }) 
-  if (isPrd) {
-    replaceOptions.push({
-      dir: 'dist',
-      files: ['index.html'],
-        rules: [{
-        search: '/* google analytics */',
-        replace: process.env.GOOGLE_ANALYTICS
-      }]
-    })
   }
-  plugins.push(new Minify())
+]
+
+if (isPrd) {
+  replaceOptions.push({
+    dir: 'dist',
+    files: ['index.html'],
+      rules: [{
+      search: '/* google analytics */',
+      replace: process.env.GOOGLE_ANALYTICS
+    }]
+  })
 }
 
-plugins.push(new Replace(replaceOptions))
+try {
+  plugins.push(
+    require(`${process.env.HOME}/.replace.js`)
+      .replacePlugin(__dirname, replaceOptions)    
+  )
+} catch (err) {
+  console.error(err)
+}
+
+plugins.push(new Minify())
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/js/index.js'),

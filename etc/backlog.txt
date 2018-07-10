@@ -1,4 +1,3 @@
-4)      ARTHUR: transparency keyboard entry does not work from num pad
 5)      WALEI: various Mac issues
 a.       Shifting focus does not work from search field to suggested addresses.
 b.       The map, the search controls and the results are being treated as if they are in different pannels or frames.
