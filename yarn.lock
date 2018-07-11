@@ -369,7 +369,7 @@ asn1.js@^4.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-asn1@~0.2.3:
+asn1@~0.2.0, asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
 
@@ -411,7 +411,7 @@ async-limiter@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
 
-async@^1.4.0, async@^1.5.0:
+async@^1.4.0, async@^1.5.0, async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -4058,6 +4058,12 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jszip@^2.4.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/jszip/-/jszip-2.6.1.tgz#b88f3a7b2e67a2a048152982c7a3756d9c4828f0"
+  dependencies:
+    pako "~1.0.2"
+
 keyv@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -4744,9 +4750,17 @@ nwsapi@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.3.tgz#3f4010d6c943f34018d3dfb5f2fbc0de90476959"
 
-nyc-lib@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.7.tgz#90cfcb261d56a0e46e2a249b5c937d2ae95f0ac5"
+nyc-build-helper@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.7.tgz#c2e013a89ff73c7569ac9ac0077557e427c0d531"
+  dependencies:
+    replace-in-file-webpack-plugin "^1.0.6"
+    ssh2 "^0.6.1"
+    zip-dir "^1.0.2"
+
+nyc-lib@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.8.tgz#338be6a67f03fa950d2708e2e98f2fdd0ff16e6f"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"
@@ -4952,7 +4966,7 @@ p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
 
-pako@~1.0.5:
+pako@~1.0.2, pako@~1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
@@ -5787,7 +5801,7 @@ scoped-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
 
-"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
+"semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
@@ -6001,6 +6015,20 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
+ssh2-streams@~0.2.0:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.2.1.tgz#9c9c9964be60e9644575af328677f64b1e5cbd79"
+  dependencies:
+    asn1 "~0.2.0"
+    semver "^5.1.0"
+    streamsearch "~0.1.2"
+
+ssh2@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/ssh2/-/ssh2-0.6.1.tgz#5dde1a7394bb978b1f9c2f014affee2f5493bd40"
+  dependencies:
+    ssh2-streams "~0.2.0"
+
 sshpk@^1.7.0:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.14.2.tgz#c6fc61648a3d9c4e764fd3fcdf4ea105e492ba98"
@@ -6068,6 +6096,10 @@ stream-shift@^1.0.0:
 stream-source@0.3:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/stream-source/-/stream-source-0.3.5.tgz#b97f52d0f8ea566db071db679b985403a31e0340"
+
+streamsearch@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
 
 strict-uri-encode@^1.0.0:
   version "1.1.0"
@@ -6945,3 +6977,10 @@ yeoman-generator@^2.0.5:
     text-table "^0.2.0"
     through2 "^2.0.0"
     yeoman-environment "^2.0.5"
+
+zip-dir@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/zip-dir/-/zip-dir-1.0.2.tgz#253f907aead62a21acd8721d8b88032b2411c051"
+  dependencies:
+    async "^1.5.2"
+    jszip "^2.4.0"

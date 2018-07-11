@@ -2,9 +2,10 @@ const nodeEnv = process.env.NODE_ENV
 require('dotenv').config()
 const version = require('./package.json').version
 const path = require('path')
+const replace = require('nyc-build-helper').replace
 
-console.warn(`NODE_ENV=${process.env.NODE_ENV}`)
-console.warn(`version=${version}`)
+console.log(`NODE_ENV=${process.env.NODE_ENV}`)
+console.log(`version=${version}`)
 
 const isPrd = ['production', 'prod', 'prd'].indexOf(nodeEnv) > -1
 const isStg = ['stg', 'staging'].indexOf(nodeEnv) > -1
@@ -12,23 +13,6 @@ const webpack = require('webpack')
 const Minify = require('babel-minify-webpack-plugin')
 const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
-const Replace = require('replace-in-file-webpack-plugin')
-
-const plugins = [
-  new Clean(['dist']),
-  new webpack.optimize.ModuleConcatenationPlugin(),
-  new Copy([
-    './src/index.html',
-    './src/manifest.webmanifest',
-    {from: './src/img', to: 'img'},
-    {from: './src/data', to: 'data'},
-    {
-      from: './node_modules/nyc-lib/css/build/nyc.ol.hurricane.theme.css',
-      to: 'css/hurricane.css',
-      type: 'dir'
-    }
-  ])
-]
 
 const replaceOptions = [
   {
@@ -68,14 +52,22 @@ if (isPrd) {
   })
 }
 
-try {
-  plugins.push(
-    require(`${process.env.HOME}/.replace.js`)
-      .replacePlugin(__dirname, replaceOptions)    
-  )
-} catch (err) {
-  console.error(err)
-}
+const plugins = [
+  new Clean(['dist']),
+  new webpack.optimize.ModuleConcatenationPlugin(),
+  new Copy([
+    './src/index.html',
+    './src/manifest.webmanifest',
+    {from: './src/img', to: 'img'},
+    {from: './src/data', to: 'data'},
+    {
+      from: './node_modules/nyc-lib/css/build/nyc.ol.hurricane.theme.css',
+      to: 'css/hurricane.css',
+      type: 'dir'
+    }
+  ]),
+  replace.replacePlugin(replaceOptions)
+]
 
 plugins.push(new Minify())
 
