@@ -14,33 +14,37 @@ const Minify = require('babel-minify-webpack-plugin')
 const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
 
-const replaceOptions = [
-  {
-    dir: 'dist',
-    files: ['index.html'],
-    rules: [{
-      search: /%ver%/g,
-      replace: version
-    }]
-  }, 
-  {
+const geoclient = process.env.GEOCLIENT_KEY
+const directions = process.env.GOOGLE_DIRECTIONS
+
+const replaceOptions = [{
+  dir: 'dist',
+  files: ['index.html'],
+  rules: [{
+    search: /%ver%/g,
+    replace: version
+  }]
+}]
+if (geoclient) {
+  replaceOptions.push({
     dir: 'dist/js',
     files: ['hurricane.js'],
     rules: [{
       search: 'app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
-      replace: process.env.GEOCLIENT_KEY
+      replace: geoclient
     }]
-  },
-  {
+  })  
+}
+if (directions) {
+  replaceOptions.push({
     dir: 'dist/js',
     files: ['hurricane.js'],
     rules: [{
       search: 'https://maps.googleapis.com/maps/api/js?&channel=pka&sensor=false&libraries=visualization',
-      replace: process.env.GOOGLE_DIRECTIONS
+      replace: directions
     }]
-  }
-]
-
+  })
+}
 if (isPrd) {
   replaceOptions.push({
     dir: 'dist',
