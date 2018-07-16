@@ -4750,17 +4750,17 @@ nwsapi@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.3.tgz#3f4010d6c943f34018d3dfb5f2fbc0de90476959"
 
-nyc-build-helper@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.9.tgz#9a48e7f50c54e9993c931aa978969522336a51a9"
+nyc-build-helper@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.11.tgz#7c5a7702043a68c6dcca036db7b950b8de5f5fdf"
   dependencies:
     replace-in-file-webpack-plugin "^1.0.6"
     ssh2 "^0.6.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.11:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.11.tgz#1c2a5ac340594414cc018bdfadf0e63fa7bf24e6"
+nyc-lib@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.12.tgz#5f863784d96ed5325439fdc7446343569ea316a0"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"
