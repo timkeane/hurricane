@@ -4759,9 +4759,9 @@ nyc-build-helper@^0.0.13:
     ssh2 "^0.6.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.14:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.14.tgz#ff36aca638cb67246e5012600c0588f21f47ec79"
+nyc-lib@^1.1.15:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.15.tgz#1bea8037b892e25f3713c2339fa62965a5837d43"
   dependencies:
     babel-polyfill "^6.26.0"
     es6-promise "^4.2.4"
