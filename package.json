@@ -1,6 +1,6 @@
 {
   "name": "hurricane",
-  "version": "0.3.72",
+  "version": "0.3.74",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,11 +17,8 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "Apache-2.0",
   "dependencies": {
-    "es6-promise": "^4.2.4",
-    "global": "^4.3.2",
-    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
-    "nyc-lib": "^1.1.15",
+    "nyc-lib": "^1.1.16",
     "ol": "^4.6.5",
     "proj4": "^2.4.4"
   },
