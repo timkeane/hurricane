@@ -8,7 +8,7 @@ import OlStyleStroke from 'ol/style/stroke'
 import OlStyleCircle from 'ol/style/circle' 
 import OlStyleIcon from 'ol/style/icon' 
 import nycOl from 'nyc-lib/nyc/ol' 
-import hurricane from './hurricane';
+import hurricane from './hurricane'
 
 const style = {
   zoneColors: {'1': [231, 86, 36], '2': [242, 133, 35], '3': [251, 237, 48], '4': [185, 212, 49], '5': [126, 195, 74], '6': [18, 147, 122]},

@@ -1,4 +1,3 @@
-
 /**
  * @module hurricane/App
  */
@@ -24,8 +23,6 @@ import OlGeomPoint from 'ol/geom/point'
 import OlFormatTopoJSON from 'ol/format/topojson'
 import OlSourceVector from 'ol/source/vector'
 import OlLayerVector from 'ol/layer/vector'
-
-console.warn(olExtent);
 
 class App extends FinderApp {
   /**
