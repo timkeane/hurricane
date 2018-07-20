@@ -4764,9 +4764,9 @@ nwsapi@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.3.tgz#3f4010d6c943f34018d3dfb5f2fbc0de90476959"
 
-nyc-build-helper@^0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.19.tgz#6a8bbf47cf88c95897c2553db1a1cef915d781ae"
+nyc-build-helper@^0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.21.tgz#5b549c286ec5eeca7074541d2147e901a0b2d97f"
   dependencies:
     babel-minify-webpack-plugin "^0.3.1"
     clean-webpack-plugin "^0.1.19"
@@ -4777,9 +4777,9 @@ nyc-build-helper@^0.0.19:
     webpack "^4.16.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.23:
-  version "1.1.23"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.23.tgz#fe68eca2b1f883a46a2a1c3dcca4219f3a1ef1d9"
+nyc-lib@^1.1.24:
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.24.tgz#9494ca3f14b43326290823be399828bf50778430"
   dependencies:
     babel-polyfill "^6.26.0"
     canvas-prebuilt "^1.6.5-prerelease.1"
