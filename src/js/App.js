@@ -29,7 +29,7 @@ class App extends FinderApp {
    * @desc Create an instance of App
    * @public
    * @constructor
-   * @param {module:hurricane.Content~Content} content The hurricane content
+   * @param {module:hurricane/Content~Content} content The hurricane content
    */
   constructor(content) {
     const centers = content.message('filter_centers')
@@ -127,7 +127,7 @@ class App extends FinderApp {
   /**
    * @access protected
    * @method
-   * @param {module:nycLocator~Locator.Result} location
+   * @param {module:nyc/Locator~Locator.Result} location
    */
   located(location) {
     super.located(location)
