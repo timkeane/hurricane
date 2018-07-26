@@ -13,9 +13,6 @@ import Slider from 'nyc-lib/nyc/Slider'
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/Slider')
 
-const content = new Content()
-
-
 beforeEach(() => {
   FeatureTip.mockClear()
   Slider.mockClear()
@@ -24,7 +21,7 @@ beforeEach(() => {
 test('constructor', () => {
   expect.assertions(64)
   
-  const app = new App(content)
+  const app = new App(new Content())
 
   expect(app instanceof App).toBe(true)
   expect(app instanceof FinderApp).toBe(true)
