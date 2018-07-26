@@ -90,7 +90,7 @@ class App extends FinderApp {
    * @override
    * @method
    * @param {Array<module:nyc/ol/Filters~Filters.ChoiceOptions>=} choiceOptions
-   * @returns {module:nyc/ol/Filters~Filters}
+   * @return {module:nyc/ol/Filters~Filters}
    */
   createFilters(choiceOptions) {
     const filters = new Filters({
@@ -109,7 +109,7 @@ class App extends FinderApp {
    * @method
    * @override
    * @param {module:nyc/ol/FinderApp~FinderApp.Options} options
-   * @returns {module:nyc/Tabs~Tabs}
+   * @return {module:nyc/Tabs~Tabs}
    */
   createTabs(options) {
     if (options.splashOptions) {
@@ -148,7 +148,7 @@ class App extends FinderApp {
    * @private
    * @method
    * @param {module:nycLocator~Locator.Result} location
-   * @returns {string}
+   * @return {string}
    */
   locationMsg(location) {
     const html = this.content.locationMsg(location)
@@ -161,7 +161,7 @@ class App extends FinderApp {
    * @private
    * @method
    * @param {module:nycLocator~Locator.Result} location
-   * @returns {string}
+   * @return {string}
    */
 	queryZone(location) {
 		let features = []
