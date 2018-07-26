@@ -80,6 +80,11 @@ class App extends FinderApp {
      * @member {module:nyc/Slider~Slider}
      */
     this.legendSlider = null
+    /**
+     * @private
+     * @member {module:nyc/ol/FeatureTip~FeatureTip}
+     */
+    this.zoneTip = null
     this.addZoneLayer(content)
     this.createSlider(this.map)
     this.renderEvacOrder(content)
@@ -222,7 +227,7 @@ class App extends FinderApp {
     })
     this.map.addLayer(this.zoneLayer)
     this.popup.addLayer(this.zoneLayer)
-    new FeatureTip({
+    this.zoneTip = new FeatureTip({
       map: this.map,
       tips: [{
         layer: this.zoneLayer,

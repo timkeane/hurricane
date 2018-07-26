@@ -1,16 +1,28 @@
 import FinderApp from 'nyc-lib/nyc/ol/FinderApp'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
 import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
+import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import App from '../src/js/App'
 import Content from './Content.mock'
 import hurricane from '../src/js/hurricane'
 import style from '../src/js/style'
 import decorations from '../src/js/decorations'
+import $ from 'jquery'
+import Slider from 'nyc-lib/nyc/Slider'
+
+jest.mock('nyc-lib/nyc/ol/FeatureTip')
+jest.mock('nyc-lib/nyc/Slider')
 
 const content = new Content()
 
+
+beforeEach(() => {
+  FeatureTip.mockClear()
+  Slider.mockClear()
+})
+
 test('constructor', () => {
-  expect.assertions(29)
+  expect.assertions(64)
   
   const app = new App(content)
 
@@ -52,7 +64,60 @@ test('constructor', () => {
   expect(app.filters.choiceControls[0].choices[1].values).toEqual(['Y'])
   expect(app.filters.choiceControls[0].choices[1].checked).not.toBe(true)
 
+  expect(app.zoneLayer.getSource()).toBe(app.zoneSource)
+  expect(app.zoneLayer.getStyle()).toBe(style.zone)
+  expect(app.zoneLayer.getOpacity()).toBe(.35)
+  expect(app.zoneSource.getUrl()).toBe(hurricane.ZONE_URL)  
 
+  const layers = app.map.getLayers().getArray()
+
+  expect(layers[layers.length - 1]).toBe(app.zoneLayer)
+
+  expect(FeatureTip).toHaveBeenCalledTimes(3)
+  expect(FeatureTip.mock.calls[2][0].map).toBe(app.map)
+  expect(FeatureTip.mock.calls[2][0].tips.length).toBe(1)
+  expect(FeatureTip.mock.calls[2][0].tips[0].layer).toBe(app.zoneLayer)
+
+  const mockFeature = {
+    content: {
+      message: jest.fn(() => {return 'mock-html'}),
+      zoneMsg: jest.fn(() => {return 'mock-order'})
+    },
+    getZone: jest.fn(() => {return 'mock-zone'})
+  }
+
+  const label = FeatureTip.mock.calls[2][0].tips[0].label(mockFeature)
+
+  expect(label.css).toBe('zone')
+  expect(label.html).toBe('mock-html')
+  expect(mockFeature.content.message).toHaveBeenCalledTimes(1)
+  expect(mockFeature.content.message.mock.calls[0][0]).toBe('zone_tip')
+  expect(mockFeature.content.message.mock.calls[0][1].zone).toBe('mock-zone')
+  expect(mockFeature.content.message.mock.calls[0][1].order).toBe('mock-order')
+
+  expect(Slider).toHaveBeenCalledTimes(2)
+
+  expect(Slider.mock.calls[0][0].target).toBe('#slider-map .slider')
+  expect(Slider.mock.calls[0][0].min).toBe(0)
+  expect(Slider.mock.calls[0][0].max).toBe(100)
+  expect(Slider.mock.calls[0][0].value).toBe(65)
+  expect(Slider.mock.calls[0][0].units).toBe('%')
+  expect(Slider.mock.calls[0][0].label).toBe('Zone Transparency:')
+
+  expect(Slider.mock.calls[1][0].target).toBe('#leg-slider')
+  expect(Slider.mock.calls[1][0].min).toBe(0)
+  expect(Slider.mock.calls[1][0].max).toBe(100)
+  expect(Slider.mock.calls[1][0].value).toBe(65)
+  expect(Slider.mock.calls[1][0].units).toBe('%')
+  expect(Slider.mock.calls[1][0].label).toBe('Zone Transparency:')
+
+  expect(Slider.mock.instances[0].on).toHaveBeenCalledTimes(1)
+  expect(Slider.mock.instances[0].on.mock.calls[0][0]).toBe('change')
+  expect(Slider.mock.instances[0].on.mock.calls[0][1]).toBe(app.zoneOpacity)
+  expect(Slider.mock.instances[0].on.mock.calls[0][2]).toBe(app)
+  expect(Slider.mock.instances[1].on.mock.calls[0][0]).toBe('change')
+  expect(Slider.mock.instances[1].on.mock.calls[0][1]).toBe(app.zoneOpacity)
+  expect(Slider.mock.instances[1].on.mock.calls[0][2]).toBe(app)
 })
 
 
