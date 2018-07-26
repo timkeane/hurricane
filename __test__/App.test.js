@@ -21,7 +21,9 @@ beforeEach(() => {
 test('constructor', () => {
   expect.assertions(64)
   
-  const app = new App(new Content())
+  const content = new Content()
+  
+  const app = new App(content)
 
   expect(app instanceof App).toBe(true)
   expect(app instanceof FinderApp).toBe(true)
