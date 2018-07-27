@@ -189,3 +189,20 @@ describe('locationMsg', () => {
     })
   })
 })
+
+test('unkownZone', () => {
+  expect.assertions(1)
+  
+  fetch.mockResponseOnce(csvMock.twoOrders)
+
+  const location = {
+    name: '59 Maiden Lane, New York'
+  }
+
+  new Content(content => {
+    expect(content.unkownZone(location)).toBe(
+      '<h2 class="notranslate">Zone Finder cannot determine Zone for your address.<br>Try alternative address or determine Zone by examining map and clicking on your location.</h2><div>59 Maiden Lane<br> New York</div>'
+    )
+    done()
+  })
+})
