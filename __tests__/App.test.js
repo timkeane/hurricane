@@ -35,7 +35,6 @@ afterEach(() => {
   App.prototype.tabChange = tabChange
   $('body').empty()
 })
-
 test('constructor', () => {
   expect.assertions(71)
   
@@ -560,3 +559,23 @@ describe('expandDetail', () => {
     expect(app.popup.pan).toHaveBeenCalledTimes(1)
   })
 })
+
+test('slider button', () => {
+  expect.assertions(2)
+
+  const content = new Content()
+  const app = new App(content)
+
+  const slider = $('<div class="slider"></div>').hide()
+
+  $('#slider-map .btn')
+    .append(slider)
+    .trigger('click')
+
+  expect($('#slider-map .slider').css('display')).toBe('block')
+
+  $('#slider-map .btn').trigger('click')
+
+  expect($('#slider-map .slider').css('display')).toBe('none')
+})
+
