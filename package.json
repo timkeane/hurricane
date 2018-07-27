@@ -25,6 +25,7 @@
     "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
+    "coveralls": "^3.0.2",
     "jest": "^23.1.0",
     "nyc-build-helper": "^0.0.21",
     "webpack": "^4.10.2",
@@ -33,6 +34,11 @@
   "jest": {
     "verbose": true,
     "automock": false,
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverageFrom": [
+      "src/js/*.js"
+    ],
     "transformIgnorePatterns": [],
     "setupFiles": []
   }

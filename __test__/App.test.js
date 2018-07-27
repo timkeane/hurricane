@@ -2,27 +2,43 @@ import FinderApp from 'nyc-lib/nyc/ol/FinderApp'
 import CsvPoint from 'nyc-lib/nyc/ol/format/CsvPoint'
 import Decorate from 'nyc-lib/nyc/ol/format/Decorate'
 import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
+import Locator from 'nyc-lib/nyc/Locator'
 import App from '../src/js/App'
 import Content from './Content.mock'
 import hurricane from '../src/js/hurricane'
 import style from '../src/js/style'
 import decorations from '../src/js/decorations'
-import $ from 'jquery'
 import Slider from 'nyc-lib/nyc/Slider'
+import $ from 'jquery'
+import OlFeature from 'ol/feature'
 
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/Slider')
 
+let legend
+let sliderBtn
+const adjustTabs = App.prototype.adjustTabs
+const tabChange = App.prototype.tabChange
 beforeEach(() => {
-  FeatureTip.mockClear()
-  Slider.mockClear()
+  App.prototype.adjustTabs = jest.fn()
+  App.prototype.tabChange = jest.fn()
+  legend = $('<div id="legend"></div>')
+  sliderBtn = $('<div id="slider-map"><div class="btn"></div></div>')
+  $('body').append(legend).append(sliderBtn)
+  FeatureTip.mockReset()
+  Slider.mockReset()
+})
+afterEach(() => {
+  App.prototype.adjustTabs = adjustTabs
+  App.prototype.tabChange = tabChange
+  legend.remove()
+  sliderBtn.remove()
 })
 
 test('constructor', () => {
-  expect.assertions(64)
+  expect.assertions(71)
   
   const content = new Content()
-  
   const app = new App(content)
 
   expect(app instanceof App).toBe(true)
@@ -47,7 +63,20 @@ test('constructor', () => {
   expect(app.source.getFormat().parentFormat.x).toBe('X')
   expect(app.source.getFormat().parentFormat.y).toBe('Y')
 
+  expect(app.tabs.find('.btn-0').html()).toBe('Map')
   expect(app.tabs.find('.btn-1').html()).toBe(content.message('centers_tab'))
+  expect(app.tabs.find('.btn-2').html()).toBe('Legend')
+
+  expect(app.tabs.tabs.find('.tab-0').get(0)).toBe($('#map').get(0))
+  expect(app.tabs.tabs.find('.tab-1').get(0)).toBe($('#facilities').get(0))
+  expect(app.tabs.tabs.find('.tab-2').get(0)).toBe($('#legend').get(0))
+
+  app.tabChange.mockReset()
+  app.adjustTabs.mockReset()
+  app.tabs.trigger('change')
+  $(window).trigger('resize')
+  expect(app.tabChange).toHaveBeenCalledTimes(1)
+  expect(app.adjustTabs).toHaveBeenCalledTimes(1)
 
   expect(app.filters.choiceControls.length).toBe(1)
   expect(app.filters.choiceControls[0].radio).toBe(true)
@@ -119,4 +148,110 @@ test('constructor', () => {
   expect(Slider.mock.instances[1].on.mock.calls[0][2]).toBe(app)
 })
 
+test('located', () => {
+  expect.assertions(10)
+  
+  const content = new Content()
+  const app = new App(content)
 
+  app.locationMsg = jest.fn(() => {
+    return 'mock-html'
+  })
+
+  app.popup.showFeatures = jest.fn()
+
+  const location = {coordinate: [1, 2]}
+  
+  app.located(location)
+
+  expect(app.locationMsg).toHaveBeenCalledTimes(1)
+  expect(app.locationMsg.mock.calls[0][0]).toBe(location)
+
+  expect(app.popup.showFeatures).toHaveBeenCalledTimes(1)
+  expect(app.popup.showFeatures.mock.calls[0][0].length).toBe(1)
+  expect(app.popup.showFeatures.mock.calls[0][0][0] instanceof OlFeature).toBe(true)
+  expect(app.popup.showFeatures.mock.calls[0][0][0].getGeometry().getCoordinates()).toEqual(location.coordinate)
+  expect(app.popup.showFeatures.mock.calls[0][0][0].html()).toBe('mock-html')
+
+  const pop = $(app.popup.getElement())
+  
+  expect(document.activeElement).toBe(pop.get(0))
+  expect(pop.attr('tabindex')).toBe('0')
+
+  app.tabs.open = jest.fn()
+  pop.find('.btn-x').trigger('click')
+
+  expect(app.tabs.open).toHaveBeenCalledTimes(1)
+})
+
+test('locationMsg content returns html', () => {
+  expect.assertions(4)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  app.content.locationMsg = jest.fn(() => {return 'mock-html'})
+  app.queryZone = jest.fn()
+
+  expect(app.locationMsg('mock-location')).toBe('mock-html')
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(1)
+  expect(app.content.locationMsg.mock.calls[0][0]).toBe('mock-location')
+  expect(app.queryZone).toHaveBeenCalledTimes(0)
+})
+
+test('locationMsg content returns nothing', () => {
+  expect.assertions(5)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  app.content.locationMsg = jest.fn()
+  app.queryZone = jest.fn(() => {return 'mock-html'})
+
+  expect(app.locationMsg('mock-location')).toBe('mock-html')
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(1)
+  expect(app.content.locationMsg.mock.calls[0][0]).toBe('mock-location')
+  expect(app.queryZone).toHaveBeenCalledTimes(1)
+  expect(app.queryZone.mock.calls[0][0]).toBe('mock-location')
+})
+
+test('queryZone high accuracy 1 zone', () => {
+  expect.assertions(8)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: Locator.Accuracy.HIGH
+  }
+  const mockZoneFeature = {
+    getZone: () => {return 'mock-zone'}
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn(() => {
+    return [mockZoneFeature]
+  })
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn()
+
+  app.content.locationMsg = jest.fn(() => {
+    return 'mock-html'
+  })
+  app.content.unkownZone = jest.fn()
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(0)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.getFeaturesAtCoordinate.mock.calls[0][0]).toEqual([1, 2])
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(0)
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(1)
+  expect(app.content.locationMsg.mock.calls[0][0]).toBe(location)
+  expect(app.content.locationMsg.mock.calls[0][1]).toBe('mock-zone')
+
+})

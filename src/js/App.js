@@ -117,9 +117,7 @@ class App extends FinderApp {
    * @return {module:nyc/Tabs~Tabs}
    */
   createTabs(options) {
-    if (options.splashOptions) {
-      $('#tabs').attr('aria-hidden', true)
-    }
+    $('#tabs').attr('aria-hidden', true)
     const tabs = new Tabs({target: '#tabs', tabs: [
       {tab: '#map', title: 'Map'},
       {tab: '#facilities', title: options.facilityTabTitle},
@@ -144,10 +142,10 @@ class App extends FinderApp {
     })
     feature.html = () => {return html}
     popup.showFeatures([feature])
-    $('.pop').attr('tabindex', 0).focus()
-    $('.pop').find('.btn-x').one('click', () => {
-      tabs.open('#facilities')
-    })
+    $(popup.getElement()).attr('tabindex', 0).focus()
+      .find('.btn-x').one('click', () => {
+        tabs.open('#facilities')
+      })
   }
   /**
    * @private
@@ -171,7 +169,7 @@ class App extends FinderApp {
 	queryZone(location) {
 		let features = []
 		if (location.accuracy === Locator.Accuracy.HIGH) {
-			features = zones.getFeaturesAtCoordinate(coords)
+			features = this.zoneSource.getFeaturesAtCoordinate(location.coordinate)
 		} else {
 			const extent = olExtent.buffer(
         olExtent.boundingExtent([location.coordinate]), 
