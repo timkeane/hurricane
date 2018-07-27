@@ -597,3 +597,63 @@ test('zoneOpacity', () => {
 
   expect($('.leg-sw.zone').css('opacity')).toBe('0.8')
 })
+
+describe('renderEvacOrder', () => {
+  beforeEach(() => {
+    $('body').append('<div class="orders">none</div>')
+      .append('<div class="alert"><div><div></div></div></div>')
+  })
+
+  test('renderEvacOrder no order', () => {
+    expect.assertions(2)
+  
+    const content = new Content()
+    content.evacuations = []
+    
+    const app = new App(content)
+  
+    expect($('#banner').next().hasClass('alert')).toBe(false)
+    expect($('.orders').html()).toBe('none')
+  })
+
+  test('renderEvacOrder one zone', () => {
+    expect.assertions(4)
+  
+    const content = new Content()    
+    const app = new App(content)
+  
+    expect($('#banner').next().hasClass('alert')).toBe(true)
+    expect($('#banner').next().get(0).tagName).toBe('H2')
+    expect($('#banner').next().html()).toBe('<div><div><div>an evacuation order is in effect for Zone 3</div></div></div>')
+    expect($('.orders').html()).toBe('<div>an evacuation order is in effect for</div><div class="zone">Zone 3</div>')
+  })
+
+  
+  test('renderEvacOrder 2 zones', () => {
+    expect.assertions(4)
+  
+    const content = new Content()    
+    content.evacuations = ['1', '3']
+    
+    const app = new App(content)
+  
+    expect($('#banner').next().hasClass('alert')).toBe(true)
+    expect($('#banner').next().get(0).tagName).toBe('H2')
+    expect($('#banner').next().html()).toBe('<div><div><div>an evacuation order is in effect for Zones 1 and 3</div></div></div>')
+    expect($('.orders').html()).toBe('<div>an evacuation order is in effect for</div><div class="zone">Zones 1 and 3</div>')
+  })
+
+  test('renderEvacOrder 3 zones', () => {
+    expect.assertions(4)
+  
+    const content = new Content()    
+    content.evacuations = ['1', '3', '5']
+    
+    const app = new App(content)
+  
+    expect($('#banner').next().hasClass('alert')).toBe(true)
+    expect($('#banner').next().get(0).tagName).toBe('H2')
+    expect($('#banner').next().html()).toBe('<div><div><div>an evacuation order is in effect for Zones 1, 3 and 5</div></div></div>')
+    expect($('.orders').html()).toBe('<div>an evacuation order is in effect for</div><div class="zone">Zones 1, 3 and 5</div>')
+  })
+})
