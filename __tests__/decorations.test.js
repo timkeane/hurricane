@@ -40,6 +40,13 @@ const accessibleCenter = new OlFeature({
 })
 $.extend(accessibleCenter, decorations.center, {content: content, finderApp: finderApp})
 
+const notWaterZone = new OlFeature({zone: '1'})
+$.extend(notWaterZone, decorations.zone, {content: content})
+
+const waterZone = new OlFeature({zone: '0'})
+$.extend(waterZone, decorations.zone, {content: content})
+
+let div
 const nextId = nyc.nextId
 beforeEach(() => {
   $.resetMocks()
@@ -47,21 +54,15 @@ beforeEach(() => {
   nyc.nextId = (name) => {
     return `${name}-1`
   }
+  div = $('<div></div>')
+  $('body').append(div)
 })
 afterEach(() => {
   nyc.nextId = nextId
+  div.remove()
 })
 
 describe('center decorations', () => {
-  let div
-  beforeEach(() => {
-    div = $('<div></div>')
-    $('body').append(div)
-  })
-  afterEach(() => {
-    div.remove()
-  })
-
   test('nameHtml', () => {
     expect.assertions(2)
     
@@ -122,5 +123,29 @@ describe('center decorations', () => {
 
     expect(notAccessibleCenter.cssClass()).toBe('')
     expect(accessibleCenter.cssClass()).toBe('acc')
+  })
+})
+
+describe('zone decorations', () => {
+  test('cssClass', () => {
+    expect.assertions(1)
+    expect(waterZone.cssClass()).toBe('zone')
+  })
+
+  test('getZone', () => {
+    expect.assertions(1)
+    expect(waterZone.getZone()).toBe('0')
+  })
+
+  test('isSurfaceWater', () => {
+    expect.assertions(2)
+    expect(waterZone.isSurfaceWater()).toBe(true)
+    expect(notWaterZone.isSurfaceWater()).toBe(false)
+  })
+
+  test('html', () => {
+    expect.assertions(2)
+    expect(waterZone.html()).toBe(undefined)
+    expect(notWaterZone.html()).toBe('<h2>Zone 1</h2><div><div class="order">No evacuation order currently in effect</div></div>')
   })
 })
