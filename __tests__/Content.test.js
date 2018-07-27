@@ -171,7 +171,7 @@ describe('locationMsg', () => {
     })
   })
 
-  test('location with data not containing zone, zone prvided, no order', done => {
+  test('location with data not containing zone, zone provided, no order', done => {
     expect.assertions(1)
   
     fetch.mockResponseOnce(csvMock.twoOrders)
