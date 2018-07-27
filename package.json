@@ -7,7 +7,7 @@
     "test": "jest",
     "build": "webpack",
     "prebuild": "yarn test && yarn roll-css",
-    "roll-css": "echo 'roll!!!' && ./node_modules/nyc-lib/css/roll-css.sh ./src/css/hurricane.theme.css ./src/css/hurricane.css",
+    "roll-css": "./node_modules/nyc-lib/css/roll-css.sh ./src/css/hurricane.theme.css ./src/css/hurricane.css",
     "predeploy": "yarn build",
     "deploy": "node deploy"
   },
@@ -15,7 +15,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jquery": "^3.3.1",
-    "nyc-lib": "^1.1.40",
+    "nyc-lib": "^1.1.41",
     "ol": "^4.6.5",
     "papaparse": "^4.5.1",
     "proj4": "^2.4.4"
