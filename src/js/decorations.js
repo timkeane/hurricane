@@ -30,7 +30,7 @@ const decorations = {
       return `Between ${this.get('CROSS1')} and ${this.get('CROSS2')}`
     },
     getCityStateZip() {
-      return `${this.get('CITY')} , NY ${this.get('ZIP_CODE')}`
+      return `${this.get('CITY')}, NY ${this.get('ZIP_CODE')}`
     },
     isAccessible() {
       return this.get('ACCESSIBLE') === 'Y'
