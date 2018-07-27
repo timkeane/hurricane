@@ -117,4 +117,10 @@ describe('center decorations', () => {
     expect($.mocks.proxy.mock.calls[0][1]).toBe(finderApp)
   })
 
+  test('cssClass', () => {
+    expect.assertions(2)
+
+    expect(notAccessibleCenter.cssClass()).toBe('')
+    expect(accessibleCenter.cssClass()).toBe('acc')
+  })
 })
