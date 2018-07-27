@@ -14,10 +14,10 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "Apache-2.0",
   "dependencies": {
-    "jest-fetch-mock": "^1.6.5",
     "jquery": "^3.3.1",
     "nyc-lib": "^1.1.39",
     "ol": "^4.6.5",
+    "papaparse": "^4.5.1",
     "proj4": "^2.4.4"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "babel-preset-env": "^1.7.0",
     "coveralls": "^3.0.2",
     "jest": "^23.1.0",
+    "jest-fetch-mock": "^1.6.5",
     "nyc-build-helper": "^0.0.21",
     "webpack": "^4.10.2",
     "webpack-cli": "^2.1.4"

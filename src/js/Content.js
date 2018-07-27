@@ -6,6 +6,9 @@ import $ from 'jquery'
 import hurricane from './hurricane'
 import messages from './message'
 import NycContent from 'nyc-lib/nyc/Content'
+import Papa from 'papaparse'
+
+require('isomorphic-fetch')
 
 /**
  * @desc A class to manage hurricane evacuation messages
