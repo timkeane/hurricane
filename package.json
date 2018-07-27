@@ -14,6 +14,7 @@
   "author": "Tim Keane <t.d.keane@gmail.com> (https://timkeane.github.io/)",
   "license": "Apache-2.0",
   "dependencies": {
+    "jest-fetch-mock": "^1.6.5",
     "jquery": "^3.3.1",
     "nyc-lib": "^1.1.39",
     "ol": "^4.6.5",
@@ -36,10 +37,15 @@
     "automock": false,
     "collectCoverage": true,
     "coverageDirectory": "./coverage/",
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
     "collectCoverageFrom": [
       "src/js/*.js"
     ],
-    "transformIgnorePatterns": [],
-    "setupFiles": []
+    "setupFiles": [
+      "./__tests__/jest-setup.js"
+    ],
+    "transformIgnorePatterns": []
   }
 }

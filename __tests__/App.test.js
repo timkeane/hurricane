@@ -32,8 +32,7 @@ beforeEach(() => {
 afterEach(() => {
   App.prototype.adjustTabs = adjustTabs
   App.prototype.tabChange = tabChange
-  legend.remove()
-  sliderBtn.remove()
+  $('body').empty()
 })
 
 test('constructor', () => {
@@ -437,5 +436,93 @@ test('queryZone not high accuracy no zone', () => {
   expect(app.content.unkownZone.mock.calls[0][0]).toBe(location)
   
   expect(app.content.locationMsg).toHaveBeenCalledTimes(0)
+})
+
+test('queryZone not high accuracy 2 zones', () => {
+  expect.assertions(14)
   
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: 50
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn()
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn((extent, callback) => {
+    callback({})
+    callback({})
+  })
+
+  app.content.locationMsg = jest.fn()
+  app.content.unkownZone = jest.fn(() => {
+    return 'mock-html'
+  })
+
+  olExtent.boundingExtent = jest.fn(() => {
+    return 'mock-bounding-extent'
+  })
+  olExtent.buffer = jest.fn(() => {
+    return 'mock-buffer-extent'
+  })
+
+  app.locationMgr.locator.accuracyDistance = jest.fn(() => {
+    return 'mock-distiance'
+  })
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+
+  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
+  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
+
+  expect(app.locationMgr.locator.accuracyDistance).toHaveBeenCalledTimes(1)
+  expect(app.locationMgr.locator.accuracyDistance.mock.calls[0][0]).toBe(50)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(0)
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(1)
+  expect(app.content.unkownZone.mock.calls[0][0]).toBe(location)
+  
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(0)  
+})
+
+describe('expandDetail', () => {
+  let details
+  let app
+  beforeEach(() => {
+    const content = new Content()
+    app = new App(content)
+    details = $('<div class="btn"></div><div class="content"></div>')
+    $('body').append(details)
+  })
+
+  test('expandDetail expand', () => {
+    expect.assertions(5)
+        
+    const btn = $(details.get(0))
+      .attr('aria-pressed', false)
+
+    const detail = $(details.get(1))
+      .attr('aria-hidden', true)
+      .attr('aria-collapsed', true)
+      .attr('aria-expanded', false)
+      .hide()
+
+    app.expandDetail({currentTarget: btn})
+
+    expect(btn.attr('aria-pressed')).toBe('true')
+    expect(detail.attr('aria-hidden')).toBe('false')
+    expect(detail.attr('aria-collapsed')).toBe('false')
+    expect(detail.attr('aria-expanded')).toBe('true')
+    expect(detail.css('display')).toBe('block')
+
+  })
 })
