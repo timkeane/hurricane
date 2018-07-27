@@ -1,50 +1,6 @@
 import decorations from '../src/js/decorations'
-import OlFeature from 'ol/feature'
-import Content from './Content.mock'
 import nyc from 'nyc-lib/nyc'
-
-const content = new Content()
-const finderApp = {
-  expandDetail: jest.fn()
-}
-
-const notAccessibleCenter = new OlFeature({
-  BLDG_ID: 'Q100',
-  X: 1033804.052,
-  Y: 186982.0152,
-  OEM_LABEL: 'PS 100',
-  BLDG_ADD: '111-11 118 Street',
-  BOROCODE: '4',
-  CITY: 'South Ozone Park',
-  CROSS1: 'Linden Blvd',
-  CROSS2: '111 Avenue',
-  ZIP_CODE: '11420',
-  ACCESSIBLE: 'N',
-  ACC_FEAT: ''
-})
-$.extend(notAccessibleCenter, decorations.center, {content: content, finderApp: finderApp})
-
-const accessibleCenter = new OlFeature({
-  BLDG_ID: 'Q566',
-  X: 1059380.128,
-  Y: 210618.7714,
-  OEM_LABEL: 'HS of Teaching, Lib Arts and Sci',
-  BLDG_ADD: '74-20 Commonwealth Blvd',
-  BOROCODE: '4',
-  CITY: 'Bellerose',
-  CROSS1: 'Grand Central Pkwy',
-  CROSS2: '76 Avenue',
-  ZIP_CODE: '11426',
-  ACCESSIBLE: 'Y',
-  ACC_FEAT: 'The main/accessible entrance to this location for sheltering purposes is 74-20 Commonwealth Boulevard, Queens (Close to the intersection with Cross Island Parkway and Grand Central Parkway)'
-})
-$.extend(accessibleCenter, decorations.center, {content: content, finderApp: finderApp})
-
-const notWaterZone = new OlFeature({zone: '1'})
-$.extend(notWaterZone, decorations.zone, {content: content})
-
-const waterZone = new OlFeature({zone: '0'})
-$.extend(waterZone, decorations.zone, {content: content})
+import {finderApp, notAccessibleCenter, accessibleCenter, notWaterZone, waterZone} from './features.mock'
 
 let div
 const nextId = nyc.nextId
