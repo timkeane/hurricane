@@ -182,9 +182,7 @@ class App extends FinderApp {
 		if (features.length === 0 || features.length > 1) {
 			return this.content.unkownZone(location)
 		} else {
-			if (features.length === 1) {
-				return this.content.locationMsg(location, features[0].getZone())
-			}
+      return this.content.locationMsg(location, features[0].getZone())
 		}
 	}
   /**

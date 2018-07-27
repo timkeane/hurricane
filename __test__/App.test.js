@@ -11,6 +11,7 @@ import decorations from '../src/js/decorations'
 import Slider from 'nyc-lib/nyc/Slider'
 import $ from 'jquery'
 import OlFeature from 'ol/feature'
+import olExtent from 'ol/extent'
 
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/Slider')
@@ -253,5 +254,188 @@ test('queryZone high accuracy 1 zone', () => {
   expect(app.content.locationMsg).toHaveBeenCalledTimes(1)
   expect(app.content.locationMsg.mock.calls[0][0]).toBe(location)
   expect(app.content.locationMsg.mock.calls[0][1]).toBe('mock-zone')
+})
 
+test('queryZone high accuracy no zone', () => {
+  expect.assertions(7)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: Locator.Accuracy.HIGH
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn(() => {
+    return []
+  })
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn()
+
+  app.content.locationMsg = jest.fn()
+  app.content.unkownZone = jest.fn(() => {
+    return 'mock-html'
+  })
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(0)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.getFeaturesAtCoordinate.mock.calls[0][0]).toEqual([1, 2])
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(1)
+  expect(app.content.unkownZone.mock.calls[0][0]).toBe(location)
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(0)
+})
+
+test('queryZone high accuracy 2 zones', () => {
+  expect.assertions(7)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: Locator.Accuracy.HIGH
+  }
+  const mockZoneFeature = {
+    getZone: () => {return 'mock-zone'}
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn(() => {
+    return [{}, {}]
+  })
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn()
+
+  app.content.locationMsg = jest.fn()
+  app.content.unkownZone = jest.fn(() => {
+    return 'mock-html'
+  })
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(0)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.getFeaturesAtCoordinate.mock.calls[0][0]).toEqual([1, 2])
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(1)
+  expect(app.content.unkownZone.mock.calls[0][0]).toBe(location)
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(0)
+})
+
+test('queryZone not high accuracy 1 zone', () => {
+  expect.assertions(15)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: 50
+  }
+  const mockZoneFeature = {
+    getZone: () => {return 'mock-zone'}
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn()
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn((extent, callback) => {
+    callback(mockZoneFeature)
+  })
+
+  app.content.locationMsg = jest.fn(() => {
+    return 'mock-html'
+  })
+  app.content.unkownZone = jest.fn()
+
+  olExtent.boundingExtent = jest.fn(() => {
+    return 'mock-bounding-extent'
+  })
+  olExtent.buffer = jest.fn(() => {
+    return 'mock-buffer-extent'
+  })
+
+  app.locationMgr.locator.accuracyDistance = jest.fn(() => {
+    return 'mock-distiance'
+  })
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+
+  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
+  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
+
+  expect(app.locationMgr.locator.accuracyDistance).toHaveBeenCalledTimes(1)
+  expect(app.locationMgr.locator.accuracyDistance.mock.calls[0][0]).toBe(50)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(0)
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(0)
+
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(1)
+  expect(app.content.locationMsg.mock.calls[0][0]).toBe(location)
+  expect(app.content.locationMsg.mock.calls[0][1]).toBe('mock-zone')
+})
+
+test('queryZone not high accuracy no zone', () => {
+  expect.assertions(14)
+  
+  const content = new Content()
+  const app = new App(content)
+
+  const location = {
+    coordinate: [1, 2],
+    accuracy: 50
+  }
+
+  app.zoneSource.getFeaturesAtCoordinate = jest.fn()
+  app.zoneSource.forEachFeatureIntersectingExtent = jest.fn()
+
+  app.content.locationMsg = jest.fn()
+  app.content.unkownZone = jest.fn(() => {
+    return 'mock-html'
+  })
+
+  olExtent.boundingExtent = jest.fn(() => {
+    return 'mock-bounding-extent'
+  })
+  olExtent.buffer = jest.fn(() => {
+    return 'mock-buffer-extent'
+  })
+
+  app.locationMgr.locator.accuracyDistance = jest.fn(() => {
+    return 'mock-distiance'
+  })
+
+  expect(app.queryZone(location)).toBe('mock-html')
+
+  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+
+  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
+  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+
+  expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
+  expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
+
+  expect(app.locationMgr.locator.accuracyDistance).toHaveBeenCalledTimes(1)
+  expect(app.locationMgr.locator.accuracyDistance.mock.calls[0][0]).toBe(50)
+
+  expect(app.zoneSource.getFeaturesAtCoordinate).toHaveBeenCalledTimes(0)
+
+  expect(app.content.unkownZone).toHaveBeenCalledTimes(1)
+  expect(app.content.unkownZone.mock.calls[0][0]).toBe(location)
+  
+  expect(app.content.locationMsg).toHaveBeenCalledTimes(0)
+  
 })
