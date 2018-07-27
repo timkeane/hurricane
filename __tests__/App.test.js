@@ -24,7 +24,7 @@ beforeEach(() => {
   $.resetMocks()
   App.prototype.adjustTabs = jest.fn()
   App.prototype.tabChange = jest.fn()
-  legend = $('<div id="legend"></div>')
+  legend = $('<div id="legend"><div class="leg-sw zone"></div></div>')
   sliderBtn = $('<div id="slider-map"><div class="btn"></div></div>')
   $('body').append(legend).append(sliderBtn)
   FeatureTip.mockReset()
@@ -579,3 +579,21 @@ test('slider button', () => {
   expect($('#slider-map .slider').css('display')).toBe('none')
 })
 
+test('zoneOpacity', () => {
+  expect.assertions(6)
+
+  const content = new Content()
+  const app = new App(content)
+
+  app.zoneOpacity({val: () => {return 20}})
+
+  expect(app.zoneLayer.getOpacity()).toBe(.8)
+
+  expect(app.legendSlider.val).toHaveBeenCalledTimes(1)
+  expect(app.legendSlider.val.mock.calls[0][0]).toBe(20)
+
+  expect(app.btnSlider.val).toHaveBeenCalledTimes(1)
+  expect(app.btnSlider.val.mock.calls[0][0]).toBe(20)
+
+  expect($('.leg-sw.zone').css('opacity')).toBe('0.8')
+})
