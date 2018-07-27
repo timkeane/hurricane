@@ -21,6 +21,7 @@ let sliderBtn
 const adjustTabs = App.prototype.adjustTabs
 const tabChange = App.prototype.tabChange
 beforeEach(() => {
+  $.resetMocks()
   App.prototype.adjustTabs = jest.fn()
   App.prototype.tabChange = jest.fn()
   legend = $('<div id="legend"></div>')
@@ -38,6 +39,8 @@ afterEach(() => {
 test('constructor', () => {
   expect.assertions(71)
   
+  $.fn.resize = $.originalFunctions.resize
+
   const content = new Content()
   const app = new App(content)
 
@@ -496,17 +499,17 @@ test('queryZone not high accuracy 2 zones', () => {
 
 describe('expandDetail', () => {
   let details
-  let app
   beforeEach(() => {
-    const content = new Content()
-    app = new App(content)
     details = $('<div class="btn"></div><div class="content"></div>')
     $('body').append(details)
   })
 
   test('expandDetail expand', () => {
-    expect.assertions(5)
-        
+    expect.assertions(6)
+
+    const content = new Content()
+    const app = new App(content)
+
     const btn = $(details.get(0))
       .attr('aria-pressed', false)
 
@@ -516,6 +519,8 @@ describe('expandDetail', () => {
       .attr('aria-expanded', false)
       .hide()
 
+    app.popup.pan = jest.fn()
+    
     app.expandDetail({currentTarget: btn})
 
     expect(btn.attr('aria-pressed')).toBe('true')
@@ -523,6 +528,35 @@ describe('expandDetail', () => {
     expect(detail.attr('aria-collapsed')).toBe('false')
     expect(detail.attr('aria-expanded')).toBe('true')
     expect(detail.css('display')).toBe('block')
+  
+    expect(app.popup.pan).toHaveBeenCalledTimes(1)
+  })
 
+  test('expandDetail collapse', () => {
+    expect.assertions(6)
+        
+    const content = new Content()
+    const app = new App(content)
+
+    const btn = $(details.get(0))
+      .attr('aria-pressed', true)
+
+    const detail = $(details.get(1))
+      .attr('aria-hidden', false)
+      .attr('aria-collapsed', false)
+      .attr('aria-expanded', true)
+      .show()
+
+    app.popup.pan = jest.fn()
+
+    app.expandDetail({currentTarget: btn})
+
+    expect(btn.attr('aria-pressed')).toBe('false')
+    expect(detail.attr('aria-hidden')).toBe('true')
+    expect(detail.attr('aria-collapsed')).toBe('true')
+    expect(detail.attr('aria-expanded')).toBe('false')
+    expect(detail.css('display')).toBe('none')
+
+    expect(app.popup.pan).toHaveBeenCalledTimes(1)
   })
 })

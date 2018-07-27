@@ -1,6 +1,7 @@
 import $ from 'jquery'
 
 $.originalFunctions = {
+  resize: $.fn.resize,
   width: $.fn.width,
   height: $.fn.height,
   proxy: $.proxy,
