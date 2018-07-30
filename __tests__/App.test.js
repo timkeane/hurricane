@@ -657,3 +657,29 @@ describe('renderEvacOrder', () => {
     expect($('.orders').html()).toBe('<div>an evacuation order is in effect for</div><div class="zone">Zones 1, 3 and 5</div>')
   })
 })
+
+test('filter focus/blur', () => {
+  expect.assertions(6)
+  
+  const content = new Content()    
+  
+  const app = new App(content)
+
+  const inputs = $('#acc-filter input')
+
+  expect(inputs.length).toBe(2)
+
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+
+  $(inputs.get(0)).focus()
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(true)
+
+  $(inputs.get(0)).blur()
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+
+  $(inputs.get(1)).focus()
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(true)
+
+  $(inputs.get(1)).blur()
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+})

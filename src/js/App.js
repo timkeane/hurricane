@@ -107,10 +107,10 @@ class App extends FinderApp {
     $('#facilities').prepend(filters.getContainer())
       .prepend('<div class="note"></div>')
     filters.on('change', this.resetList, this)
-    $('#acc-filter input, #acc-filter label').focus(() => {
+    $('#acc-filter input').focus(() => {
       $('#acc-filter div[role="radiogroup"]').addClass('active')
     })
-    $('#acc-filter input, #acc-filter label').blur(() => {
+    $('#acc-filter input').blur(() => {
       $('#acc-filter div[role="radiogroup"]').removeClass('active')
     })    
     return filters
