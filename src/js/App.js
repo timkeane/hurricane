@@ -86,9 +86,9 @@ class App extends FinderApp {
      */
     this.zoneTip = null
     this.addZoneLayer(content)
-    this.createSlider(this.map)
     this.renderEvacOrder(content)
     this.renderPrePostStorm(content)
+    this.createSlider()
   }
   /**
    * @access protected
@@ -108,10 +108,10 @@ class App extends FinderApp {
       .prepend('<div class="note"></div>')
     filters.on('change', this.resetList, this)
     $('#acc-filter input').focus(() => {
-      $('#acc-filter div[role="radiogroup"]').addClass('active')
+      $('#acc-filter div[role="radiogroup"]').addClass('focused')
     })
     $('#acc-filter input').blur(() => {
-      $('#acc-filter div[role="radiogroup"]').removeClass('active')
+      $('#acc-filter div[role="radiogroup"]').removeClass('focused')
     })    
     return filters
   }
@@ -250,8 +250,7 @@ class App extends FinderApp {
    * @private
    * @method
    */
-  createSlider(map) {
-    $(map.getTargetElement()).append($('#slider-map'))
+  createSlider() {
     this.btnSlider = new Slider({
       target: '#slider-map .slider',
       min: 0,
@@ -323,6 +322,22 @@ class App extends FinderApp {
 		$('#legend .center').html(content.message('legend_center'))		
 		$('#facilities .note').html(content.message('centers_msg'))		
 		$('#legend .note.top').html(content.message('legend_msg'))			
+  }
+  /**
+   * @desc Handles features after they are loaded
+   * @access protected
+   * @method
+   * @param {Array<ol.Feature>} features The facility features
+   */
+  ready(features) {
+    super.ready(features)
+    const div = $(this.map.getTargetElement())
+    const i = setInterval(() => {
+      if ($('div.shr').length) {
+        div.append($('#slider-map'))
+        clearInterval(i)
+      }
+    }, 500)
   }
 }
 

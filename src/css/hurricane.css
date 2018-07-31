@@ -57,11 +57,6 @@ p {
 #acc-filter h3 {
   display: none;
 }
-#acc-filter div.active {
-	outline: 0;
-	box-shadow: 0px 1px 7px 3px var(--focus-ring-color);
-	z-index: 100000;
-}
 #acc-filter input:focus {
 	box-shadow: none;
 	z-index: -1;

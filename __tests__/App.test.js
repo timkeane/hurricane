@@ -9,12 +9,14 @@ import hurricane from '../src/js/hurricane'
 import style from '../src/js/style'
 import decorations from '../src/js/decorations'
 import Slider from 'nyc-lib/nyc/Slider'
+import Share from 'nyc-lib/nyc/Share'
 import $ from 'jquery'
 import OlFeature from 'ol/feature'
 import olExtent from 'ol/extent'
 
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/Slider')
+jest.mock('nyc-lib/nyc/Share')
 
 let legend
 let sliderBtn
@@ -29,6 +31,7 @@ beforeEach(() => {
   $('body').append(legend).append(sliderBtn)
   FeatureTip.mockReset()
   Slider.mockReset()
+  Share.mockReset()
 })
 afterEach(() => {
   App.prototype.adjustTabs = adjustTabs
@@ -669,17 +672,44 @@ test('filter focus/blur', () => {
 
   expect(inputs.length).toBe(2)
 
-  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
 
   $(inputs.get(0)).focus()
-  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(true)
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(true)
 
   $(inputs.get(0)).blur()
-  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
 
   $(inputs.get(1)).focus()
-  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(true)
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(true)
 
   $(inputs.get(1)).blur()
-  expect($('#acc-filter div[role="radiogroup"]').hasClass('active')).toBe(false)
+  expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
+})
+
+test('ready', () => {
+  expect.assertions(2)
+  
+  const content = new Content()    
+  
+  const app = new App(content)
+
+  const test = async () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        expect($(app.map.getTargetElement()).children().last().get(0)).toBe(sliderBtn.get(0))
+        resolve(true)
+      }, 1300)
+    })
+  }
+
+  app.ready([])
+
+  const result = test()
+  
+  setTimeout(() => {
+    $(app.map.getTargetElement()).append($('<div class="shr"></div>'))
+  }, 600)
+
+  return result.then(success => expect(success).toBe(true))
 })
