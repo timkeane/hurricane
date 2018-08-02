@@ -1,6 +1,6 @@
 {
   "name": "hurricane",
-  "version": "0.3.89",
+  "version": "0.4.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jquery": "^3.3.1",
-    "nyc-lib": "^1.1.50",
     "ol": "^4.6.5",
     "papaparse": "^4.5.1",
-    "proj4": "^2.4.4"
+    "proj4": "^2.4.4",
+    "nyc-lib": "../nyc-lib/dist"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

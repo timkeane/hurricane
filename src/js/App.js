@@ -202,12 +202,11 @@ class App extends FinderApp {
     const content = btn.next()
     const expanded = 'true' === btn.attr('aria-pressed')
     btn.attr('aria-pressed', !expanded)
-    content.attr('aria-hidden', expanded)
-      .attr('aria-expanded', !expanded)
-      .attr('aria-collapsed', expanded)
-      .slideToggle(() => {
-        popup.pan()
-      })
+    content.attr({
+      'aria-hidden': expanded,
+      'aria-expanded': !expanded,
+      'aria-collapsed': expanded
+    }).slideToggle(() => {popup.pan()})
   }
   /**
    * @private
@@ -251,6 +250,14 @@ class App extends FinderApp {
    * @method
    */
   createSlider() {
+    const id = nyc.nextId('sld')
+    $('#slider-map .slider').attr({
+      id: id,
+      'aria-label': 'Zone Transparency',
+      'aria-expanded': false,
+      'aria-collapsed': true,
+      'aria-hidden': true
+    })
     this.btnSlider = new Slider({
       target: '#slider-map .slider',
       min: 0,
@@ -267,9 +274,28 @@ class App extends FinderApp {
       units: '%',
       label: 'Zone Transparency:'
     })
-    $('#slider-map .btn').click(() => {$('#slider-map .slider').slideToggle()})
+    $('#slider-map .btn').attr({
+      'aria-controls': id,
+      'aria-pressed': false
+    }).click($.proxy(this.toggleSlider, this))
     this.btnSlider.on('change', this.zoneOpacity, this)
     this.legendSlider.on('change', this.zoneOpacity, this)
+  }
+  /**
+   * @private
+   * @method
+   */
+  toggleSlider() {
+    const slider = $('#slider-map .slider')
+    const show = slider.css('display') === 'none'
+    slider.slideToggle(() => {
+      $('#slider-map .btn').attr('aria-pressed', show)
+      slider.attr({
+        'aria-expanded': show,
+        'aria-collapsed': !show,
+        'aria-hidden': !show
+      })
+    })
   }
   /**
    * @private
