@@ -370,6 +370,10 @@ background-image: url("../img/fade.svg");
   left: 100%;
   animation: alert 30s linear infinite;
 }
+.fnd #home:focus svg {
+  stroke: #fbed30;
+  fill-opacity: 1;
+}
 @keyframes alert {
   0% {
     left: 100%;
