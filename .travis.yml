@@ -13,7 +13,7 @@ before_install:
 install:
   - yarn install
 
-after_install:
+before_script: 
   - chmod +x ./node_modules/nyc-lib/css/roll-css.sh
 
 script:
