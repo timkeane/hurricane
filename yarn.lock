@@ -4812,9 +4812,9 @@ nyc-build-helper@^0.0.21:
     webpack "^4.16.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.58:
-  version "1.1.58"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.58.tgz#cddb95773d2dc84b57c976037d395435fac8519d"
+nyc-lib@^1.1.59:
+  version "1.1.59"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.59.tgz#0cb46bcc4a217dbd49ea9a6b81d7157c62779bda"
   dependencies:
     babel-polyfill "^6.26.0"
     canvas-prebuilt "^1.6.5-prerelease.1"
