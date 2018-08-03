@@ -4812,16 +4812,16 @@ nyc-build-helper@^0.0.21:
     webpack "^4.16.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.57:
-  version "1.1.57"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.57.tgz#d43add55a78ba4334240dd94b30d0ff72085320e"
+nyc-lib@^1.1.58:
+  version "1.1.58"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.58.tgz#cddb95773d2dc84b57c976037d395435fac8519d"
   dependencies:
     babel-polyfill "^6.26.0"
     canvas-prebuilt "^1.6.5-prerelease.1"
     isomorphic-fetch "^2.2.1"
     jquery "^3.3.1"
     leaflet "^1.3.1"
-    ol "^4.6.5"
+    ol "4.6.5"
     papaparse "^4.5.0"
     postcss-clean "^1.1.0"
     postcss-css-variables "^0.9.0"
@@ -4876,7 +4876,7 @@ object.pick@^1.3.0:
   dependencies:
     isobject "^3.0.1"
 
-ol@^4.6.5:
+ol@4.6.5, ol@^4.6.5:
   version "4.6.5"
   resolved "https://registry.yarnpkg.com/ol/-/ol-4.6.5.tgz#3b628ffb65885f277ceb24bb0c6eee0a38727442"
   dependencies:
