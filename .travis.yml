@@ -13,6 +13,9 @@ before_install:
 install:
   - yarn install
 
+after_install:
+  - chmod +x ./node_modules/nyc-lib/css/roll-css.sh
+
 script:
   - yarn build
 
