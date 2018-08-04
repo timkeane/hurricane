@@ -11,8 +11,7 @@ import decorations from '../src/js/decorations'
 import Slider from 'nyc-lib/nyc/Slider'
 import Share from 'nyc-lib/nyc/Share'
 import $ from 'jquery'
-import OlFeature from 'ol/feature'
-import olExtent from 'ol/extent'
+import OlFeature from 'ol/Feature'
 
 jest.mock('nyc-lib/nyc/ol/FeatureTip')
 jest.mock('nyc-lib/nyc/Slider')
@@ -38,6 +37,7 @@ afterEach(() => {
   App.prototype.tabChange = tabChange
   $('body').empty()
 })
+
 test('constructor', () => {
   expect.assertions(71)
   
@@ -64,7 +64,7 @@ test('constructor', () => {
   expect(app.source.getFormat().decorations[3]).toBe(decorations.center)
 
   expect(app.source.getFormat().parentFormat instanceof CsvPoint).toBe(true)
-  expect(app.source.getFormat().parentFormat.defaultDataProjection).toBe('EPSG:2263')
+  expect(app.source.getFormat().parentFormat.defaultDataProjection.getCode()).toBe('EPSG:2263')
   expect(app.source.getFormat().parentFormat.x).toBe('X')
   expect(app.source.getFormat().parentFormat.y).toBe('Y')
 
@@ -355,10 +355,10 @@ test('queryZone not high accuracy 1 zone', () => {
   })
   app.content.unkownZone = jest.fn()
 
-  olExtent.boundingExtent = jest.fn(() => {
+  app.boundingExtent = jest.fn(() => {
     return 'mock-bounding-extent'
   })
-  olExtent.buffer = jest.fn(() => {
+  app.buffer = jest.fn(() => {
     return 'mock-buffer-extent'
   })
 
@@ -368,12 +368,12 @@ test('queryZone not high accuracy 1 zone', () => {
 
   expect(app.queryZone(location)).toBe('mock-html')
 
-  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
-  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+  expect(app.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(app.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
 
-  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
-  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
-  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+  expect(app.buffer).toHaveBeenCalledTimes(1)
+  expect(app.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(app.buffer.mock.calls[0][1]).toBe('mock-distiance')
 
   expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
   expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
@@ -409,10 +409,10 @@ test('queryZone not high accuracy no zone', () => {
     return 'mock-html'
   })
 
-  olExtent.boundingExtent = jest.fn(() => {
+  app.boundingExtent = jest.fn(() => {
     return 'mock-bounding-extent'
   })
-  olExtent.buffer = jest.fn(() => {
+  app.buffer = jest.fn(() => {
     return 'mock-buffer-extent'
   })
 
@@ -422,12 +422,12 @@ test('queryZone not high accuracy no zone', () => {
 
   expect(app.queryZone(location)).toBe('mock-html')
 
-  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
-  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+  expect(app.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(app.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
 
-  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
-  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
-  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+  expect(app.buffer).toHaveBeenCalledTimes(1)
+  expect(app.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(app.buffer.mock.calls[0][1]).toBe('mock-distiance')
 
   expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
   expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
@@ -465,10 +465,10 @@ test('queryZone not high accuracy 2 zones', () => {
     return 'mock-html'
   })
 
-  olExtent.boundingExtent = jest.fn(() => {
+  app.boundingExtent = jest.fn(() => {
     return 'mock-bounding-extent'
   })
-  olExtent.buffer = jest.fn(() => {
+  app.buffer = jest.fn(() => {
     return 'mock-buffer-extent'
   })
 
@@ -478,12 +478,12 @@ test('queryZone not high accuracy 2 zones', () => {
 
   expect(app.queryZone(location)).toBe('mock-html')
 
-  expect(olExtent.boundingExtent).toHaveBeenCalledTimes(1)
-  expect(olExtent.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
+  expect(app.boundingExtent).toHaveBeenCalledTimes(1)
+  expect(app.boundingExtent.mock.calls[0][0]).toEqual([location.coordinate])
 
-  expect(olExtent.buffer).toHaveBeenCalledTimes(1)
-  expect(olExtent.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
-  expect(olExtent.buffer.mock.calls[0][1]).toBe('mock-distiance')
+  expect(app.buffer).toHaveBeenCalledTimes(1)
+  expect(app.buffer.mock.calls[0][0]).toBe('mock-bounding-extent')
+  expect(app.buffer.mock.calls[0][1]).toBe('mock-distiance')
 
   expect(app.zoneSource.forEachFeatureIntersectingExtent).toHaveBeenCalledTimes(1)
   expect(app.zoneSource.forEachFeatureIntersectingExtent.mock.calls[0][0]).toBe('mock-buffer-extent')
@@ -712,4 +712,24 @@ test('ready', () => {
   }, 600)
 
   return result.then(success => expect(success).toBe(true))
+})
+
+test('boundingExtent', () => {
+  expect.assertions(1)
+  
+  const content = new Content()    
+  
+  const app = new App(content)
+
+  expect(app.boundingExtent([[0, 0]])).toEqual([0, 0, 0, 0])
+})
+
+test('buffer', () => {
+  expect.assertions(1)
+  
+  const content = new Content()    
+  
+  const app = new App(content)
+
+  expect(app.buffer([0, 0, 0, 0], 1)).toEqual([-1, -1, 1, 1])
 })

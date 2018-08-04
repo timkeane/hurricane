@@ -17,12 +17,12 @@ import FeatureTip from 'nyc-lib/nyc/ol/FeatureTip'
 import Tabs from 'nyc-lib/nyc/Tabs'
 import Slider from 'nyc-lib/nyc/Slider'
 
-import olExtent from 'ol/extent'
-import OlFeature from 'ol/feature'
-import OlGeomPoint from 'ol/geom/point'
-import OlFormatTopoJSON from 'ol/format/topojson'
-import OlSourceVector from 'ol/source/vector'
-import OlLayerVector from 'ol/layer/vector'
+import {boundingExtent as olExtentBoundingExtent, buffer as olExtentBuffer} from 'ol/extent'
+import OlFeature from 'ol/Feature'
+import OlGeomPoint from 'ol/geom/Point'
+import OlFormatTopoJSON from 'ol/format/TopoJSON'
+import OlSourceVector from 'ol/source/Vector'
+import OlLayerVector from 'ol/layer/Vector'
 
 class App extends FinderApp {
   /**
@@ -177,8 +177,8 @@ class App extends FinderApp {
 		if (location.accuracy === Locator.Accuracy.HIGH) {
 			features = this.zoneSource.getFeaturesAtCoordinate(location.coordinate)
 		} else {
-			const extent = olExtent.buffer(
-        olExtent.boundingExtent([location.coordinate]), 
+			const extent = this.buffer(
+        this.boundingExtent([location.coordinate]), 
         this.locationMgr.locator.accuracyDistance(location.accuracy)
       )
 			this.zoneSource.forEachFeatureIntersectingExtent(extent, feature => {
@@ -190,7 +190,13 @@ class App extends FinderApp {
 		} else {
       return this.content.locationMsg(location, features[0].getZone())
 		}
-	}
+  }
+  boundingExtent(coordinates) {
+    return olExtentBoundingExtent(coordinates)
+  }
+  buffer(extent, distance) {
+    return olExtentBuffer(extent, distance)
+  }
   /**
    * @access protected
    * @method

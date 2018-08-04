@@ -1,4 +1,4 @@
-import OlFeature from 'ol/feature'
+import OlFeature from 'ol/Feature'
 import Content from './Content.mock'
 import decorations from '../src/js/decorations'
 
