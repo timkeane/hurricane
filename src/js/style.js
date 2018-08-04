@@ -2,11 +2,11 @@
  * @module hurricane/style
  */
 
-import OlStyleStyle from 'ol/style/style' 
-import OlStyleFill from 'ol/style/fill' 
-import OlStyleStroke from 'ol/style/stroke' 
-import OlStyleCircle from 'ol/style/circle' 
-import OlStyleIcon from 'ol/style/icon' 
+import OlStyleStyle from 'ol/style/Style' 
+import OlStyleFill from 'ol/style/Fill' 
+import OlStyleStroke from 'ol/style/Stroke' 
+import OlStyleCircle from 'ol/style/Circle' 
+import OlStyleIcon from 'ol/style/Icon' 
 import nycOl from 'nyc-lib/nyc/ol' 
 import hurricane from './hurricane'
 

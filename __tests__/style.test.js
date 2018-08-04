@@ -1,7 +1,7 @@
 import style from '../src/js/style'
 import {notAccessibleCenter, accessibleCenter, notWaterZone, waterZone} from './features.mock'
-import OlStyleCircle from 'ol/style/circle' 
-import OlStyleIcon from 'ol/style/icon' 
+import OlStyleCircle from 'ol/style/Circle' 
+import OlStyleIcon from 'ol/style/Icon' 
 
 describe('center style', () => {
   test('accessible', () => {
