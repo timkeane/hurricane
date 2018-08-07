@@ -146,6 +146,7 @@ class App extends FinderApp {
     const feature = new OlFeature({
       geometry: new OlGeomPoint(location.coordinate)
     })
+    $(popup.getElement()).hide()
     feature.html = () => {return html}
     popup.showFeatures([feature])
     $(popup.getElement()).attr('tabindex', 0).focus()
