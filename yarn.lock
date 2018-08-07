@@ -577,7 +577,11 @@ aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
 
-aws4@^1.2.1, aws4@^1.6.0:
+aws4@^1.2.1:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
+
+aws4@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
 
@@ -1819,8 +1823,8 @@ class-utils@^0.3.5:
     static-extend "^0.1.1"
 
 clean-css@^4.x:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.0.tgz#0a9d62040cddc7904c5edaee9bdeca642d9b9c1c"
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
   dependencies:
     source-map "~0.6.0"
 
@@ -1953,8 +1957,8 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 commander@2:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.0.tgz#9d07b25e2a6f198b76d8b756a0e8a9604a6a1a60"
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
 commander@^2.11.0:
   version "2.15.1"
@@ -4812,9 +4816,9 @@ nyc-build-helper@^0.0.21:
     webpack "^4.16.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.1.65:
-  version "1.1.65"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.65.tgz#4582fbe1864763194d032f3c4e833414cf3d314c"
+nyc-lib@^1.1.66:
+  version "1.1.66"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.1.66.tgz#22133d9c504209dc28f57db79c0c2a854f444c0b"
   dependencies:
     babel-polyfill "^6.26.0"
     canvas-prebuilt "^1.6.5-prerelease.1"
