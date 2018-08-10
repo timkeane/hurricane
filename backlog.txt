@@ -1,2 +1,2 @@
-weird bug with zoom to location animation...
-  click map button in list then search address to replicate
+check pressed state of collapsible widget button
+keyboard access to tab switching?
