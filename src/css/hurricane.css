@@ -5,7 +5,8 @@
   background-color: #d8d8d8;
 }
 #legend {
-  margin: 5px;
+  padding: 10px;
+  min-height: calc(100% - 20px);
 }
 .btn, .splash, label, .leg, .alert div, .f-tip.zone div:first-child {
   text-transform: capitalize;
@@ -52,7 +53,7 @@ p {
 #acc-filter {
   background-color: var(--color-light);
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 5px;
+  margin: 0 5px 5px 5px;
 }
 #acc-filter h3 {
   display: none;
@@ -63,7 +64,8 @@ p {
 }
 #acc-filter .content {
   display: block;
-  width: calc(100% - 10px);
+  width: calc(100% - 5px);
+  padding: 0;
   border: none;
 }
 #acc-filter .chc, #acc-filter .chc-chc {
