@@ -68,9 +68,9 @@ test('constructor', () => {
   expect(app.source.getFormat().parentFormat.x).toBe('X')
   expect(app.source.getFormat().parentFormat.y).toBe('Y')
 
-  expect(app.tabs.find('.btn-0').html()).toBe('Map')
-  expect(app.tabs.find('.btn-1').html()).toBe(content.message('centers_tab'))
-  expect(app.tabs.find('.btn-2').html()).toBe('Legend')
+  expect(app.tabs.find('.btn-0').find('a').html()).toBe('Map')
+  expect(app.tabs.find('.btn-1').find('a').html()).toBe(content.message('centers_tab'))
+  expect(app.tabs.find('.btn-2').find('a').html()).toBe('Legend')
 
   expect(app.tabs.tabs.find('.tab-0').get(0)).toBe($('#map').get(0))
   expect(app.tabs.tabs.find('.tab-1').get(0)).toBe($('#facilities').get(0))
