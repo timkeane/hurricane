@@ -1,6 +1,6 @@
 {
   "name": "hurricane",
-  "version": "0.4.15",
+  "version": "0.4.16",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jquery": "^3.3.1",
-    "nyc-lib": "^1.1.71",
+    "nyc-lib": "^1.1.72",
     "ol": "^5.1.3",
     "papaparse": "^4.5.1",
     "proj4": "^2.4.4"
