@@ -11,7 +11,7 @@ This app is a stand-alone HTML5 app that can be dropped into the doc root of any
 ## Install
 ```
 yarn install
-yarn add global postcss-cli
+yarn global add postcss-cli
 ```
 ## Test
 `yarn test`
