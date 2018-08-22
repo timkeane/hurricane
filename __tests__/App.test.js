@@ -163,10 +163,16 @@ test('located', () => {
     return 'mock-html'
   })
 
-  app.popup.showFeatures = jest.fn()
+    
+  const pop = $(app.popup.getElement())
+  
+  app.popup.showFeatures = jest.fn(() => {
+    pop.find('.content').append('<h2></h2>').show()
+    
+  })
 
   const location = {coordinate: [1, 2]}
-  
+
   app.located(location)
 
   expect(app.locationMsg).toHaveBeenCalledTimes(1)
@@ -177,17 +183,15 @@ test('located', () => {
   expect(app.popup.showFeatures.mock.calls[0][0][0] instanceof OlFeature).toBe(true)
   expect(app.popup.showFeatures.mock.calls[0][0][0].getGeometry().getCoordinates()).toEqual(location.coordinate)
   expect(app.popup.showFeatures.mock.calls[0][0][0].html()).toBe('mock-html')
-
-  const pop = $(app.popup.getElement())
-  
-  expect(document.activeElement).toBe(pop.get(0))
-  expect(pop.attr('tabindex')).toBe('0')
+    
+  expect(document.activeElement).toBe(pop.find('h2').get(0))
+  expect(pop.find('h2').attr('tabindex')).toBe('0')
 
   app.tabs.open = jest.fn()
   pop.find('.btn-x').trigger('click')
 
   expect(app.tabs.open).toHaveBeenCalledTimes(1)
-})
+})  
 
 test('locationMsg content returns html', () => {
   expect.assertions(4)

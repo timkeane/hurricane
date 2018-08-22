@@ -79,7 +79,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location)).toBe(
-        '<h2 class="notranslate">You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -97,7 +97,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location, '3')).toBe(
-        '<h2 class="notranslate">You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -114,7 +114,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location, '3')).toBe(
-        '<h2 class="notranslate">You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are located in Zone 3<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -147,7 +147,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location)).toBe(
-        '<h2 class="notranslate">You are not located in an Evacuation Zone</h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are not located in an Evacuation Zone</h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -165,7 +165,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location)).toBe(
-        '<h2 class="notranslate">You are located in Zone 1<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are located in Zone 1<br><div class="order active">You are required to evacuate</div></h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -183,7 +183,7 @@ describe('locationMsg', () => {
 
     new Content(content => {
       expect(content.locationMsg(location, '5')).toBe(
-        '<h2 class="notranslate">You are located in Zone 5<br><div class="order">No evacuation order currently in effect</div></h2><div>59 Maiden Lane<br> New York</div>'
+        '<h2>You are located in Zone 5<br><div class="order">No evacuation order currently in effect</div></h2><div>59 Maiden Lane<br> New York</div>'
       )
       done()
     })
@@ -201,7 +201,7 @@ test('unkownZone', () => {
 
   new Content(content => {
     expect(content.unkownZone(location)).toBe(
-      '<h2 class="notranslate">Zone Finder cannot determine Zone for your address.<br>Try alternative address or determine Zone by examining map and clicking on your location.</h2><div>59 Maiden Lane<br> New York</div>'
+      '<h2>Zone Finder cannot determine Zone for your address.<br>Try alternative address or determine Zone by examining map and clicking on your location.</h2><div>59 Maiden Lane<br> New York</div>'
     )
     done()
   })
