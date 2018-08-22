@@ -162,6 +162,9 @@ ul.dtl li {
 .pop h2 {
   margin: 0 10px 0 0;
 }
+.pop h2:focus {
+  box-shadow: none;
+}
 .leg {
 	padding: 10px 5px 5px 5px;
 	border: 1px solid var(--color-border);
