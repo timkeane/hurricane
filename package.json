@@ -1,6 +1,6 @@
 {
   "name": "hurricane",
-  "version": "0.4.25",
+  "version": "0.4.26",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "jest": "^23.1.0",
     "jest-fetch-mock": "^1.6.5",
     "nyc-build-helper": "^0.0.22",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4"
+    "webpack": "4.8.3",
+    "webpack-cli": "2.0.14"
   },
   "jest": {
     "verbose": true,
