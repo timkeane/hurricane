@@ -13,6 +13,13 @@ This app is a stand-alone HTML5 app that can be dropped into the doc root of any
 yarn install
 yarn global add postcss-cli
 ```
+
+The file `node_modules/nyc-lib/css/roll-css.sh` needs to have execute permissions, so you need to modify it after install, e.g. with (the exact command might depend on your OS):
+
+```
+chmod +x node_modules/nyc-lib/css/roll-css.sh
+```
+
 ## Test
 `yarn test`
 
