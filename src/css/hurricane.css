@@ -41,10 +41,9 @@ p {
 }
 #acc-filter {
   background-color: var(--color-light);
-  border-bottom: 1px solid var(--color-border);
   margin: 0 5px 5px 5px;
 }
-#acc-filter h3 {
+#acc-filter button {
   display: none;
 }
 #acc-filter input:focus {
@@ -115,23 +114,21 @@ p {
 #acc-filter label div {
   margin: 6px 3px 6px 0;
 }
-.fnd .btn.map, .fnd .btn.dir, .fnd .pop .btn.dir, .acc .btn.dtl {
-  display: inline-block;
+
+.fnd .facility.acc button.btn {
+  width: calc(33% - 2px);
 }
-.acc .btn.map, .acc .btn.dir {
-  width: calc(33% - 38px);
+.acc button.map {
+  padding-left: 12px;
 }
-.acc .btn.dtl {
-  width: calc(33% - 6px);
+.acc button.dir {
+  padding-left: 20px !important;
 }
-.acc .btn.map, .acc .btn.dir, .pop .btn.dir {
-  padding: 9px 3px 0 29px;
+.acc button.dtl {
+  padding-right: 18px;
 }
 .fnd .btn.map {
   background-position: 0;
-}
-.fnd .btn.dtl {
-  padding: 9px 3px 0;
 }
 .fnd .pop .btn.dir {
   width: calc(50% - 38px);

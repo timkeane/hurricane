@@ -51,7 +51,7 @@ const decorations = {
       if (details) {
         const btnId = nyc.nextId('acc-btn')
         const cntId = nyc.nextId('acc-cnt')
-        return $('<a class="btn rad-all dtl" aria-pressed="false" role="button" href="#"><span class="screen-reader-only">Accessibility </span>Details</a>')
+        return $('<button class="btn rad-all dtl" aria-pressed="false"><span class="screen-reader-only">Accessibility </span>Details</button>')
           .attr('id', btnId)  
           .attr('aria-controls', cntId)
           .click($.proxy(this.finderApp.expandDetail, this.finderApp))
