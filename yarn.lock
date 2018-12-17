@@ -4389,9 +4389,9 @@ nyc-build-helper@^0.0.27:
     webpack "4.19.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.2.6.tgz#a8d8e888bfdf928d5fbd7d4fb44772625cfcf5fe"
+nyc-lib@^1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.2.10.tgz#4b59adae2c6c1a47e1d727a8611abc0a20b11d94"
   dependencies:
     babel-polyfill "^6.26.0"
     isomorphic-fetch "^2.2.1"
@@ -4710,7 +4710,7 @@ path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
-path-parse@^1.0.5:
+path-parse@^1.0.5, path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
 
@@ -5273,11 +5273,17 @@ resolve@1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
-resolve@^1.1.6, resolve@^1.1.7:
+resolve@^1.1.6:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
   dependencies:
     path-parse "^1.0.5"
+
+resolve@^1.1.7:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.9.0.tgz#a14c6fdfa8f92a7df1d996cb7105fa744658ea06"
+  dependencies:
+    path-parse "^1.0.6"
 
 responselike@1.0.2:
   version "1.0.2"
