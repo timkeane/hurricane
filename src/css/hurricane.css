@@ -1,3 +1,8 @@
+@import "nyc-lib.css";
+
+@import "ol.featuretip.css";
+@import "ol.popup.css";
+@import "ol.finderapp.css";
 .loading #legend {
   display: none;
 }
@@ -130,8 +135,10 @@ p {
 .fnd .btn.map {
   background-position: 0;
 }
-.fnd .pop .btn.dir {
-  width: calc(50% - 38px);
+.fnd .pop .facility.acc button.btn.dir,
+.fnd .pop .facility.acc button.btn.dt {
+  width: 50%;
+  display: inline-block;
 }
 .fnd .pop .acc .btn.dtl {
   width: calc(50% - 12px);
