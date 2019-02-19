@@ -1,2 +1,0 @@
-check pressed state of collapsible widget button
-keyboard access to tab switching?
