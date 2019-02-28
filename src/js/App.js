@@ -34,7 +34,7 @@ class App extends FinderApp {
   constructor(content) {
     const centers = content.message('filter_centers')
     super({
-      title: `<table><tbody><tr><td><div>${content.message('banner_text')}</div></td></tr></tbody></table>`,
+      title: content.message('banner_text'),
       splashOptions: {
         message: `<div class="orders">${content.message('splash_msg')}</div>`,
         buttonText: [content.message('btn_text')]

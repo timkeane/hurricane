@@ -265,12 +265,20 @@ background-image: url("../img/fade.svg");
 .fnd .srch {
   right: 41px;
 }
+
+@media only screen and (max-width : 480px) {
+  .fnd #banner>div {
+    font-size: 3vw;
+    line-height: 3vw;
+  }
+}
+
 @media only screen and (max-width : 459px) {
   .ACCESSIBLE-1 label {
     line-height: 17px;
   }
 }
-.active-order .dia-container.splash, .fnd.active-order #tabs, #directions .tabs {
+.active-order .dia-container.splash, .fnd.active-order #tabs, .active-order #directions .tabs {
   top: 60px;
 }
 .active-order .splash .dia {
@@ -322,44 +330,6 @@ background-image: url("../img/fade.svg");
 .alert div>div>div, .alert div>div>div * {
   color: var(--color-light);
   white-space: nowrap;
-}
-
-.fnd h1#banner table, .fnd h1#banner table {
-  position: absolute;
-  left: 80px;
-  top: 2px;
-  width: calc(100% - 222px);
-  max-height: 30px;
-  overflow: hidden;
-}
-.fnd h1#banner td {
-  vertical-align: top;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-@media only screen and (max-width : 613px) {
-  .fnd h1#banner td>div, .fnd h1#banner font {
-      font-size: calc(16px + 6 * ((100vw - 320px) / 613));
-      line-height: calc(16px + 6 * (613 / (100vw - 320px)));
-  }
-}
-@media only screen and (max-width : 512px) {
-  .fnd h1#banner td, .fnd h1#banner font {
-      line-height: calc(14px + 2 * ((100vw - 320px) / 613));
-  }
-}
-@media only screen and (max-width : 450px) {
-  .fnd h1#banner table {
-    clip: rect(0,200px,29px,0);
-  }
-}
-@media only screen and (max-width : 360px) {
-	.fnd h1#banner table {
-    width: calc(100% - 170px);
-	}
-	.fnd h1#banner td {
-		font-size: 16px;
-	}
 }
 .alert div>div>div {
   display: block;
