@@ -18,7 +18,6 @@ jest.mock('nyc-lib/nyc/Slider')
 jest.mock('nyc-lib/nyc/Share')
 
 let legend
-let sliderBtn
 const adjustTabs = App.prototype.adjustTabs
 const tabChange = App.prototype.tabChange
 beforeEach(() => {
@@ -26,132 +25,163 @@ beforeEach(() => {
   App.prototype.adjustTabs = jest.fn()
   App.prototype.tabChange = jest.fn()
   legend = $('<div id="legend"><div class="leg-sw zone"></div></div>')
-  sliderBtn = $('<div id="slider-map"><div class="btn"></div></div>')
-  $('body').append(legend).append(sliderBtn)
+  $('body').append(legend)
   FeatureTip.mockReset()
   Slider.mockReset()
   Share.mockReset()
 })
 afterEach(() => {
-  App.prototype.adjustTabs = adjustTabs
+  App.prototype.adjustTab = adjustTabs
   App.prototype.tabChange = tabChange
   $('body').empty()
 })
 
-test('constructor', () => {
-  expect.assertions(71)
+
+describe('constructor/ready', () => {
+  let sliderBtn
+  const ready = App.prototype.ready
+  beforeEach(() => {
+    sliderBtn = $('<div id="slider-map"><div class="btn"></div></div>')
+    $('body').append(sliderBtn)
+    App.prototype.ready = () => {}
+  })
+  afterEach(() => {
+    $('body').empty()
+    App.prototype.ready = ready
+  })
+
+
+  test('constructor/ready', done => {
+    expect.assertions(72)
+    
+    $.fn.resize = $.originalFunctions.resize
   
-  $.fn.resize = $.originalFunctions.resize
+    const content = new Content()
+    const app = new App(content)
+  
+    expect(app instanceof App).toBe(true)
+    expect(app instanceof FinderApp).toBe(true)
+  
+    expect(app.content).toBe(content)
+  
+    expect(app.layer.getSource()).toBe(app.source)
+    expect(app.layer.getStyle()).toBe(style.center)
+    expect(app.layer.getZIndex()).toBe(1)
+    expect(app.source.getUrl()).toBe(hurricane.CENTER_URL)
+  
+    expect(app.source.getFormat() instanceof Decorate).toBe(true)
+    expect(app.source.getFormat().decorations.length).toBe(4)
+    expect(app.source.getFormat().decorations[0]).toBe(FinderApp.FEATURE_DECORATIONS)  
+    expect(app.source.getFormat().decorations[1].app).toBe(app)
+    expect(app.source.getFormat().decorations[2].content).toBe(content)
+    expect(app.source.getFormat().decorations[3]).toBe(decorations.center)
+  
+    expect(app.source.getFormat().parentFormat instanceof CsvPoint).toBe(true)
+    expect(app.source.getFormat().parentFormat.dataProjection.getCode()).toBe('EPSG:2263')
+    expect(app.source.getFormat().parentFormat.x).toBe('X')
+    expect(app.source.getFormat().parentFormat.y).toBe('Y')
+  
+    expect(app.tabs.find('.btn-0').html()).toBe('Map')
+    expect(app.tabs.find('.btn-1').html()).toBe(content.message('centers_tab'))
+    expect(app.tabs.find('.btn-2').html()).toBe('Legend')
+  
+    expect(app.tabs.tabs.find('.tab-0').get(0)).toBe($('#map').get(0))
+    expect(app.tabs.tabs.find('.tab-1').get(0)).toBe($('#facilities').get(0))
+    expect(app.tabs.tabs.find('.tab-2').get(0)).toBe($('#legend').get(0))
+  
+    app.tabChange.mockReset()
+    app.adjustTabs.mockReset()
+    app.tabs.trigger('change')
+    $(window).trigger('resize')
+    expect(app.tabChange).toHaveBeenCalledTimes(1)
+    expect(app.adjustTabs).toHaveBeenCalledTimes(1)
+  
+    expect(app.filters.choiceControls.length).toBe(1)
+    expect(app.filters.choiceControls[0].radio).toBe(true)
+    expect(app.filters.choiceControls[0].choices.length).toBe(2)
+  
+    expect(app.filters.choiceControls[0].choices[0].label).toBe(`All ${content.message('filter_centers')}`)
+    expect(app.filters.choiceControls[0].choices[0].name).toBe('ACCESSIBLE')
+    expect(app.filters.choiceControls[0].choices[0].values).toEqual(['N', 'Y'])
+    expect(app.filters.choiceControls[0].choices[0].checked).toBe(true)
+  
+    expect(app.filters.choiceControls[0].choices[1].label).toBe(`<div></div>Only accessible ${content.message('filter_centers')}`)
+    expect(app.filters.choiceControls[0].choices[1].name).toBe('ACCESSIBLE')
+    expect(app.filters.choiceControls[0].choices[1].values).toEqual(['Y'])
+    expect(app.filters.choiceControls[0].choices[1].checked).not.toBe(true)
+  
+    expect(app.zoneLayer.getSource()).toBe(app.zoneSource)
+    expect(app.zoneLayer.getStyle()).toBe(style.zone)
+    expect(app.zoneLayer.getOpacity()).toBe(.35)
+    expect(app.zoneSource.getUrl()).toBe(hurricane.ZONE_URL)  
+  
+    const layers = app.map.getLayers().getArray()
+  
+    expect(layers[layers.length - 1]).toBe(app.zoneLayer)
+  
+    expect(FeatureTip).toHaveBeenCalledTimes(3)
+    expect(FeatureTip.mock.calls[2][0].map).toBe(app.map)
+    expect(FeatureTip.mock.calls[2][0].tips.length).toBe(1)
+    expect(FeatureTip.mock.calls[2][0].tips[0].layer).toBe(app.zoneLayer)
+  
+    const mockFeature = {
+      content: {
+        message: jest.fn(() => {return 'mock-html'}),
+        zoneMsg: jest.fn(() => {return 'mock-order'})
+      },
+      getZone: jest.fn(() => {return 'mock-zone'})
+    }
+  
+    const label = FeatureTip.mock.calls[2][0].tips[0].label(mockFeature)
+  
+    expect(label.css).toBe('zone')
+    expect(label.html).toBe('mock-html')
+    expect(mockFeature.content.message).toHaveBeenCalledTimes(1)
+    expect(mockFeature.content.message.mock.calls[0][0]).toBe('zone_tip')
+    expect(mockFeature.content.message.mock.calls[0][1].zone).toBe('mock-zone')
+    expect(mockFeature.content.message.mock.calls[0][1].order).toBe('mock-order')
+  
+    expect(Slider).toHaveBeenCalledTimes(2)
+  
+    expect(Slider.mock.calls[0][0].target).toBe('#slider-map .slider')
+    expect(Slider.mock.calls[0][0].min).toBe(0)
+    expect(Slider.mock.calls[0][0].max).toBe(100)
+    expect(Slider.mock.calls[0][0].value).toBe(65)
+    expect(Slider.mock.calls[0][0].units).toBe('%')
+    expect(Slider.mock.calls[0][0].label).toBe('Zone Transparency:')
+  
+    expect(Slider.mock.calls[1][0].target).toBe('#leg-slider')
+    expect(Slider.mock.calls[1][0].min).toBe(0)
+    expect(Slider.mock.calls[1][0].max).toBe(100)
+    expect(Slider.mock.calls[1][0].value).toBe(65)
+    expect(Slider.mock.calls[1][0].units).toBe('%')
+    expect(Slider.mock.calls[1][0].label).toBe('Zone Transparency:')
+  
+    expect(Slider.mock.instances[0].on).toHaveBeenCalledTimes(1)
+    expect(Slider.mock.instances[0].on.mock.calls[0][0]).toBe('change')
+    expect(Slider.mock.instances[0].on.mock.calls[0][1]).toBe(app.zoneOpacity)
+    expect(Slider.mock.instances[0].on.mock.calls[0][2]).toBe(app)
+    expect(Slider.mock.instances[1].on.mock.calls[0][0]).toBe('change')
+    expect(Slider.mock.instances[1].on.mock.calls[0][1]).toBe(app.zoneOpacity)
+    expect(Slider.mock.instances[1].on.mock.calls[0][2]).toBe(app)
+  
+    app.ready = ready
+    app.ready([])
+  
+    setTimeout(() => {
+      window.xyz=true
+      $(app.map.getTargetElement()).append($('<div class="shr"></div>'))    
+    }, 600)
 
-  const content = new Content()
-  const app = new App(content)
+    setTimeout(() => {
+      window.xyz=false
 
-  expect(app instanceof App).toBe(true)
-  expect(app instanceof FinderApp).toBe(true)
-
-  expect(app.content).toBe(content)
-
-  expect(app.layer.getSource()).toBe(app.source)
-  expect(app.layer.getStyle()).toBe(style.center)
-  expect(app.layer.getZIndex()).toBe(1)
-  expect(app.source.getUrl()).toBe(hurricane.CENTER_URL)
-
-  expect(app.source.getFormat() instanceof Decorate).toBe(true)
-  expect(app.source.getFormat().decorations.length).toBe(4)
-  expect(app.source.getFormat().decorations[0]).toBe(FinderApp.FEATURE_DECORATIONS)
-  expect(app.source.getFormat().decorations[1].finderApp).toBe(app)
-  expect(app.source.getFormat().decorations[2].content).toBe(content)
-  expect(app.source.getFormat().decorations[3]).toBe(decorations.center)
-
-  expect(app.source.getFormat().parentFormat instanceof CsvPoint).toBe(true)
-  expect(app.source.getFormat().parentFormat.defaultDataProjection.getCode()).toBe('EPSG:2263')
-  expect(app.source.getFormat().parentFormat.x).toBe('X')
-  expect(app.source.getFormat().parentFormat.y).toBe('Y')
-
-  expect(app.tabs.find('.btn-0').html()).toBe('Map')
-  expect(app.tabs.find('.btn-1').html()).toBe(content.message('centers_tab'))
-  expect(app.tabs.find('.btn-2').html()).toBe('Legend')
-
-  expect(app.tabs.tabs.find('.tab-0').get(0)).toBe($('#map').get(0))
-  expect(app.tabs.tabs.find('.tab-1').get(0)).toBe($('#facilities').get(0))
-  expect(app.tabs.tabs.find('.tab-2').get(0)).toBe($('#legend').get(0))
-
-  app.tabChange.mockReset()
-  app.adjustTabs.mockReset()
-  app.tabs.trigger('change')
-  $(window).trigger('resize')
-  expect(app.tabChange).toHaveBeenCalledTimes(1)
-  expect(app.adjustTabs).toHaveBeenCalledTimes(1)
-
-  expect(app.filters.choiceControls.length).toBe(1)
-  expect(app.filters.choiceControls[0].radio).toBe(true)
-  expect(app.filters.choiceControls[0].choices.length).toBe(2)
-
-  expect(app.filters.choiceControls[0].choices[0].label).toBe(`All ${content.message('filter_centers')}`)
-  expect(app.filters.choiceControls[0].choices[0].name).toBe('ACCESSIBLE')
-  expect(app.filters.choiceControls[0].choices[0].values).toEqual(['N', 'Y'])
-  expect(app.filters.choiceControls[0].choices[0].checked).toBe(true)
-
-  expect(app.filters.choiceControls[0].choices[1].label).toBe(`<div></div>Only accessible ${content.message('filter_centers')}`)
-  expect(app.filters.choiceControls[0].choices[1].name).toBe('ACCESSIBLE')
-  expect(app.filters.choiceControls[0].choices[1].values).toEqual(['Y'])
-  expect(app.filters.choiceControls[0].choices[1].checked).not.toBe(true)
-
-  expect(app.zoneLayer.getSource()).toBe(app.zoneSource)
-  expect(app.zoneLayer.getStyle()).toBe(style.zone)
-  expect(app.zoneLayer.getOpacity()).toBe(.35)
-  expect(app.zoneSource.getUrl()).toBe(hurricane.ZONE_URL)  
-
-  const layers = app.map.getLayers().getArray()
-
-  expect(layers[layers.length - 1]).toBe(app.zoneLayer)
-
-  expect(FeatureTip).toHaveBeenCalledTimes(3)
-  expect(FeatureTip.mock.calls[2][0].map).toBe(app.map)
-  expect(FeatureTip.mock.calls[2][0].tips.length).toBe(1)
-  expect(FeatureTip.mock.calls[2][0].tips[0].layer).toBe(app.zoneLayer)
-
-  const mockFeature = {
-    content: {
-      message: jest.fn(() => {return 'mock-html'}),
-      zoneMsg: jest.fn(() => {return 'mock-order'})
-    },
-    getZone: jest.fn(() => {return 'mock-zone'})
-  }
-
-  const label = FeatureTip.mock.calls[2][0].tips[0].label(mockFeature)
-
-  expect(label.css).toBe('zone')
-  expect(label.html).toBe('mock-html')
-  expect(mockFeature.content.message).toHaveBeenCalledTimes(1)
-  expect(mockFeature.content.message.mock.calls[0][0]).toBe('zone_tip')
-  expect(mockFeature.content.message.mock.calls[0][1].zone).toBe('mock-zone')
-  expect(mockFeature.content.message.mock.calls[0][1].order).toBe('mock-order')
-
-  expect(Slider).toHaveBeenCalledTimes(2)
-
-  expect(Slider.mock.calls[0][0].target).toBe('#slider-map .slider')
-  expect(Slider.mock.calls[0][0].min).toBe(0)
-  expect(Slider.mock.calls[0][0].max).toBe(100)
-  expect(Slider.mock.calls[0][0].value).toBe(65)
-  expect(Slider.mock.calls[0][0].units).toBe('%')
-  expect(Slider.mock.calls[0][0].label).toBe('Zone Transparency:')
-
-  expect(Slider.mock.calls[1][0].target).toBe('#leg-slider')
-  expect(Slider.mock.calls[1][0].min).toBe(0)
-  expect(Slider.mock.calls[1][0].max).toBe(100)
-  expect(Slider.mock.calls[1][0].value).toBe(65)
-  expect(Slider.mock.calls[1][0].units).toBe('%')
-  expect(Slider.mock.calls[1][0].label).toBe('Zone Transparency:')
-
-  expect(Slider.mock.instances[0].on).toHaveBeenCalledTimes(1)
-  expect(Slider.mock.instances[0].on.mock.calls[0][0]).toBe('change')
-  expect(Slider.mock.instances[0].on.mock.calls[0][1]).toBe(app.zoneOpacity)
-  expect(Slider.mock.instances[0].on.mock.calls[0][2]).toBe(app)
-  expect(Slider.mock.instances[1].on.mock.calls[0][0]).toBe('change')
-  expect(Slider.mock.instances[1].on.mock.calls[0][1]).toBe(app.zoneOpacity)
-  expect(Slider.mock.instances[1].on.mock.calls[0][2]).toBe(app)
+      expect($(app.map.getTargetElement()).children().last().get(0)).toBe(sliderBtn.get(0))
+      done()
+    }, 2000)
+  })
 })
+
 
 test('located', () => {
   expect.assertions(10)
@@ -567,23 +597,33 @@ describe('expandDetail', () => {
   })
 })
 
-test('slider button', () => {
-  expect.assertions(2)
 
-  const content = new Content()
-  const app = new App(content)
+describe('slider button', () => {
+  let sliderBtn
+  beforeEach(() => {
+    sliderBtn = $('<div id="slider-map"><div class="btn"></div><div class="slider"></div></div>')
+    $('body').append(sliderBtn)
+  })
+  afterEach(() => {
+    $('body').empty()
+  })
 
-  const slider = $('<div class="slider"></div>').hide()
+  test('slider button', () => {
+    expect.assertions(2)
 
-  $('#slider-map .btn')
-    .append(slider)
-    .trigger('click')
+    const content = new Content()
+    const app = new App(content)
 
-  expect($('#slider-map .slider').css('display')).toBe('block')
+    sliderBtn.find('.slider').hide()
 
-  $('#slider-map .btn').trigger('click')
+    sliderBtn.find('.btn').trigger('click')
 
-  expect($('#slider-map .slider').css('display')).toBe('none')
+    expect($('#slider-map .slider').css('display')).toBe('block')
+
+    sliderBtn.find('.btn').trigger('click')
+
+    expect($('#slider-map .slider').css('display')).toBe('none')
+  })
 })
 
 test('zoneOpacity', () => {
@@ -689,33 +729,6 @@ test('filter focus/blur', () => {
 
   $(inputs.get(1)).blur()
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
-})
-
-test('ready', () => {
-  expect.assertions(2)
-  
-  const content = new Content()    
-  
-  const app = new App(content)
-
-  const test = async () => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        expect($(app.map.getTargetElement()).children().last().get(0)).toBe(sliderBtn.get(0))
-        resolve(true)
-      }, 1300)
-    })
-  }
-
-  app.ready([])
-
-  const result = test()
-  
-  setTimeout(() => {
-    $(app.map.getTargetElement()).append($('<div class="shr"></div>'))
-  }, 600)
-
-  return result.then(success => expect(success).toBe(true))
 })
 
 test('boundingExtent', () => {

@@ -43,7 +43,7 @@ class App extends FinderApp {
       facilityFormat: new CsvPoint({
         x: 'X',
         y: 'Y',
-        defaultDataProjection: 'EPSG:2263'
+        dataProjection: 'EPSG:2263'
       }),
       facilityStyle: style.center,
       facilityTabTitle: content.message('centers_tab'),

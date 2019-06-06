@@ -3,7 +3,7 @@ import Content from './Content.mock'
 import decorations from '../src/js/decorations'
 
 const content = new Content()
-const finderApp = {
+const app = {
   expandDetail: jest.fn()
 }
 
@@ -21,7 +21,7 @@ const notAccessibleCenter = new OlFeature({
   ACCESSIBLE: 'N',
   ACC_FEAT: ''
 })
-$.extend(notAccessibleCenter, decorations.center, {content: content, finderApp: finderApp})
+$.extend(notAccessibleCenter, decorations.center, {content: content, app: app})
 
 const accessibleCenter = new OlFeature({
   BLDG_ID: 'Q566',
@@ -37,7 +37,7 @@ const accessibleCenter = new OlFeature({
   ACCESSIBLE: 'Y',
   ACC_FEAT: 'The main/accessible entrance to this location for sheltering purposes is 74-20 Commonwealth Boulevard, Queens (Close to the intersection with Cross Island Parkway and Grand Central Parkway)'
 })
-$.extend(accessibleCenter, decorations.center, {content: content, finderApp: finderApp})
+$.extend(accessibleCenter, decorations.center, {content: content, app: app})
 
 const notWaterZone = new OlFeature({zone: '1'})
 $.extend(notWaterZone, decorations.zone, {content: content})
@@ -45,4 +45,4 @@ $.extend(notWaterZone, decorations.zone, {content: content})
 const waterZone = new OlFeature({zone: '0'})
 $.extend(waterZone, decorations.zone, {content: content})
 
-module.exports = {finderApp, notAccessibleCenter, accessibleCenter, notWaterZone, waterZone}
+module.exports = {app, notAccessibleCenter, accessibleCenter, notWaterZone, waterZone}

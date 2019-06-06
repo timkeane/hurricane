@@ -1,12 +1,12 @@
 {
   "name": "hurricane",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "prebuild": "yarn test && yarn roll-css",
+    "prebuild": "yant test && yarn roll-css",
     "roll-css": "./node_modules/nyc-lib/css/roll-css.sh ./src/css/hurricane.theme.css ./src/css/hurricane.css",
     "predeploy": "yarn build",
     "deploy": "node deploy"
@@ -15,7 +15,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jquery": "^3.3.1",
-    "nyc-lib": "1.2.18",
+    "nyc-lib": "^1.2.82",
     "ol": "^5.3.0",
     "papaparse": "^4.5.1",
     "proj4": "^2.4.4"

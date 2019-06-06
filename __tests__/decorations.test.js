@@ -1,12 +1,12 @@
 import decorations from '../src/js/decorations'
 import nyc from 'nyc-lib/nyc'
-import {finderApp, notAccessibleCenter, accessibleCenter, notWaterZone, waterZone} from './features.mock'
+import {app, notAccessibleCenter, accessibleCenter, notWaterZone, waterZone} from './features.mock'
 
 let div
 const nextId = nyc.nextId
 beforeEach(() => {
   $.resetMocks()
-  finderApp.expandDetail.mockReset()
+  app.expandDetail.mockReset()
   nyc.nextId = (name) => {
     return `${name}-1`
   }
@@ -70,8 +70,8 @@ describe('center decorations', () => {
     )
 
     expect($.mocks.proxy).toHaveBeenCalledTimes(1)
-    expect($.mocks.proxy.mock.calls[0][0]).toBe(finderApp.expandDetail)
-    expect($.mocks.proxy.mock.calls[0][1]).toBe(finderApp)
+    expect($.mocks.proxy.mock.calls[0][0]).toBe(app.expandDetail)
+    expect($.mocks.proxy.mock.calls[0][1]).toBe(app)
   })
 
   test('cssClass', () => {
