@@ -1,7 +1,7 @@
 {
   "name": "hurricane",
-  "version": "2.0.3",
-  "description": "",
+  "version": "2.0.4",
+  "description": "NYCEM Hurricane Evacuation Zone Finder",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -27,7 +27,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "canvas-prebuilt": "1.6.11",
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.4",
     "jest": "23.1.0",
     "jest-fetch-mock": "^1.6.5",
     "nyc-build-helper": "^0.0.28",
