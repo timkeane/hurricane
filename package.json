@@ -1,6 +1,6 @@
 {
   "name": "hurricane",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "NYCEM Hurricane Evacuation Zone Finder",
   "main": "index.js",
   "scripts": {
@@ -21,14 +21,13 @@
     "proj4": "^2.4.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.0.1",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
     "canvas-prebuilt": "1.6.11",
     "coveralls": "^3.0.4",
-    "jest": "23.1.0",
+    "jest": "^24.8.0",
     "jest-fetch-mock": "^1.6.5",
     "nyc-build-helper": "^0.0.28",
     "webpack": "4.19.1",

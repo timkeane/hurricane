@@ -718,16 +718,16 @@ test('filter focus/blur', () => {
 
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
 
-  $(inputs.get(0)).focus()
+  inputs.get(0).focus()
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(true)
 
-  $(inputs.get(0)).blur()
+  inputs.get(0).blur()
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
 
-  $(inputs.get(1)).focus()
+  inputs.get(1).focus()
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(true)
 
-  $(inputs.get(1)).blur()
+  inputs.get(1).blur()
   expect($('#acc-filter div[role="radiogroup"]').hasClass('focused')).toBe(false)
 })
 
