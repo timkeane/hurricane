@@ -143,7 +143,6 @@ class App extends FinderApp {
   located(location) {
     this.location = location
     this.resetList()
-    this.focusFacilities(true)
 
     const popup = this.popup
     const popNode = $(popup.getElement())

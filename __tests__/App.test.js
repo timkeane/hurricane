@@ -184,12 +184,12 @@ describe('constructor/ready', () => {
 
 
 describe('located', () => {
-  const located = FinderApp.prototype.located
+  const resetList = FinderApp.prototype.resetList
   beforeEach(() => {
-    FinderApp.prototype.located = jest.fn()
+    FinderApp.prototype.resetList = jest.fn()
   })
   afterEach(() => {
-    FinderApp.prototype.located = located
+    FinderApp.prototype.resetList = resetList
   })
 
   test.only('located', () => {
@@ -207,15 +207,14 @@ describe('located', () => {
     
     app.popup.showFeatures = jest.fn(() => {
       pop.find('.content').append('<h2></h2>').show()
-      
     })
   
     const location = {coordinate: [1, 2]}
   
     app.located(location)
   
-    expect(FinderApp.prototype.located).toHaveBeenCalledTimes(1)
-    expect(FinderApp.prototype.located.mock.calls[0][0]).toBe(location)
+    expect(FinderApp.prototype.resetList).toHaveBeenCalledTimes(1)
+    expect(app.location).toBe(location)
 
     expect(app.locationMsg).toHaveBeenCalledTimes(1)
     expect(app.locationMsg.mock.calls[0][0]).toBe(location)
