@@ -169,13 +169,10 @@ describe('constructor/ready', () => {
     app.ready([])
   
     setTimeout(() => {
-      window.xyz=true
       $(app.map.getTargetElement()).append($('<div class="shr"></div>'))    
     }, 600)
 
     setTimeout(() => {
-      window.xyz=false
-
       expect($(app.map.getTargetElement()).children().last().get(0)).toBe(sliderBtn.get(0))
       done()
     }, 2000)
@@ -192,7 +189,7 @@ describe('located', () => {
     FinderApp.prototype.resetList = resetList
   })
 
-  test.only('located', () => {
+  test('located', () => {
     expect.assertions(12)
     
     const content = new Content()
