@@ -1,8 +1,3 @@
-@import "nyc-lib.css";
-
-@import "ol.featuretip.css";
-@import "ol.popup.css";
-@import "ol.finderapp.css";
 .loading #legend {
   display: none;
 }
