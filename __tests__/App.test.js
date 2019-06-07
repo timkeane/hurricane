@@ -183,45 +183,58 @@ describe('constructor/ready', () => {
 })
 
 
-test('located', () => {
-  expect.assertions(10)
-  
-  const content = new Content()
-  const app = new App(content)
-
-  app.locationMsg = jest.fn(() => {
-    return 'mock-html'
+describe('located', () => {
+  const located = FinderApp.prototype.located
+  beforeEach(() => {
+    FinderApp.prototype.located = jest.fn()
+  })
+  afterEach(() => {
+    FinderApp.prototype.located = located
   })
 
+  test.only('located', () => {
+    expect.assertions(12)
     
-  const pop = $(app.popup.getElement())
+    const content = new Content()
+    const app = new App(content)
   
-  app.popup.showFeatures = jest.fn(() => {
-    pop.find('.content').append('<h2></h2>').show()
     
+    app.locationMsg = jest.fn(() => {
+      return 'mock-html'
+    })
+      
+    const pop = $(app.popup.getElement())
+    
+    app.popup.showFeatures = jest.fn(() => {
+      pop.find('.content').append('<h2></h2>').show()
+      
+    })
+  
+    const location = {coordinate: [1, 2]}
+  
+    app.located(location)
+  
+    expect(FinderApp.prototype.located).toHaveBeenCalledTimes(1)
+    expect(FinderApp.prototype.located.mock.calls[0][0]).toBe(location)
+
+    expect(app.locationMsg).toHaveBeenCalledTimes(1)
+    expect(app.locationMsg.mock.calls[0][0]).toBe(location)
+  
+    expect(app.popup.showFeatures).toHaveBeenCalledTimes(1)
+    expect(app.popup.showFeatures.mock.calls[0][0].length).toBe(1)
+    expect(app.popup.showFeatures.mock.calls[0][0][0] instanceof OlFeature).toBe(true)
+    expect(app.popup.showFeatures.mock.calls[0][0][0].getGeometry().getCoordinates()).toEqual(location.coordinate)
+    expect(app.popup.showFeatures.mock.calls[0][0][0].html()).toBe('mock-html')
+      
+    expect(document.activeElement).toBe(pop.find('h2').get(0))
+    expect(pop.find('h2').attr('tabindex')).toBe('0')
+  
+    app.tabs.open = jest.fn()
+    pop.find('.btn-x').trigger('click')
+  
+    expect(app.tabs.open).toHaveBeenCalledTimes(1)
   })
-
-  const location = {coordinate: [1, 2]}
-
-  app.located(location)
-
-  expect(app.locationMsg).toHaveBeenCalledTimes(1)
-  expect(app.locationMsg.mock.calls[0][0]).toBe(location)
-
-  expect(app.popup.showFeatures).toHaveBeenCalledTimes(1)
-  expect(app.popup.showFeatures.mock.calls[0][0].length).toBe(1)
-  expect(app.popup.showFeatures.mock.calls[0][0][0] instanceof OlFeature).toBe(true)
-  expect(app.popup.showFeatures.mock.calls[0][0][0].getGeometry().getCoordinates()).toEqual(location.coordinate)
-  expect(app.popup.showFeatures.mock.calls[0][0][0].html()).toBe('mock-html')
-    
-  expect(document.activeElement).toBe(pop.find('h2').get(0))
-  expect(pop.find('h2').attr('tabindex')).toBe('0')
-
-  app.tabs.open = jest.fn()
-  pop.find('.btn-x').trigger('click')
-
-  expect(app.tabs.open).toHaveBeenCalledTimes(1)
-})  
+})
 
 test('locationMsg content returns html', () => {
   expect.assertions(4)
