@@ -23,6 +23,7 @@ import OlGeomPoint from 'ol/geom/Point'
 import OlFormatTopoJSON from 'ol/format/TopoJSON'
 import OlSourceVector from 'ol/source/Vector'
 import OlLayerVector from 'ol/layer/Vector'
+import MapMgr from 'nyc-lib/nyc/ol/MapMgr';
 
 class App extends FinderApp {
   /**
@@ -135,11 +136,15 @@ class App extends FinderApp {
   }
   /**
    * @access protected
+   * @override
    * @method
    * @param {module:nyc/Locator~Locator.Result} location
    */
   located(location) {
-    super.located(location)
+    this.location = location
+    this.resetList()
+    this.focusFacilities(true)
+
     const popup = this.popup
     const popNode = $(popup.getElement())
     const tabs = this.tabs
