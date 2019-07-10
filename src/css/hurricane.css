@@ -373,3 +373,11 @@ background-image: url("../img/fade.svg");
     }
   }
 }
+.lst-srch {
+  margin: 0;
+  margin-left: 42px;
+  margin-right: -42px;
+}
+.translated-rtl .srch .btn-x {
+  right: calc(100% - 35px);
+}
