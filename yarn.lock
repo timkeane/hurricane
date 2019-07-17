@@ -885,9 +885,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "12.0.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.7.tgz#4f2563bad652b2acb1722d7e7aae2b0ff62d192c"
-  integrity sha512-1YKeT4JitGgE4SOzyB9eMwO0nGVNkNEsm9qlIt1Lqm/tG2QEiSMTD4kS3aO6L+w5SClLVxALmIBESK6Mk5wX0A==
+  version "12.6.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.6.tgz#831587377c35bb28fa33b6fe5f849a26a3f4a412"
+  integrity sha512-SMgj3x28MkJyHdWaMv/g/ca3LYDi5gR7O8mX0VKazvFOnmlDXctSEdd/8jfSqozjKFK1R9If1QZWkafX7yQTpA==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -907,9 +907,9 @@
     source-map "^0.6.1"
 
 "@types/webpack@^4.4.31":
-  version "4.4.32"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.32.tgz#2d460cd33a15e568e93f38de5e628cf846396c51"
-  integrity sha512-mNARoaSJTzbiHxtZbf9NULFilu2frqD+g9Iyl9V2jPYJWXi+AC3Hz8lQWPZ5LLtgUm7iF4SDDMB/1bPrbRQgFw==
+  version "4.4.35"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.35.tgz#b7088eb2d471d5645e5503d272783cafa753583b"
+  integrity sha512-kf+mn/+CB4HsFb+Rz0QBRlo8nNC9LFhwqeK5xxhd3FEPRWJv6MFVnljKV5ARac56+syO8vIhq+nGt860+3wx7A==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -4507,9 +4507,9 @@ is-observable@^0.2.0:
     symbol-observable "^0.2.2"
 
 is-path-cwd@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/is-path-cwd/-/is-path-cwd-2.1.0.tgz#2e0c7e463ff5b7a0eb60852d851a6809347a124c"
-  integrity sha512-Sc5j3/YnM8tDeyCsVeKlm/0p95075DyLmDEIkSgQ7mXkrOX+uTCtmQFm0CYzVyJwcCCmO3k8qfJt17SxQwB5Zw==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/is-path-cwd/-/is-path-cwd-2.2.0.tgz#67d43b82664a7b5191fd9119127eb300048a9fdb"
+  integrity sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ==
 
 is-path-in-cwd@^2.0.0:
   version "2.1.0"
@@ -6075,10 +6075,10 @@ nwsapi@^2.0.7:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.1.4.tgz#e006a878db23636f8e8a67d33ca0e4edf61a842f"
   integrity sha512-iGfd9Y6SFdTNldEy2L0GUhcarIutFmk+MPWIn9dmj8NMIup03G08uUF2KGbbmv/Ux4RT0VZJoP/sVbWA6d/VIw==
 
-nyc-build-helper@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.31.tgz#e05e1091e49024743df2ba943c4ae5fc4d206e6d"
-  integrity sha512-jinSLfUXBnbqi0032uObKPGPMgsbd7Ya12WadzUkQ2x0GbBNEDRH7N8zzY7Lnx9ljdS6tQUDCJWqwlmOKrkqVQ==
+nyc-build-helper@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/nyc-build-helper/-/nyc-build-helper-0.0.32.tgz#60cafc37c762db7c3cf49e3d92b7f3f590495e55"
+  integrity sha512-gtNTwBhvDPJ+9tud8FxC4aZdnxnH2XWB4hwEEfBkzfZ5HxXiHqSW8q2VHFzIWxlNj9sXeqA3mCNaa9PBT7YvkQ==
   dependencies:
     clean-webpack-plugin "^3.0.0"
     copy-webpack-plugin "^5.0.3"
@@ -6089,10 +6089,10 @@ nyc-build-helper@^0.0.31:
     webpack "4.19.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.3.28:
-  version "1.3.28"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.3.28.tgz#6ccc8d4c38a99723f9bf3eed70a860de64d124f7"
-  integrity sha512-lnbTT3XzsE6vBw2e/hhus/een4IjcPrCCU59pqzgyq02jKDedkXbTnsncvQiifTT1313p91f12oRbTt+yymZZA==
+nyc-lib@^1.3.30:
+  version "1.3.30"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.3.30.tgz#a68aa4ea41a0276cb58ae46361355f4324b1990e"
+  integrity sha512-0VuO3n+Aa063idU7tiSnOHITytM7IpxsA9Xh/4HNgtaGsA4SJui+HLhoAiw4GRceKrHdrIgyf73G4t5wuZawfQ==
   dependencies:
     eslint-config-openlayers "^11.0.0"
     eslint-import-resolver-alias "^1.1.2"
