@@ -38,7 +38,7 @@ class App extends FinderApp {
       title: content.message('banner_text'),
       splashOptions: {
         message: `<div class="orders">${content.message('splash_msg')}</div>`,
-        buttonText: [content.message('btn_text')]
+        buttonText: ['Screen reader instructions', content.message('btn_text')]
       },
       facilityUrl: hurricane.CENTER_URL,
       facilityFormat: new CsvPoint({
