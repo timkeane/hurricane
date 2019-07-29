@@ -261,6 +261,11 @@ background-image: url("../img/fade.svg");
   right: 41px;
 }
 
+.fnd .splash .dia a.btn-yes, .fnd .splash .dia a.btn-no {
+  width: 320px;
+  padding: 5px 10px; 
+}
+
 @media only screen and (max-width : 480px) {
   .fnd #banner>div {
     font-size: 3vw;
