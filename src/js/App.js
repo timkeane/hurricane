@@ -155,9 +155,15 @@ class App extends FinderApp {
     feature.html = () => {return html}
     popup.showFeatures([feature])
     popNode.find('h2').attr('tabindex', 0).focus()
-    popNode.find('.btn-x').one('click', () => {
-      tabs.open('#facilities')
-    })
+    if (tabs.active.attr('id') === 'facilities') {
+      tabs.one('change', () => {
+        popup.pan()
+      })
+    } else {
+      popNode.find('.btn-x').one('click', () => {
+        tabs.open('#facilities')
+      })
+    }
   }
   /**
    * @private
