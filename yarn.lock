@@ -6089,10 +6089,10 @@ nyc-build-helper@^0.0.32:
     webpack "4.19.1"
     zip-dir "^1.0.2"
 
-nyc-lib@^1.3.47:
-  version "1.3.47"
-  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.3.47.tgz#a7b0906c7b60466b843886539bf995681feafb1d"
-  integrity sha512-SPjv046iQfktlpacF0cT6/QzUyewNDt7nHM3cozzbLq4BurjasPXk4BAblhoxsL1Is1NGEcQhR7i40l+a+HkAg==
+nyc-lib@^1.3.48:
+  version "1.3.48"
+  resolved "https://registry.yarnpkg.com/nyc-lib/-/nyc-lib-1.3.48.tgz#e63bf5ee9af840e38f3f9d8cd769ab2d5f9ce7b6"
+  integrity sha512-IOWsBaiilSr3jWaHSjvT0P5/2axfwXSP/+6kPVR2+tNK7DUDd9LlGcRcdyMIaoNXakFPBEWICIX9niJPT2PaPA==
   dependencies:
     eslint-config-openlayers "^11.0.0"
     eslint-import-resolver-alias "^1.1.2"
@@ -7216,10 +7216,17 @@ resolve@1.1.7:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
   integrity sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.11.0, resolve@^1.3.2, resolve@^1.5.0:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.3.2:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.11.1.tgz#ea10d8110376982fef578df8fc30b9ac30a07a3e"
   integrity sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==
+  dependencies:
+    path-parse "^1.0.6"
+
+resolve@^1.1.7, resolve@^1.11.0, resolve@^1.5.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
+  integrity sha512-B/dOmuoAik5bKcD6s6nXDCjzUKnaDvdkRyAk6rsmsKLipWj4797iothd7jmmUhWTfinVMU+wc56rYKsit2Qy4w==
   dependencies:
     path-parse "^1.0.6"
 
