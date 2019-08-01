@@ -155,8 +155,6 @@ class App extends FinderApp {
     feature.html = () => {return html}
     popup.showFeatures([feature])
     popNode.find('h2').attr('tabindex', 0).focus()
-    console.warn(tabs.active.attr('id'));
-    
     if (tabs.active.attr('id') === 'facilities') {
       tabs.one('change', () => {
         popup.pan()
