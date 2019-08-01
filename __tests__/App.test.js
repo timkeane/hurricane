@@ -189,8 +189,8 @@ describe('located', () => {
     FinderApp.prototype.resetList = resetList
   })
 
-  test('located', () => {
-    expect.assertions(12)
+  test('located - facility tab not active', () => {
+    expect.assertions(13)
     
     const content = new Content()
     const app = new App(content)
@@ -205,11 +205,18 @@ describe('located', () => {
     app.popup.showFeatures = jest.fn(() => {
       pop.find('.content').append('<h2></h2>').show()
     })
-  
+    app.popup.pan = jest.fn()
+
     const location = {coordinate: [1, 2]}
   
+    app.tabs.active = $('#map')
+    app.tabs.one = jest.fn()
+
     app.located(location)
   
+    app.tabs.trigger('change')
+    expect(app.popup.pan).toHaveBeenCalledTimes(0)
+
     expect(FinderApp.prototype.resetList).toHaveBeenCalledTimes(1)
     expect(app.location).toBe(location)
 
@@ -229,6 +236,54 @@ describe('located', () => {
     pop.find('.btn-x').trigger('click')
   
     expect(app.tabs.open).toHaveBeenCalledTimes(1)
+  })
+
+  test('located - facility tab is active', () => {
+    expect.assertions(13)
+    
+    const content = new Content()
+    const app = new App(content)
+  
+    
+    app.locationMsg = jest.fn(() => {
+      return 'mock-html'
+    })
+      
+    const pop = $(app.popup.getElement())
+    
+    app.popup.showFeatures = jest.fn(() => {
+      pop.find('.content').append('<h2></h2>').show()
+    })
+    app.popup.pan = jest.fn()
+
+    const location = {coordinate: [1, 2]}
+  
+    app.tabs.active = $('#facilities')
+    
+    app.located(location)
+  
+    app.tabs.trigger('change')
+    expect(app.popup.pan).toHaveBeenCalledTimes(1)
+  
+    expect(FinderApp.prototype.resetList).toHaveBeenCalledTimes(1)
+    expect(app.location).toBe(location)
+
+    expect(app.locationMsg).toHaveBeenCalledTimes(1)
+    expect(app.locationMsg.mock.calls[0][0]).toBe(location)
+  
+    expect(app.popup.showFeatures).toHaveBeenCalledTimes(1)
+    expect(app.popup.showFeatures.mock.calls[0][0].length).toBe(1)
+    expect(app.popup.showFeatures.mock.calls[0][0][0] instanceof OlFeature).toBe(true)
+    expect(app.popup.showFeatures.mock.calls[0][0][0].getGeometry().getCoordinates()).toEqual(location.coordinate)
+    expect(app.popup.showFeatures.mock.calls[0][0][0].html()).toBe('mock-html')
+      
+    expect(document.activeElement).toBe(pop.find('h2').get(0))
+    expect(pop.find('h2').attr('tabindex')).toBe('0')
+  
+    app.tabs.open = jest.fn()
+    pop.find('.btn-x').trigger('click')
+  
+    expect(app.tabs.open).toHaveBeenCalledTimes(0)
   })
 })
 
