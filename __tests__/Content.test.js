@@ -201,7 +201,7 @@ test('unkownZone', () => {
 
   new Content(content => {
     expect(content.unkownZone(location)).toBe(
-      '<h2>Zone Finder cannot determine Zone for your address.<br>Try alternative address or determine Zone by examining map and clicking on your location.</h2><div>59 Maiden Lane<br> New York</div>'
+      '<h2>Zone Finder cannot determine Zone for your address.<br>Try alternative address or determine Zone by examining map and clicking on your location.</h2><div class="notranslate" translate="no">59 Maiden Lane<br> New York</div>'
     )
     done()
   })
