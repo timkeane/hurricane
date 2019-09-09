@@ -155,9 +155,6 @@ ul.dtl li {
 .lst-it:nth-child(even) ul, .pop ul {
   background-color: rgba(255,255,255,.8);
 }
-.fnd .pop .btn.dir {
-  margin-top: 5px;
-}
 .pop h2 {
   margin: 0 10px 0 0;
 }
